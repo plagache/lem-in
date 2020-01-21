@@ -10,16 +10,16 @@ name cannot start with 'L' or '#'
 Coordinates must be integers
 
 this implies:
-at most 2 spaces in room lines "RoomName COOR_X" and "COOR_X COOR_Y"
-
-##LINK RULES##
-lines are as follows:
-RoomName1-RoomName2
+at most 2 spaces in room lines "RoomName COOR_X" and"COOR_X COOR_Y"
 
 ##COMMANDS RUES##
 lines that start with "##" are commands
 only "start" and "end" are recognized commands
 other commands are ignored (not an error treated as comments)
+
+##LINK RULES##
+lines are as follows:
+RoomName1-RoomName2
 
 ###END OF INPUT###
 

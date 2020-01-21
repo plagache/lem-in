@@ -11,10 +11,27 @@
 # define BUFF_SIZE 100
 # define STRNEW_FAILURE -1
 # define STRJOIN_FAILURE -2
+
 typedef struct	s_lem_in
 {
+	char		**file_split;
 	char		*file;
 	t_list		*head;
+	long long	nbr_ants;
+	int			line;
 }				t_lem_in;
+
+typedef struct	s_room
+{
+	char		*room_name;
+	t_list		*neighbours;
+	char		command;
+	char		empty;
+}				t_room;
+
+int				master(t_lem_in *info);
+int				get_ants(t_lem_in *info);
+int				is_command(char *str);
+int				is_comment(char *str);
 
 # endif
