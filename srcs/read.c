@@ -49,7 +49,11 @@ int	master(t_lem_in *info)
 {
 	read_file(info);
 	split_file(info);
-	get_ants(info);
+	if (get_ants(info) == FAILURE
+		|| get_rooms(info) == FAILURE
+		|| get_commands(info) == FAILURE
+		|| get_link(info) == FAILURE)
+		return (FAILURE);
 	display_data(info);
 	free(info->file);
 	if (info->file == NULL)

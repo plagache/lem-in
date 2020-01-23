@@ -31,7 +31,13 @@ typedef struct	s_room
 
 int				master(t_lem_in *info);
 int				get_ants(t_lem_in *info);
+int				get_rooms(t_lem_in *info);
+int				get_link(t_lem_in *info);
 int				is_command(char *str);
 int				is_comment(char *str);
+int				is_room(char *str);
+int				is_link(char *str);
+int				occurrence_of(char *str, char c);
+void			mv_to_next_room(t_lem_in *info);
 
 # endif
