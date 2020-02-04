@@ -7,20 +7,13 @@
 ARG_H	libft/includes/arg.h	14;"	d
 BUFF_SIZE	includes/lem_in.h	11;"	d
 BUFF_SIZE	libft/includes/get_next_line.h	15;"	d
-CC	libft/Makefile	/^CC = clang$/;"	m
-CFLAGS	libft/Makefile	/^CFLAGS = -Wall -Wextra -Werror$/;"	m
 FAILURE	includes/lem_in.h	10;"	d
 FALSE	libft/includes/libft.h	19;"	d
 FLAGSMAX	libft/includes/arg.h	16;"	d
 FT_PRINTF_H	libft/includes/ft_printf.h	14;"	d
 GET_NEXT_LINE_H	libft/includes/get_next_line.h	14;"	d
-HEADER	libft/Makefile	/^HEADER = includes\/libft.h$/;"	m
 LEM_IN_H	includes/lem_in.h	2;"	d
 LIBFT_H	libft/includes/libft.h	14;"	d
-NAME	libft/Makefile	/^NAME = libft.a$/;"	m
-OBJECT	libft/Makefile	/^OBJECT = $(addprefix out\/,$(SRC:.c=.o))$/;"	m
-SRC	libft/Makefile	/^SRC	=	ft_memset.c \\$/;"	m
-SRCS	libft/Makefile	/^SRCS = $(addprefix srcs\/,$(SRC))$/;"	m
 STRJOIN_FAILURE	includes/lem_in.h	13;"	d
 STRNEW_FAILURE	includes/lem_in.h	12;"	d
 SUCCESS	includes/lem_in.h	9;"	d
@@ -57,6 +50,7 @@ divide_str_by_two	libft/srcs/float_tools.c	/^void	divide_str_by_two(char *str, i
 double_exponant	libft/srcs/double_tools.c	/^void	double_exponant(t_s_e_m *dble_ptr, t_d_arrs *a_ptr)$/;"	f
 double_mantissa	libft/srcs/double_tools.c	/^void	double_mantissa(t_s_e_m *dble_ptr, t_d_arrs *a_ptr)$/;"	f
 double_rounding	libft/srcs/double_tools.c	/^void	double_rounding(t_d_arrs *a_ptr, t_conv_id *s_ptr)$/;"	f
+dsfjg	map/lucas/wrongmap_nawak	/^ sdflgdfsj;g  dsfjg;ds g ;sdjfg$/;"	v
 e	libft/includes/arg.h	/^	unsigned short		e;$/;"	m	struct:s_double
 empty	includes/lem_in.h	/^	char		empty;$/;"	m	struct:s_room
 fd	libft/includes/get_next_line.h	/^	int				fd;$/;"	m	struct:s_data
@@ -155,6 +149,7 @@ ft_tolower	libft/srcs/ft_tolower.c	/^int	ft_tolower(int c)$/;"	f
 ft_toupper	libft/srcs/ft_toupper.c	/^int	ft_toupper(int c)$/;"	f
 ftoa_double	libft/srcs/double.c	/^int		ftoa_double(t_s_e_m *dble, t_conv_id *s_ptr)$/;"	f
 ftoa_ldouble	libft/srcs/ldouble.c	/^int		ftoa_ldouble(t_s_e_m *dble, t_conv_id *s_ptr)$/;"	f
+g	map/lucas/wrongmap_nawak	/^ sdflgdfsj;g  dsfjg;ds g ;sdjfg$/;"	v
 get_address_value	libft/srcs/address_tools.c	/^void	get_address_value(unsigned long *val_ptr, va_list *arg_ptr)$/;"	f
 get_ants	srcs/pars.c	/^int		get_ants(t_lem_in *info)$/;"	f
 get_commands	srcs/pars.c	/^int		get_commands(t_lem_in * info)$/;"	f
@@ -245,6 +240,7 @@ s_list	libft/includes/libft.h	/^typedef struct		s_list$/;"	s
 s_long_double_arrs	libft/includes/arg.h	/^typedef struct	s_long_double_arrs$/;"	s
 s_point	libft/includes/arg.h	/^typedef struct	s_point$/;"	s
 s_room	includes/lem_in.h	/^typedef struct	s_room$/;"	s
+sdflgdfsj	map/lucas/wrongmap_nawak	/^ sdflgdfsj;g  dsfjg;ds g ;sdjfg$/;"	v
 special_value	libft/srcs/special_tools.c	/^void	special_value(t_s_e_m *dble_ptr, t_conv_id *s_ptr, int len)$/;"	f
 split_file	srcs/read.c	/^int	split_file(t_lem_in *info)$/;"	f
 start_with_char	srcs/tools.c	/^int		start_with_char(char *str, char c)$/;"	f

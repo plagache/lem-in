@@ -1,3 +1,3 @@
 #! /bin/sh
 
-ctags -R srcs/ includes/ libft/
+ctags -R --language-force=C
