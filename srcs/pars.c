@@ -14,11 +14,11 @@ int		get_ants(t_lem_in *info)
 		c++;
 	if (info->file_split[line][c] != '\0')
 		return (FAILURE);
+	info->line_ants = line;
 	info->nbr_ants = ft_atol(info->file_split[line]);
 	info->line = line + 1;
 	return (SUCCESS);
 }
-/* add #AntsLine */
 
 int		new_link(t_list *head)
 {
@@ -64,17 +64,6 @@ int		get_room_info(t_lem_in *info)
 	return (SUCCESS);
 }
 
-int		get_commands(t_lem_in * info)
-{
-	//get start/get end (info->file_split, line) AntsLine-line
-	//find next room & activate bit command in char
-}
-
-/*
-** if char command has more than 1 bit set == ERROR
-** if Start has End as neighbour == ERROR
-*/
-
 int		get_rooms(t_lem_in *info)
 {
 	while (info->file_split[info->line] != NULL
@@ -89,6 +78,63 @@ int		get_rooms(t_lem_in *info)
 	return (SUCCESS);
 }
 
+int		get_start(char **file, int line)
+{
+	int		len;
+	t_list	*ptr;
+
+	while (ft_strcmp("##start", file[line]) != 0 && line < info->line)
+		line++;
+	if (line == info->line)
+		return (FAILURE);
+	while (is_room(file[line]) == FAILURE && line < info->line)
+		line++;
+	if (line == info->line)
+		return (FAILURE);
+	len = ft_strchr(file[line], ' ') - file[line];
+	ptr = info->head;
+	while (ptr != NULL && ft_strncmp(file[line], ptr->content->room_name, len) != 0)
+		ptr = ptr->next;
+	if (ptr == NULL)
+		return (FAILURE);
+	ptr->content->command ^= 1;
+	return (SUCESS);
+}
+
+int		get_end(char **file, int line)
+{
+	int		len;
+	t_list	*ptr;
+
+	while (ft_strcmp("##end", file[line]) != 0 && line < info->line)
+		line++;
+	if (line == info->line)
+		return (FAILURE);
+	while (is_room(file[line]) == FAILURE && line < info->line)
+		line++;
+	if (line == info->line)
+		return (FAILURE);
+	len = ft_strchr(file[line], ' ') - file[line];
+	ptr = info->head;
+	while (ptr != NULL && ft_strncmp(file[line], ptr->content->room_name, len) != 0)
+		ptr = ptr->next;
+	if (ptr == NULL)
+		return (FAILURE);
+	ptr->content->command ^= 128;
+	return (SUCESS);
+}
+
+int		get_commands(t_lem_in * info)
+{
+	if (get_start(info->file_split, info->line_ants) == FAILURE)
+		return (FAILURE);
+	if (get_end(info->file_split, info->line_ants) == FAILURE)
+		return (FAILURE);
+	return (SUCCESS);
+	//free list and file
+}
+
+
 int		get_link(t_lem_in *info)
 {
 	//check rooms names exist
@@ -96,6 +142,10 @@ int		get_link(t_lem_in *info)
 	//add Room2 pointer to room1 list
 }
 
+/*
+** if char command has more than 1 bit set == ERROR
+** if Start has End as neighbour == ERROR
+*/
 /* sorted room */
 /* find room pointer function*/
 

@@ -19,15 +19,22 @@ typedef struct	s_lem_in
 	t_list		*head;
 	long long	nbr_ants;
 	int			line;
+	int			line_ants;
 }				t_lem_in;
 
 typedef struct	s_room
 {
 	char		*room_name;
 	t_list		*neighbours;
+	int			empty;
 	char		command;
-	char		empty;
 }				t_room;
+
+/*
+** 00000000
+** bit 1 is start
+** bit 128 is end
+*/
 
 int				master(t_lem_in *info);
 int				get_ants(t_lem_in *info);
