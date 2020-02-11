@@ -78,7 +78,7 @@ int		get_rooms(t_lem_in *info)
 	return (SUCCESS);
 }
 
-int		get_start(char **file, int line)
+int		get_start(char **file, int line, t_filler *info)
 {
 	int		len;
 	t_list	*ptr;
@@ -98,10 +98,10 @@ int		get_start(char **file, int line)
 	if (ptr == NULL)
 		return (FAILURE);
 	ptr->content->command ^= 1;
-	return (SUCESS);
+	return (SUCCESS);
 }
 
-int		get_end(char **file, int line)
+int		get_end(char **file, int line, t_filler *info)
 {
 	int		len;
 	t_list	*ptr;
@@ -121,20 +121,30 @@ int		get_end(char **file, int line)
 	if (ptr == NULL)
 		return (FAILURE);
 	ptr->content->command ^= 128;
-	return (SUCESS);
+	return (SUCCESS);
 }
 
 int		get_commands(t_lem_in * info)
 {
-	if (get_start(info->file_split, info->line_ants) == FAILURE)
+	if (get_start(info->file_split, info->line_ants, info) == FAILURE)
 		return (FAILURE);
-	if (get_end(info->file_split, info->line_ants) == FAILURE)
+	if (get_end(info->file_split, info->line_ants, info) == FAILURE)
 		return (FAILURE);
 	return (SUCCESS);
 	//free list and file
 }
 
+// sort room list by rooms names let us:
+	//search for a roomname:to_find 
+	//until to_find is before roomname in lexicographical order (means ft_strcmp(to_compare, to_find) is negative) in that order
+	//or no more nodes in list to check
+	//if ERROR as said above
+	//return ERROR
+	//return room_ptr;
 
+	//TOO MUCH CODISH NOT ENOUGH PSEUDOCODE
+	//while ft_strcmp(roomname, tofind) > 0 && node->next != NULL
+		//ptr = ptr->next
 int		get_link(t_lem_in *info)
 {
 	//check rooms names exist
