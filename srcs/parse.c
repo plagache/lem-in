@@ -32,18 +32,20 @@ int		get_ants(t_lem_in *info)
 	return (SUCCESS);
 }
 
-int		new_link(t_list *head)
+int		new_link(t_list **head)
 {
 	t_room *room;
 	t_list *new;
 
 	room = (t_room *)malloc(sizeof(t_room));
-	if (room == NULL);
+	if (room == NULL)
 		return (FAILURE);
-	new = ft_lstnew(room, sizeof(t_room));
-	if (new == NULL);
+	ft_memset(room, 0, sizeof(t_room));
+	new = ft_lstnew(0, 0);
+	if (new == NULL)
 		return (FAILURE);
-	ft_lstadd(&head, new);
+	new->content = room;
+	ft_lstadd(head, new);
 	return (SUCCESS);
 	/* free room if link fail*/
 }
@@ -55,11 +57,11 @@ int		fill_room_name(t_list *new, char *line)
 
 	ptr = ft_strchr(line, ' ');
 	len = ptr - line;
-	new->content->room_name = (char *)malloc(sizeof(char) * (len + 1));
-	if (new->content->room_name == NULL)
+	((t_room*)new->content)->room_name = (char *)malloc(sizeof(char) * (len + 1));
+	if (((t_room*)new->content)->room_name == NULL)
 		return (FAILURE);
-	new->content->room_name[len] = '\0';
-	ft_strncpy(new->content->room_name, line, len);
+	((t_room*)new->content)->room_name[len] = '\0';
+	ft_strncpy(((t_room*)new->content)->room_name, line, len);
 	return (SUCCESS);
 }
 
@@ -67,7 +69,7 @@ int		get_room_info(t_lem_in *info)
 {
 	if (is_room(info->file_split[info->line]) == FAILURE)
 		return (FAILURE);
-	new_link(info->head);
+	new_link(&(info->head));
 	if (info->head == NULL)
 		return (FAILURE);
 	if (fill_room_name(info->head, info->file_split[info->line]) == FAILURE)
@@ -83,7 +85,7 @@ int		get_rooms(t_lem_in *info)
 	{
 		if (mv_to_next_room(info) == FAILURE)
 			return (SUCCESS);
-		if (get_room_info(info) == FAILURE);
+		if (get_room_info(info) == FAILURE)
 			return (FAILURE);
 		info->line++;
 	}
@@ -105,11 +107,11 @@ int		get_start(char **file, int line, t_lem_in *info)
 		return (FAILURE);
 	len = ft_strchr(file[line], ' ') - file[line];
 	ptr = info->head;
-	while (ptr != NULL && ft_strncmp(file[line], ptr->content->room_name, len) != 0)
+	while (ptr != NULL && ft_strncmp(file[line], ((t_room*)ptr->content)->room_name, len) != 0)
 		ptr = ptr->next;
 	if (ptr == NULL)
 		return (FAILURE);
-	ptr->content->command ^= 1;
+	((t_room*)ptr->content)->command ^= 1;
 	info->start_ptr = ptr;
 	return (SUCCESS);
 }
@@ -129,11 +131,11 @@ int		get_end(char **file, int line, t_lem_in *info)
 		return (FAILURE);
 	len = ft_strchr(file[line], ' ') - file[line];
 	ptr = info->head;
-	while (ptr != NULL && ft_strncmp(file[line], ptr->content->room_name, len) != 0)
+	while (ptr != NULL && ft_strncmp(file[line], ((t_room*)ptr->content)->room_name, len) != 0)
 		ptr = ptr->next;
 	if (ptr == NULL)
 		return (FAILURE);
-	ptr->content->command ^= 128;
+	((t_room*)ptr->content)->command ^= 128;
 	info->end_ptr = ptr;
 	return (SUCCESS);
 }
@@ -148,34 +150,38 @@ int		get_commands(t_lem_in * info)
 	//free list and file
 }
 
-// sort room list by rooms names let us:
-	//search for a roomname:to_find 
-	//until to_find is before roomname in lexicographical order (means ft_strcmp(to_compare, to_find) is negative) in that order
-	//or no more nodes in list to check
-	//if ERROR as said above
-	//return ERROR
-	//return room_ptr;
+t_list	*search_room(t_lem_in *info, char *room)
+{
+	t_list *ptr;
+	
+	ptr = info->head;
+	while (ptr != NULL && ft_strcmp(((t_room*)ptr->content)->room_name, room) <= 0)
+	{
+		if (ft_strcmp(((t_room*)ptr->content)->room_name, room) == 0)
+			return (ptr);
+		ptr = ptr->next;
+	}
+	return (NULL);
+}
 
-	//add_to_neighbours(t_list *to_add, t_list *neighbours)
-	// ROOM1, ROOM2->neighbours
-
-int			get_link(t_lem_in *info, char *room_name1, char *room_name2)
+int		get_link(t_lem_in *info, char *room_name1, char *room_name2)
 {
 	t_list *ptr1;
 	t_list *ptr2;
 
-	ptr1 = is_room(info, room_name1);
-	ptr2 = is_room(info, room_name2);
+	ptr1 = search_room(info, room_name1);
+	ptr2 = search_room(info, room_name2);
 	if (ptr1 == NULL || ptr2 == NULL)
 		return (FAILURE);
-	ft_lstadd(&(ptr1->neighbours), ptr2);
-	ft_lstadd(&(ptr2->neighbours), ptr1);
-	return (SUCCESS)
+	ft_lstadd(&(((t_room*)ptr1->content)->neighbours), ptr2);
+	ft_lstadd(&(((t_room*)ptr2->content)->neighbours), ptr1);
+	return (SUCCESS);
 }
 
 int		get_links(t_lem_in *info)
 {
 	char **arr;
+
 	while (info->file_split[info->line] != NULL)
 	{
 		if (is_comment(info->file_split[info->line]) == SUCCESS)
@@ -193,20 +199,6 @@ int		get_links(t_lem_in *info)
 	return (SUCCESS);
 	//iterate over lines
 	// call get_link if he is on a link line
-}
-
-int		is_room(t_lem_in *info, char *room)
-{
-	t_list *ptr;
-	
-	ptr = info->head;
-	while (ptr != NULL && ft_strcmp(ptr->content->room_name, room) <= 0)
-	{
-		if (ft_strcmp(ptr->content->room_name, room) == 0)
-			return (ptr);
-		ptr = ptr->next;
-	}
-	return (NULL);
 }
 
 /*

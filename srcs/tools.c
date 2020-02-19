@@ -71,11 +71,24 @@ int		is_room(char *str)
 		return (FAILURE);
 	while (ft_isdigit(*ptr) == TRUE)
 		ptr++;
-	if (*ptr != ' ')
+	if (*ptr++ != ' ')
 		return (FAILURE);
 	while (ft_isdigit(*ptr) == TRUE)
 		ptr++;
 	if (*ptr != '\0')
 		return (FAILURE);
 	return (SUCCESS);
+}
+
+void	free_arr(void** arr)
+{
+	int i;
+
+	i = 0;
+	while (arr[i] != NULL)
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
 }

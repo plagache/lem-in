@@ -21,14 +21,14 @@ int     is_ordered(t_room *content, t_room *to_test)
 
 void    content_swap(t_list *link, t_list *to_swap)
 {
-    t_list  *tmp;
+    void *tmp;
 
-    tmp->content = link->content;
+    tmp = link->content;
     link->content = to_swap->content;
-    to_swap->content = tmp->content;
+    to_swap->content = tmp;
 }
 
-int     sort_function(t_list *head)
+void	sort_function(t_list *head)
 {
     t_list *ptr;
     t_list *tmp;

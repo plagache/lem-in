@@ -3,7 +3,10 @@
 int main(void)
 {
 	t_lem_in	info;
+	int	ret;
 
-	master(&info);
+	ret = master(&info);
+	if (ret == FAILURE)
+		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

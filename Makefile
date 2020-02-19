@@ -15,6 +15,7 @@ LIBDIR = libft
 LIBA = $(LIBDIR)/libft.a
 
 CFLAGS = -Wall -Wextra -Werror
+CFLAGS += -g
 
 CC = clang
 
@@ -28,7 +29,7 @@ FORCE:
 
 out/%.o: srcs/%.c
 	mkdir -p out
-	$(CC) -I includes -I libft/includes -o $@ -c $<
+	$(CC) $(CFLAGS) -I includes -I libft/includes -o $@ -c $<
 
 clean:
 	$(RM) -rf out
