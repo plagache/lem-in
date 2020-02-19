@@ -46,40 +46,6 @@ void	print_roomnames(t_list *lst)
 	}
 }
 
-int	display_data(t_lem_in *info)
-{
-	int c;
-	t_room *room_ptr;
-	t_list *ptr;
-
-	c = 0;
-//	while (info->file_split[c] != NULL)
-//	{
-//		printf("%s\n", info->file_split[c]);
-//		free(info->file_split[c]);
-//		c++;
-//	}
-
-	//print ants;
-	//printf("ants=|%lli|\n", info->nbr_ants);
-
-	//print rooms
-	ptr = info->head;
-	while (ptr != NULL)
-	{
-		printf("ROOM PTR = %p\n", (void*)ptr);
-		room_ptr = (t_room*)ptr->content;
-		printf("ROOM NAME = %s\n", room_ptr->room_name);
-		//print commands
-		//printf("ROOM COMMAND = |%c|\n", room_ptr->command);
-		//print links
-		print_roomnames(room_ptr->neighbours);
-		ptr = ptr->next;
-	}
-	free(info->file_split);
-	return (c);
-}
-
 int	master(t_lem_in *info)
 {
 	read_file(info);
@@ -90,7 +56,8 @@ int	master(t_lem_in *info)
 		|| get_commands(info) == FAILURE
 		|| get_links(info) == FAILURE)
 		return (FAILURE);
-	display_data(info);
+	//display_data(info);
+	free(info->file_split);
 	if (info->file == NULL)
 		return (SUCCESS);
 	return (FAILURE);
