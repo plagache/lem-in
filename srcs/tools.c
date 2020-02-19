@@ -41,8 +41,6 @@ int		is_link(char *str)
 {
 	if (is_comment(str) == SUCCESS)
 		return (FAILURE);
-	if (start_with_char(str, 'L') == SUCCESS)
-		return (FAILURE);
 	if (occurrence_of(str, '-') != 1)
 		return (FAILURE);
 	if (ft_strchr(str, ' ') != NULL)

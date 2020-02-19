@@ -52,7 +52,7 @@ int	master(t_lem_in *info)
 	if (get_ants(info) == FAILURE
 		|| get_rooms(info) == FAILURE
 		|| get_commands(info) == FAILURE
-		|| get_link(info) == FAILURE)
+		|| get_links(info) == FAILURE)
 		return (FAILURE);
 	display_data(info);
 	free(info->file);

@@ -1,9 +1,10 @@
 NAME = lem-in
 
 SRC = lem_in.c \
-	  pars.c \
+	  parse.c \
 	  read.c \
 	  tools.c \
+	  sort.c\
 
 SRCS = $(addprefix srcs/,$(SRCS))
 

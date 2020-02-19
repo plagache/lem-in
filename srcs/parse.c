@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: plagache <plagache@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/12 10:55:54 by plagache          #+#    #+#             */
+/*   Updated: 2020/02/19 17:06:12 by plagache         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lem_in.h"
 
 int		get_ants(t_lem_in *info)
@@ -78,7 +90,7 @@ int		get_rooms(t_lem_in *info)
 	return (SUCCESS);
 }
 
-int		get_start(char **file, int line, t_filler *info)
+int		get_start(char **file, int line, t_lem_in *info)
 {
 	int		len;
 	t_list	*ptr;
@@ -98,10 +110,11 @@ int		get_start(char **file, int line, t_filler *info)
 	if (ptr == NULL)
 		return (FAILURE);
 	ptr->content->command ^= 1;
+	info->start_ptr = ptr;
 	return (SUCCESS);
 }
 
-int		get_end(char **file, int line, t_filler *info)
+int		get_end(char **file, int line, t_lem_in *info)
 {
 	int		len;
 	t_list	*ptr;
@@ -121,6 +134,7 @@ int		get_end(char **file, int line, t_filler *info)
 	if (ptr == NULL)
 		return (FAILURE);
 	ptr->content->command ^= 128;
+	info->end_ptr = ptr;
 	return (SUCCESS);
 }
 
@@ -142,25 +156,70 @@ int		get_commands(t_lem_in * info)
 	//return ERROR
 	//return room_ptr;
 
-	//TOO MUCH CODISH NOT ENOUGH PSEUDOCODE
-	//while ft_strcmp(roomname, tofind) > 0 && node->next != NULL
-		//ptr = ptr->next
-int		get_link(t_lem_in *info)
+	//add_to_neighbours(t_list *to_add, t_list *neighbours)
+	// ROOM1, ROOM2->neighbours
+
+int			get_link(t_lem_in *info, char *room_name1, char *room_name2)
 {
-	//check rooms names exist
-	//add Room1 pointer to room2 list
-	//add Room2 pointer to room1 list
+	t_list *ptr1;
+	t_list *ptr2;
+
+	ptr1 = is_room(info, room_name1);
+	ptr2 = is_room(info, room_name2);
+	if (ptr1 == NULL || ptr2 == NULL)
+		return (FAILURE);
+	ft_lstadd(&(ptr1->neighbours), ptr2);
+	ft_lstadd(&(ptr2->neighbours), ptr1);
+	return (SUCCESS)
+}
+
+int		get_links(t_lem_in *info)
+{
+	char **arr;
+	while (info->file_split[info->line] != NULL)
+	{
+		if (is_comment(info->file_split[info->line]) == SUCCESS)
+			info->line++;
+		else if (is_link(info->file_split[info->line]) == SUCCESS) 
+		{
+			arr = ft_strsplit(info->file_split[info->line], '-');
+			get_link(info, arr[0], arr[1]);
+			free_arr((void**)arr);
+			info->line++;
+		}
+		else
+			return (FAILURE);
+	}
+	return (SUCCESS);
+	//iterate over lines
+	// call get_link if he is on a link line
+}
+
+int		is_room(t_lem_in *info, char *room)
+{
+	t_list *ptr;
+	
+	ptr = info->head;
+	while (ptr != NULL && ft_strcmp(ptr->content->room_name, room) <= 0)
+	{
+		if (ft_strcmp(ptr->content->room_name, room) == 0)
+			return (ptr);
+		ptr = ptr->next;
+	}
+	return (NULL);
 }
 
 /*
+** VALIDATE DATA BEFORE SEARCHING FOR SOLUTION IN IT
+** means check all assupmtions made before 
 ** if char command has more than 1 bit set == ERROR
 ** if Start has End as neighbour == ERROR
 */
 /* sorted room */
 /* find room pointer function*/
 
-
-int		check_min_path()
-{
-	//check if start and end has link to any room (non empty neighbours_list for start and end)
-}
+/*
+** MAKEFILE compile 
+** print lem-in 
+** check parsing
+*/

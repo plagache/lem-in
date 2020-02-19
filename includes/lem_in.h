@@ -11,12 +11,15 @@
 # define BUFF_SIZE 100
 # define STRNEW_FAILURE -1
 # define STRJOIN_FAILURE -2
+# define NO_ROOM 2
 
 typedef struct	s_lem_in
 {
 	char		**file_split;
 	char		*file;
 	t_list		*head;
+	t_list		*start_ptr;
+	t_list		*end_ptr;
 	long long	nbr_ants;
 	int			line;
 	int			line_ants;
@@ -31,6 +34,12 @@ typedef struct	s_room
 }				t_room;
 
 /*
+** t_list:
+** content t_roon
+** next next_link
+*/
+
+/*
 ** 00000000
 ** bit 1 is start
 ** bit 128 is end
@@ -39,7 +48,7 @@ typedef struct	s_room
 int				master(t_lem_in *info);
 int				get_ants(t_lem_in *info);
 int				get_rooms(t_lem_in *info);
-int				get_link(t_lem_in *info);
+int				get_links(t_lem_in *info);
 int				is_command(char *str);
 int				is_comment(char *str);
 int				is_room(char *str);
