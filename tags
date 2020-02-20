@@ -211,7 +211,7 @@ multiply_str_by_two	libft/srcs/float_tools.c	/^void	multiply_str_by_two(char *st
 mv_to_next_room	srcs/tools.c	/^int		mv_to_next_room(t_lem_in *info)$/;"	f
 nbr_ants	includes/lem_in.h	/^	long long	nbr_ants;$/;"	m	struct:s_lem_in
 neighbours	includes/lem_in.h	/^	t_list		*neighbours;$/;"	m	struct:s_room
-new_link	srcs/parse.c	/^int		new_link(t_list **head)$/;"	f
+new_link	srcs/parse.c	/^int		new_link(t_list **head, t_room *room_ptr)$/;"	f
 next	libft/includes/libft.h	/^	struct s_dlist	*next;$/;"	m	struct:s_dlist	typeref:struct:s_dlist::s_dlist
 next	libft/includes/libft.h	/^	struct s_list	*next;$/;"	m	struct:s_list	typeref:struct:s_list::s_list
 no_flag_address	libft/srcs/address.c	/^void	no_flag_address(t_conv_id *s_ptr, int len, unsigned long nb)$/;"	f

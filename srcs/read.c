@@ -29,21 +29,50 @@ int	read_file(t_lem_in *info)
 	return (FAILURE);
 }
 
-void	print_roomnames(t_list *lst)
+void	print_roomnames(t_room *room)
 {
 	t_room *R_ptr;
-	t_list *ptr;
+	t_list *lst;
 	int	nbr;
 
-	ptr = lst;
 	nbr = 1;
-	while (ptr != NULL)
+//	ROOM || neighbours (list) ||
+//	neighbours || content is t_room  || content->room_name
+	//printf("LINK NAME = |%s|\n", ((t_room*)ptr->content)->room_name);
+	lst = room->neighbours;
+	printf("in ROOM |%s| there is\n", room->room_name);
+	while (lst != NULL)
 	{
-		R_ptr = (t_room*)ptr->content;
-		printf("||Neighbour No =%i\n|%s|\n", nbr, R_ptr->room_name);
-		ptr = ptr->next;
+		R_ptr = (t_room*)lst->content;
+		printf("||Neighbour No =%i\n|Name = %s| address = %p\n\n", nbr, R_ptr->room_name, R_ptr);
+		lst = lst->next;
 		nbr++;
 	}
+}
+
+int	display_data(t_lem_in *info)
+{
+	int c;
+	t_room *room_ptr;
+	t_list *ptr;
+
+	c = 0;
+	//print rooms
+	ptr = info->head;
+	while (ptr != NULL)
+	{
+		//printf("ROOM PTR  = %p\n", ptr);
+		room_ptr = (t_room*)ptr->content;
+		//printf("ROOM NAME = |%s|\n", room_ptr->room_name);
+
+		//given a t_room *room list every nieghbours
+		print_roomnames(room_ptr);
+		//printf("ROOM COMMAND = |%i|\n", (int)room_ptr->command);
+		//printf("ROOM NEXT = %p\n", ptr->next);
+		//printf("\n");
+		ptr = ptr->next;
+	}
+	return (c);
 }
 
 int	master(t_lem_in *info)
@@ -56,7 +85,6 @@ int	master(t_lem_in *info)
 		|| get_commands(info) == FAILURE
 		|| get_links(info) == FAILURE)
 		return (FAILURE);
-	//display_data(info);
 	free(info->file_split);
 	if (info->file == NULL)
 		return (SUCCESS);

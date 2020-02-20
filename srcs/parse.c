@@ -12,30 +12,6 @@
 
 #include "lem_in.h"
 
-int	display_data(t_lem_in *info)
-{
-	int c;
-	t_room *room_ptr;
-	t_list *ptr;
-
-	c = 0;
-	//print rooms
-	ptr = info->head;
-	while (ptr != NULL)
-	{
-		room_ptr = (t_room*)ptr->content;
-		printf("ROOM NAME = %s\n", room_ptr->room_name);
-		////print commands
-		//printf("ROOM COMMAND = |%c|\n", room_ptr->command);
-		////print links
-		//print_roomnames(room_ptr->neighbours);
-		printf("link = |%p|\n", ptr);
-		ptr = ptr->next;
-		printf("link->next = |%p|\n", ptr);
-	}
-	return (c);
-}
-
 int		get_ants(t_lem_in *info)
 {
 	int		line;
@@ -56,15 +32,17 @@ int		get_ants(t_lem_in *info)
 	return (SUCCESS);
 }
 
-int		new_link(t_list **head)
+int		new_link(t_list **head, t_room *room_ptr)
 {
 	t_room *room;
 	t_list *new;
 
-	room = (t_room *)malloc(sizeof(t_room));
+	room = room_ptr;
+	if (room == NULL)
+		room = (t_room *)malloc(sizeof(t_room));
 	if (room == NULL)
 		return (FAILURE);
-	ft_memset(room, 0, sizeof(t_room));
+	//printf("|Newlink Room|%p\n", room_ptr);
 	new = ft_lstnew(0, 0);
 	if (new == NULL)
 		return (FAILURE);
@@ -93,7 +71,7 @@ int		get_room_info(t_lem_in *info)
 {
 	if (is_room(info->file_split[info->line]) == FAILURE)
 		return (FAILURE);
-	new_link(&(info->head));
+	new_link(&(info->head), NULL);
 	if (info->head == NULL)
 		return (FAILURE);
 	if (fill_room_name(info->head, info->file_split[info->line]) == FAILURE)
@@ -190,12 +168,6 @@ t_list	*search_room(t_lem_in *info, char *room)
 
 int		get_link(t_lem_in *info, char *room_name1, char *room_name2)
 {
-	/*
-	** BIG PROBLEM HERE FIX BEFORE EVERYTHINGELSE
-	** change newlink func to take a ptr to room, and only malloc if ptr is null
-	** if ptr != NULL then copy this ptr to link->content
-	** call newer version of newlink instead of lst_add
-	*/
 	t_list *ptr1;
 	t_list *ptr2;
 
@@ -203,17 +175,20 @@ int		get_link(t_lem_in *info, char *room_name1, char *room_name2)
 	ptr2 = search_room(info, room_name2);
 	if (ptr1 == NULL || ptr2 == NULL)
 		return (FAILURE);
-	ft_lstadd(&(((t_room*)ptr1->content)->neighbours), ptr2);
-	ft_lstadd(&(((t_room*)ptr2->content)->neighbours), ptr1);
+	new_link(&(((t_room*)ptr1->content)->neighbours), (t_room*)ptr2->content);
+	new_link(&(((t_room*)ptr2->content)->neighbours), (t_room*)ptr1->content);
+	//print_roomnames(ptr1);
+	//print_roomnames(ptr2);
 	return (SUCCESS);
 }
 
-
+/*
+** only works 
+*/
 int		get_links(t_lem_in *info)
 {
 	char **arr;
 
-	display_data(info);
 	while (info->file_split[info->line] != NULL)
 	{
 		if (is_comment(info->file_split[info->line]) == SUCCESS)
@@ -228,9 +203,8 @@ int		get_links(t_lem_in *info)
 		else
 			return (FAILURE);
 	}
+	display_data(info);
 	return (SUCCESS);
-	//iterate over lines
-	// call get_link if he is on a link line
 }
 
 /*
@@ -239,11 +213,8 @@ int		get_links(t_lem_in *info)
 ** if char command has more than 1 bit set == ERROR
 ** if Start has End as neighbour == ERROR
 */
-/* sorted room */
-/* find room pointer function*/
 
 /*
-** MAKEFILE compile 
 ** print lem-in 
 ** check parsing
 */
