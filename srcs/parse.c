@@ -6,7 +6,7 @@
 /*   By: plagache <plagache@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 10:55:54 by plagache          #+#    #+#             */
-/*   Updated: 2020/02/19 17:06:12 by plagache         ###   ########.fr       */
+/*   Updated: 2020/02/24 14:19:32 by alagache         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,13 @@ int		new_link(t_list **head, t_room *room_ptr)
 	t_room *room;
 	t_list *new;
 
-	room = room_ptr;
-	if (room == NULL)
+	if (room_ptr == NULL)
+	{
 		room = (t_room *)malloc(sizeof(t_room));
+		ft_memset(room, 0, sizeof(t_room));
+	}
+	else
+		room = room_ptr;
 	if (room == NULL)
 		return (FAILURE);
 	//printf("|Newlink Room|%p\n", room_ptr);
@@ -47,6 +51,7 @@ int		new_link(t_list **head, t_room *room_ptr)
 	if (new == NULL)
 		return (FAILURE);
 	new->content = room;
+	new->content_size = sizeof(t_room);
 	ft_lstadd(head, new);
 	return (SUCCESS);
 	/* free room if link fail*/
@@ -59,11 +64,11 @@ int		fill_room_name(t_list *new, char *line)
 
 	ptr = ft_strchr(line, ' ');
 	len = ptr - line;
-	((t_room*)new->content)->room_name = (char *)malloc(sizeof(char) * (len + 1));
-	if (((t_room*)new->content)->room_name == NULL)
+	((t_room*)(new->content))->room_name = (char *)malloc(sizeof(char) * (len + 1));
+	if (((t_room*)(new->content))->room_name == NULL)
 		return (FAILURE);
-	((t_room*)new->content)->room_name[len] = '\0';
-	ft_strncpy(((t_room*)new->content)->room_name, line, len);
+	ft_memset((char*)(((t_room*)(new->content))->room_name), 0, sizeof(char) * (len + 1));
+	ft_strncpy((char*)(((t_room*)(new->content))->room_name), line, len);
 	return (SUCCESS);
 }
 
@@ -170,13 +175,17 @@ int		get_link(t_lem_in *info, char *room_name1, char *room_name2)
 {
 	t_list *ptr1;
 	t_list *ptr2;
+	t_list *neighbour1;
+	t_list *neighbour2;
 
 	ptr1 = search_room(info, room_name1);
 	ptr2 = search_room(info, room_name2);
 	if (ptr1 == NULL || ptr2 == NULL)
 		return (FAILURE);
-	new_link(&(((t_room*)ptr1->content)->neighbours), (t_room*)ptr2->content);
-	new_link(&(((t_room*)ptr2->content)->neighbours), (t_room*)ptr1->content);
+	neighbour1 = (t_list*)(((t_room*)(ptr2->content))->neighbours);
+	neighbour2 = (t_list*)(((t_room*)(ptr2->content))->neighbours);
+	new_link(&neighbour1, (t_room*)(ptr2->content));
+	new_link(&neighbour2, (t_room*)(ptr1->content));
 	//print_roomnames(ptr1);
 	//print_roomnames(ptr2);
 	return (SUCCESS);

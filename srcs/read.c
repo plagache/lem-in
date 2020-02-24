@@ -29,6 +29,7 @@ int	read_file(t_lem_in *info)
 	return (FAILURE);
 }
 
+/*
 void	print_roomnames(t_room *room)
 {
 	t_room *R_ptr;
@@ -83,6 +84,50 @@ int	display_data(t_lem_in *info)
 		ptr = ptr->next;
 	}
 	return (c);
+}
+*/
+int		print_neighbours(t_list *neighbours)
+{
+	t_room	*room_ptr;
+	t_list	*ptr;
+	int		nbr;
+
+	
+	if (neighbours == NULL)
+		return (FAILURE);
+	nbr = 1;
+	ptr = neighbours;
+	while (ptr != NULL)
+	{
+		room_ptr = (t_room*)ptr->content;
+		if (room_ptr != NULL)
+			printf("Neighbour No |%i|\nis |%s|\n", nbr, room_ptr->room_name);
+		else
+			printf("NO ROOM PTR\n");
+		nbr++;
+		ptr = ptr->next;
+	}
+	return (0);
+}
+
+int		display_data(t_lem_in *info)
+{
+	t_list	*head_ptr;
+	t_room	*room_ptr;
+
+	head_ptr = info->head;
+	while (head_ptr != NULL)
+	{
+		if ((t_room*)head_ptr->content != NULL)
+		{
+			room_ptr = (t_room*)head_ptr->content;
+			printf("|%s| NEIGHBOURS ARE\n", room_ptr->room_name);
+			if (print_neighbours((t_list*)room_ptr->neighbours) == FAILURE)
+				return (FAILURE);
+		}
+		head_ptr = head_ptr->next;
+	}
+	return (0);
 }
 
 int	master(t_lem_in *info)
