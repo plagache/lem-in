@@ -60,5 +60,6 @@ int				occurrence_of(char *str, char c);
 int				mv_to_next_room(t_lem_in *info);
 int				display_data(t_lem_in *info);
 void			print_roomnames(t_room *room);
+void			sort_function(t_list *head);
 
 # endif

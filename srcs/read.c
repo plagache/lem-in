@@ -39,12 +39,22 @@ void	print_roomnames(t_room *room)
 //	ROOM || neighbours (list) ||
 //	neighbours || content is t_room  || content->room_name
 	//printf("LINK NAME = |%s|\n", ((t_room*)ptr->content)->room_name);
+	if (room == NULL)
+	{
+		printf (" ROOM IS NULL\n");
+		exit (0);
+	}
 	lst = room->neighbours;
-	printf("in ROOM |%s| there is\n", room->room_name);
+	if (lst == NULL)
+	{
+		printf ("neighbours is NULL in room %s \n", room->room_name);
+		exit (0);
+	}
+	printf ("neighbours of room %s \n", room->room_name);
 	while (lst != NULL)
 	{
 		R_ptr = (t_room*)lst->content;
-		printf("||Neighbour No =%i\n|Name = %s| address = %p\n\n", nbr, R_ptr->room_name, R_ptr);
+		printf("||Neighbour No =%i\n|Name = %s\n| address = %p\n", nbr, R_ptr->room_name, R_ptr);
 		lst = lst->next;
 		nbr++;
 	}

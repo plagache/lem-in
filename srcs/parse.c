@@ -189,9 +189,9 @@ int		get_links(t_lem_in *info)
 {
 	char **arr;
 
+	sort_function(info->head);
 	while (info->file_split[info->line] != NULL)
 	{
-		printf("GL is at line |%s|\n", info->file_split[info->line]);
 		if (is_comment(info->file_split[info->line]) == SUCCESS)
 			info->line++;
 		else if (is_link(info->file_split[info->line]) == SUCCESS) 
@@ -203,9 +203,6 @@ int		get_links(t_lem_in *info)
 		}
 		else
 			return (FAILURE);
-		printf("data at line %i is:\n", info->line);
-		display_data(info);
-		printf("\nEND OF DATA\n\n");
 	}
 	display_data(info);
 	return (SUCCESS);
