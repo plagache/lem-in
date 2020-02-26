@@ -12,6 +12,11 @@
 
 #include "lem_in.h"
 
+/*
+** Sort is OK 
+*/
+
+
 int     is_ordered(t_room *content, t_room *to_test)
 {
     if (ft_strcmp(content->room_name, to_test->room_name) <= 0)

@@ -29,39 +29,6 @@ int	read_file(t_lem_in *info)
 	return (FAILURE);
 }
 
-/*
-void	print_roomnames(t_room *room)
-{
-	t_room *R_ptr;
-	t_list *lst;
-	int	nbr;
-
-	nbr = 1;
-//	ROOM || neighbours (list) ||
-//	neighbours || content is t_room  || content->room_name
-	//printf("LINK NAME = |%s|\n", ((t_room*)ptr->content)->room_name);
-	if (room == NULL)
-	{
-		printf (" ROOM IS NULL\n");
-		exit (0);
-	}
-	lst = room->neighbours;
-	if (lst == NULL)
-	{
-		printf ("neighbours is NULL in room %s \n", room->room_name);
-		exit (0);
-	}
-	printf ("neighbours of room %s \n", room->room_name);
-	while (lst != NULL)
-	{
-		R_ptr = (t_room*)lst->content;
-		printf("||Neighbour No =%i\n|Name = %s\n| address = %p\n", nbr, R_ptr->room_name, R_ptr);
-		lst = lst->next;
-		nbr++;
-	}
-}
-
-*/
 int	display_list(t_lem_in *info)
 {
 	int c;
@@ -76,25 +43,27 @@ int	display_list(t_lem_in *info)
 		printf("ROOM NBR IS|%i|\n", c);
 		printf("ROOM NAME IS|%s|\n", rptr->room_name);
 		printf("ROOM ADDRESS IS|%p| in link|%p|\n\n", rptr, ptr);
+		c++;
 		ptr = ptr->next;
 	}
 	return (0);
 }
 
-int		print_neighbours(t_list *neighbours)
+int		print_neighbours(t_room *room)
 {
 	t_room	*room_ptr;
 	t_list	*ptr;
 	int		nbr;
 
 	
-	if (neighbours == NULL)
+	printf("addrr |%p|\n", room->neighbours);
+	if (room->neighbours == NULL)
 		return (FAILURE);
 	nbr = 1;
-	ptr = neighbours;
+	ptr = *(room->neighbours);
 	while (ptr != NULL)
 	{
-		room_ptr = (t_room*)ptr->content;
+		room_ptr = (t_room*)(ptr->content);
 		if (room_ptr != NULL)
 			printf("Neighbour No |%i|\nis |%s|\n", nbr, room_ptr->room_name);
 		else
@@ -115,10 +84,13 @@ int		display_data(t_lem_in *info)
 	{
 		if ((t_room*)head_ptr->content != NULL)
 		{
-			room_ptr = (t_room*)head_ptr->content;
+			room_ptr = (t_room*)(head_ptr->content);
 			printf("|%s| NEIGHBOURS ARE\n", room_ptr->room_name);
-			if (print_neighbours((t_list*)room_ptr->neighbours) == FAILURE)
-				return (FAILURE);
+			if (print_neighbours(room_ptr) == FAILURE)
+			{
+				printf("fail to print neighbours\n");
+				//return (FAILURE);
+			}
 		}
 		head_ptr = head_ptr->next;
 	}
