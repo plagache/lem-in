@@ -47,7 +47,8 @@ content_swap	srcs/sort.c	/^void    content_swap(t_list *link, t_list *to_swap)$/
 conv	libft/includes/arg.h	/^	char	conv;$/;"	m	struct:s_conv_info
 conv_path	libft/srcs/ft_printf.c	/^t_point		conv_path(const char *fmt, va_list *arg_ptr)$/;"	f
 countwords	libft/srcs/ft_strsplit.c	/^static size_t		countwords(char const *s, char c)$/;"	f	file:
-display_data	srcs/read.c	/^int	display_data(t_lem_in *info)$/;"	f
+display_data	srcs/read.c	/^int		display_data(t_lem_in *info)$/;"	f
+display_list	srcs/read.c	/^int	display_list(t_lem_in *info)$/;"	f
 divide_str_by_two	libft/srcs/float_tools.c	/^void	divide_str_by_two(char *str, int len)$/;"	f
 double_exponant	libft/srcs/double_tools.c	/^void	double_exponant(t_s_e_m *dble_ptr, t_d_arrs *a_ptr)$/;"	f
 double_mantissa	libft/srcs/double_tools.c	/^void	double_mantissa(t_s_e_m *dble_ptr, t_d_arrs *a_ptr)$/;"	f
@@ -156,7 +157,7 @@ ftoa_ldouble	libft/srcs/ldouble.c	/^int		ftoa_ldouble(t_s_e_m *dble, t_conv_id *
 g	map/lucas/wrongmap_nawak	/^ sdflgdfsj;g  dsfjg;ds g ;sdjfg$/;"	v
 get_address_value	libft/srcs/address_tools.c	/^void	get_address_value(unsigned long *val_ptr, va_list *arg_ptr)$/;"	f
 get_ants	srcs/parse.c	/^int		get_ants(t_lem_in *info)$/;"	f
-get_commands	srcs/parse.c	/^int		get_commands(t_lem_in * info)$/;"	f
+get_commands	srcs/parse.c	/^int		get_commands(t_lem_in *info)$/;"	f
 get_double_value	libft/srcs/double_tools.c	/^void	get_double_value(va_list *arg_ptr, t_s_e_m *dble_ptr)$/;"	f
 get_end	srcs/parse.c	/^int		get_end(char **file, int line, t_lem_in *info)$/;"	f
 get_func	libft/srcs/func_selector.c	/^t_conv_func		get_func(char c)$/;"	f
@@ -234,7 +235,7 @@ precision	libft/includes/arg.h	/^	int		precision;$/;"	m	struct:s_conv_info
 precision	libft/srcs/pprecision.c	/^int		precision(char *ptr, int end, t_conv_id *struct_ptr)$/;"	f
 precision_in_struct	libft/srcs/pprecision.c	/^void	precision_in_struct(char c, t_conv_id *struct_ptr)$/;"	f
 prev	libft/includes/libft.h	/^	struct s_dlist	*prev;$/;"	m	struct:s_dlist	typeref:struct:s_dlist::s_dlist
-print_roomnames	srcs/read.c	/^void	print_roomnames(t_list *lst)$/;"	f
+print_neighbours	srcs/read.c	/^int		print_neighbours(t_list *neighbours)$/;"	f
 read	libft/includes/arg.h	/^	int	read;$/;"	m	struct:s_point
 read_file	srcs/read.c	/^int	read_file(t_lem_in *info)$/;"	f
 readline	libft/srcs/get_next_line.c	/^int				readline(t_data *current)$/;"	f
@@ -276,6 +277,7 @@ tmp	libft/includes/arg.h	/^	char	tmp[1500];$/;"	m	struct:s_double_arrs
 tmp	libft/includes/arg.h	/^	char	tmp[21500];$/;"	m	struct:s_long_double_arrs
 total	libft/includes/arg.h	/^	char	*total;$/;"	m	struct:s_double_arrs
 total	libft/includes/arg.h	/^	char	*total;$/;"	m	struct:s_long_double_arrs
+u	lem-in	/^ELF/;"	v
 unsigned_len_base	libft/srcs/global_tools.c	/^int	unsigned_len_base(unsigned long long val, unsigned base)$/;"	f
 width	libft/includes/arg.h	/^	int		width;$/;"	m	struct:s_conv_info
 width	libft/srcs/pwidth.c	/^int		width(char *ptr, int end, t_conv_id *struct_ptr)$/;"	f

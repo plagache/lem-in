@@ -37,13 +37,9 @@ int		new_link(t_list **head, t_room *room_ptr)
 	t_room *room;
 	t_list *new;
 
-	if (room_ptr == NULL)
-	{
-		room = (t_room *)malloc(sizeof(t_room));
-		ft_memset(room, 0, sizeof(t_room));
-	}
-	else
-		room = room_ptr;
+	room = room_ptr;
+	if (room == NULL)
+		room = (t_room*)ft_memalloc(sizeof(t_room));
 	if (room == NULL)
 		return (FAILURE);
 	//printf("|Newlink Room|%p\n", room_ptr);
@@ -64,11 +60,11 @@ int		fill_room_name(t_list *new, char *line)
 
 	ptr = ft_strchr(line, ' ');
 	len = ptr - line;
-	((t_room*)(new->content))->room_name = (char *)malloc(sizeof(char) * (len + 1));
-	if (((t_room*)(new->content))->room_name == NULL)
+	ptr = (char*)ft_memalloc(sizeof(char) * (len + 1));
+	if (ptr == NULL)
 		return (FAILURE);
-	ft_memset((char*)(((t_room*)(new->content))->room_name), 0, sizeof(char) * (len + 1));
-	ft_strncpy((char*)(((t_room*)(new->content))->room_name), line, len);
+	ft_strncpy(ptr, line, len);
+	((t_room*)(new->content))->room_name = ptr;
 	return (SUCCESS);
 }
 
@@ -114,11 +110,11 @@ int		get_start(char **file, int line, t_lem_in *info)
 		return (FAILURE);
 	len = ft_strchr(file[line], ' ') - file[line];
 	ptr = info->head;
-	while (ptr != NULL && ft_strncmp(file[line], ((t_room*)ptr->content)->room_name, len) != 0)
+	while (ptr != NULL && ft_strncmp(file[line], ((t_room*)(ptr->content))->room_name, len) != 0)
 		ptr = ptr->next;
 	if (ptr == NULL)
 		return (FAILURE);
-	((t_room*)ptr->content)->command ^= 1;
+	((t_room*)(ptr->content))->command ^= 1;
 	info->start_ptr = ptr;
 	return (SUCCESS);
 }
@@ -138,21 +134,22 @@ int		get_end(char **file, int line, t_lem_in *info)
 		return (FAILURE);
 	len = ft_strchr(file[line], ' ') - file[line];
 	ptr = info->head;
-	while (ptr != NULL && ft_strncmp(file[line], ((t_room*)ptr->content)->room_name, len) != 0)
+	while (ptr != NULL && ft_strncmp(file[line], ((t_room*)(ptr->content))->room_name, len) != 0)
 		ptr = ptr->next;
 	if (ptr == NULL)
 		return (FAILURE);
-	((t_room*)ptr->content)->command ^= 128;
+	((t_room*)(ptr->content))->command ^= 128;
 	info->end_ptr = ptr;
 	return (SUCCESS);
 }
 
-int		get_commands(t_lem_in * info)
+int		get_commands(t_lem_in *info)
 {
 	if (get_start(info->file_split, info->line_ants, info) == FAILURE)
 		return (FAILURE);
 	if (get_end(info->file_split, info->line_ants, info) == FAILURE)
 		return (FAILURE);
+	display_list(info);
 	return (SUCCESS);
 	//free list and file
 }
@@ -186,8 +183,6 @@ int		get_link(t_lem_in *info, char *room_name1, char *room_name2)
 	neighbour2 = (t_list*)(((t_room*)(ptr2->content))->neighbours);
 	new_link(&neighbour1, (t_room*)(ptr2->content));
 	new_link(&neighbour2, (t_room*)(ptr1->content));
-	//print_roomnames(ptr1);
-	//print_roomnames(ptr2);
 	return (SUCCESS);
 }
 
@@ -213,7 +208,7 @@ int		get_links(t_lem_in *info)
 		else
 			return (FAILURE);
 	}
-	display_data(info);
+	//display_data(info);
 	return (SUCCESS);
 }
 

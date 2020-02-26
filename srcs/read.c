@@ -61,31 +61,26 @@ void	print_roomnames(t_room *room)
 	}
 }
 
-int	display_data(t_lem_in *info)
+*/
+int	display_list(t_lem_in *info)
 {
 	int c;
-	t_room *room_ptr;
 	t_list *ptr;
+	t_room *rptr;
 
-	c = 0;
-	//print rooms
+	c = 1;
 	ptr = info->head;
 	while (ptr != NULL)
 	{
-		//printf("ROOM PTR  = %p\n", ptr);
-		room_ptr = (t_room*)ptr->content;
-		//printf("ROOM NAME = |%s|\n", room_ptr->room_name);
-
-		//given a t_room *room list every nieghbours
-		print_roomnames(room_ptr);
-		//printf("ROOM COMMAND = |%i|\n", (int)room_ptr->command);
-		//printf("ROOM NEXT = %p\n", ptr->next);
-		//printf("\n");
+		rptr = (t_room*)(ptr->content);
+		printf("ROOM NBR IS|%i|\n", c);
+		printf("ROOM NAME IS|%s|\n", rptr->room_name);
+		printf("ROOM ADDRESS IS|%p| in link|%p|\n\n", rptr, ptr);
 		ptr = ptr->next;
 	}
-	return (c);
+	return (0);
 }
-*/
+
 int		print_neighbours(t_list *neighbours)
 {
 	t_room	*room_ptr;
