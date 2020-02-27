@@ -6,11 +6,12 @@
 /*   By: plagache <plagache@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 10:55:54 by plagache          #+#    #+#             */
-/*   Updated: 2020/02/24 14:19:32 by alagache         ###   ########.fr       */
+/*   Updated: 2020/02/27 16:51:01 by alagache         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+#include "ft_printf.h"
 
 int		get_ants(t_lem_in *info)
 {
@@ -150,7 +151,7 @@ int		get_commands(t_lem_in *info)
 	if (get_end(info->file_split, info->line_ants, info) == FAILURE)
 		return (FAILURE);
 	sort_function(info->head);
-	display_list(info);
+	//display_list(info);
 	return (SUCCESS);
 	//free list and file
 }
@@ -169,24 +170,24 @@ t_list	*search_room(t_lem_in *info, char *room)
 	return (NULL);
 }
 
-/*
-** input takes a ptr head of list of neighbours and the ptr to the room
-** create a link
-** fill content of link with room ptr
-** add the link to the list
-** return sucess if ok, return fail if create link fail
-*/
-int		init_neighbours(t_list **neighbours, t_room *room)
-{
-	t_list *link;
-	
-	link = (t_list*)ft_memalloc(sizeof(t_list));
-	if (link == NULL)
-		return (FAILURE);
-	link->content = room;
-	neighbours = &(link);
-	return (SUCCESS);
-}
+///*
+//** input takes a ptr head of list of neighbours and the ptr to the room
+//** create a link
+//** fill content of link with room ptr
+//** add the link to the list
+//** return sucess if ok, return fail if create link fail
+//*/
+//int		init_neighbours(t_list **neighbours, t_room *room)
+//{
+//	t_list *link;
+//	
+//	link = (t_list*)ft_memalloc(sizeof(t_list));
+//	if (link == NULL)
+//		return (FAILURE);
+//	link->content = room;
+//	neighbours = &(link);
+//	return (SUCCESS);
+//}
 
 int		get_link(t_lem_in *info, char *room_name1, char *room_name2)
 {
@@ -199,18 +200,14 @@ int		get_link(t_lem_in *info, char *room_name1, char *room_name2)
 	ptr2 = search_room(info, room_name2);
 	if (ptr1 == NULL || ptr2 == NULL)
 		return (FAILURE);
-	printf("room 1 %s\nrooo 2 %s\n\n", room_name1, room_name2);
-	printf("ptr 1 %p\nptr 2 %p\n\n", ptr1, ptr2);
 	room1 = (t_room*)(ptr1->content);
 	room2 = (t_room*)(ptr2->content);
-	//if (room2->neighbours == NULL)
-	//	init_neighbours(&(room2->neighbours), room1);
-	//else
-		new_link(&(room2->neighbours), room1);
-	//if (room1->neighbours == NULL)
-	//	init_neighbours(&(room1->neighbours), room2);
-	//else
-		new_link(&(room1->neighbours), room2);
+//	printf("ptr 1   |%20p|  ptr 2   |%20p|\n", ptr1, ptr2);
+//	printf("ROOM 1  |%20p|  ROOM 2  |%20p|\n", room1, room2);
+//	printf("roomN 1 |%20s|  roomN 2 |%20s|\n", room_name1, room_name2);
+//	printf("NEIGH 1 |%20p|  NEIGH 2 |%20p|\n\n", &(room1->neighbours), &(room2->neighbours));
+	new_link(&(room2->neighbours), room1);
+	new_link(&(room1->neighbours), room2);
 	return (SUCCESS);
 }
 
@@ -236,6 +233,9 @@ int		get_links(t_lem_in *info)
 			return (FAILURE);
 	}
 	display_data(info);
+	//while (1)
+	//{
+	//}
 	return (SUCCESS);
 }
 

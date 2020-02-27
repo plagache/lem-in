@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   read.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alagache <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/27 16:51:59 by alagache          #+#    #+#             */
+/*   Updated: 2020/02/27 16:52:01 by alagache         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lem_in.h"
 
 int	split_file(t_lem_in *info)
@@ -27,74 +39,6 @@ int	read_file(t_lem_in *info)
 	if (ret == 0)
 		return (SUCCESS);
 	return (FAILURE);
-}
-
-int	display_list(t_lem_in *info)
-{
-	int c;
-	t_list *ptr;
-	t_room *rptr;
-
-	c = 1;
-	ptr = info->head;
-	while (ptr != NULL)
-	{
-		rptr = (t_room*)(ptr->content);
-		printf("ROOM NBR IS|%i|\n", c);
-		printf("ROOM NAME IS|%s|\n", rptr->room_name);
-		printf("ROOM ADDRESS IS|%p| in link|%p|\n\n", rptr, ptr);
-		c++;
-		ptr = ptr->next;
-	}
-	return (0);
-}
-
-int		print_neighbours(t_room *room)
-{
-	t_room	*room_ptr;
-	t_list	*ptr;
-	int		nbr;
-
-	
-	printf("addrr |%p|\n", room->neighbours);
-	if (room->neighbours == NULL)
-		return (FAILURE);
-	nbr = 1;
-	ptr = *(room->neighbours);
-	while (ptr != NULL)
-	{
-		room_ptr = (t_room*)(ptr->content);
-		if (room_ptr != NULL)
-			printf("Neighbour No |%i|\nis |%s|\n", nbr, room_ptr->room_name);
-		else
-			printf("NO ROOM PTR\n");
-		nbr++;
-		ptr = ptr->next;
-	}
-	return (0);
-}
-
-int		display_data(t_lem_in *info)
-{
-	t_list	*head_ptr;
-	t_room	*room_ptr;
-
-	head_ptr = info->head;
-	while (head_ptr != NULL)
-	{
-		if ((t_room*)head_ptr->content != NULL)
-		{
-			room_ptr = (t_room*)(head_ptr->content);
-			printf("|%s| NEIGHBOURS ARE\n", room_ptr->room_name);
-			if (print_neighbours(room_ptr) == FAILURE)
-			{
-				printf("fail to print neighbours\n");
-				//return (FAILURE);
-			}
-		}
-		head_ptr = head_ptr->next;
-	}
-	return (0);
 }
 
 int	master(t_lem_in *info)

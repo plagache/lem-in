@@ -5,6 +5,7 @@ SRC = lem_in.c \
 	  read.c \
 	  tools.c \
 	  sort.c\
+	  print.c\
 
 SRCS = $(addprefix srcs/,$(SRCS))
 
