@@ -13,32 +13,67 @@
 #include "lem_in.h"
 
 /*
-BFS (start, neighbours)
+** input start
+** output start or NULL if error
+** visit all vertices with positive capacity
+*/
+
+
+int		breadth_first_search(t_list *start_ptr)
 {
-	level = 1;
-	parent = NULL;
-	i = 1;
-	frontier = start;
+	int		levels;
+	t_list	*frontier;
+	t_list	*front_ptr;
+	t_list	*next_l;
+	t_list	*neigh_ptr;
+
+	levels = 1;
+	frontier = start_ptr;
 	while (frontier != NULL)
 	{
-		next = emptylist
-		for nodes in frontier
+		next_l = NULL;
+		front_ptr = frontier;
+		while(front_ptr != NULL) 
 		{
-			for neighbours in node
+			neigh_ptr = (t_room*)(front_ptr->content)->neighbours;
+			while (neigh_ptr != NULL)
 			{
-				if (neighbour not in level)
+				if ((t_room*)(neigh_ptr->content)->level == 0)
 				{
-					level of nieghbour is i;
-					parent of neighbour is node
-					append neighbour to next
+					(t_room*)(neigh_ptr->content)->level = levels;
+					(t_room*)(neigh_ptr->content)->parent = front_ptr;
+
+					if (new_link(&next_l, (t_room*)(neigh_ptr->content)) == FAILURE)
+					{
+						free(next_l);
+						free(frontier);
+						return (NULL);
+					}
+					
+					//if (free next & frontier && return NULL) 
 				}
+				neigh_ptr = neigh_ptr->next;
 			}
+			front_ptr = front_ptr->next;
 		}
-		frontier is next
-		i + 1;
+		free(frontier);
+		frontier = next_l;
+		levels++;
 	}
+	return (SUCCESS);
 }
+
+/*
+** get_path
+** input end
+** output Path or NULL if error
+** create path and returns it
 */
+
+t_list	*get_path(t_room *end)
+{
+
+}
 
 int		check_min_path()
 {
