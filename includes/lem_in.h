@@ -41,12 +41,21 @@ typedef struct	s_lem_in
 typedef struct	s_room
 {
 	char		*room_name;
+	t_room		*parent;
 	t_list		*neighbours;
-	int			empty;
+	int			state;
+	int			level;
 	char		command;
 }				t_room;
 
 /*
+** state int use bits to know:
+** 	- 1 st bit is capacity: 0 Empty || 1 Full
+**	- 2 nd bit is 
+*/
+
+/*
+** command use bits:
 ** 00000000
 ** bit 1 is start
 ** bit 128 is end
