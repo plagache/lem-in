@@ -1,0 +1,41 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+add_path	path.c	/^int		add_path(t_list **path_list, t_list *path)$/;"	f
+bfs_neighbours	path.c	/^int		bfs_neighbours(t_list *front_ptr, t_list **next_l, t_list *frontier)$/;"	f
+breadth_first_search	path.c	/^int		breadth_first_search(t_list *start_ptr)$/;"	f
+check_min_path	path.c	/^int		check_min_path()$/;"	f
+content_swap	sort.c	/^void	content_swap(t_list *link, t_list *to_swap)$/;"	f
+display_data	print.c	/^int		display_data(t_lem_in *info)$/;"	f
+display_list	print.c	/^int	display_list(t_lem_in *info)$/;"	f
+fill_room	parse.c	/^int		fill_room(t_list *new, char *line)$/;"	f
+free_arr	tools.c	/^void	free_arr(void **arr)$/;"	f
+get_ants	parse.c	/^int		get_ants(t_lem_in *info)$/;"	f
+get_commands	parse.c	/^int		get_commands(t_lem_in *info)$/;"	f
+get_end	parse.c	/^int		get_end(char **file, int line, t_lem_in *info)$/;"	f
+get_link	parse.c	/^int		get_link(t_lem_in *info, char *room_name1, char *room_name2)$/;"	f
+get_links	parse.c	/^int		get_links(t_lem_in *info)$/;"	f
+get_path	path.c	/^t_list	*get_path(t_list *end)$/;"	f
+get_room_info	parse.c	/^int		get_room_info(t_lem_in *info)$/;"	f
+get_rooms	parse.c	/^int		get_rooms(t_lem_in *info)$/;"	f
+get_start	parse.c	/^int		get_start(char **file, int line, t_lem_in *info)$/;"	f
+is_command	tools.c	/^int		is_command(char *str)$/;"	f
+is_comment	tools.c	/^int		is_comment(char *str)$/;"	f
+is_link	tools.c	/^int		is_link(char *str)$/;"	f
+is_ordered	sort.c	/^int		is_ordered(t_room *content, t_room *to_test)$/;"	f
+is_room	tools.c	/^int		is_room(char *str)$/;"	f
+main	lem_in.c	/^int	main(void)$/;"	f
+master	read.c	/^int	master(t_lem_in *info)$/;"	f
+mv_to_next_room	tools.c	/^int		mv_to_next_room(t_lem_in *info)$/;"	f
+new_link	parse.c	/^int		new_link(t_list **head, t_room *room_ptr)$/;"	f
+new_path	path.c	/^int		new_path(t_list *end)$/;"	f
+occurrence_of	tools.c	/^int		occurrence_of(char *str, char c)$/;"	f
+print_neighbours	print.c	/^int		print_neighbours(t_room *room)$/;"	f
+read_file	read.c	/^int	read_file(t_lem_in *info)$/;"	f
+search_room	parse.c	/^t_list	*search_room(t_lem_in *info, char *room)$/;"	f
+sort_function	sort.c	/^void	sort_function(t_list *head)$/;"	f
+split_file	read.c	/^int	split_file(t_lem_in *info)$/;"	f
+start_with_char	tools.c	/^int		start_with_char(char *str, char c)$/;"	f

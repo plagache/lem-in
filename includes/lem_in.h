@@ -30,6 +30,7 @@ typedef struct	s_lem_in
 {
 	char		**file_split;
 	char		*file;
+	t_list		**path_list;
 	t_list		*head;
 	t_list		*start_ptr;
 	t_list		*end_ptr;
