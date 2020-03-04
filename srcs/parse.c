@@ -43,7 +43,6 @@ int		new_link(t_list **head, t_room *room_ptr)
 		room = (t_room*)ft_memalloc(sizeof(t_room));
 	if (room == NULL)
 		return (FAILURE);
-//	printf("|Newlink Room|%p\n", room_ptr);
 	new = ft_lstnew(0, 0);
 	if (new == NULL)
 		return (FAILURE);
@@ -54,7 +53,7 @@ int		new_link(t_list **head, t_room *room_ptr)
 	/* free room if link fail*/
 }
 
-int		fill_room_name(t_list *new, char *line)
+int		fill_room(t_list *new, char *line)
 {
 	char	*ptr;
 	size_t	len;
@@ -66,6 +65,7 @@ int		fill_room_name(t_list *new, char *line)
 		return (FAILURE);
 	ft_strncpy(ptr, line, len);
 	((t_room*)(new->content))->room_name = ptr;
+	((t_room*)(new->content))->capacity ^= 1;
 	return (SUCCESS);
 }
 
@@ -76,7 +76,7 @@ int		get_room_info(t_lem_in *info)
 	new_link(&(info->head), NULL);
 	if (info->head == NULL)
 		return (FAILURE);
-	if (fill_room_name(info->head, info->file_split[info->line]) == FAILURE)
+	if (fill_room(info->head, info->file_split[info->line]) == FAILURE)
 		return (FAILURE);
 	/* free room then link*/
 	return (SUCCESS);
@@ -170,25 +170,6 @@ t_list	*search_room(t_lem_in *info, char *room)
 	return (NULL);
 }
 
-///*
-//** input takes a ptr head of list of neighbours and the ptr to the room
-//** create a link
-//** fill content of link with room ptr
-//** add the link to the list
-//** return sucess if ok, return fail if create link fail
-//*/
-//int		init_neighbours(t_list **neighbours, t_room *room)
-//{
-//	t_list *link;
-//	
-//	link = (t_list*)ft_memalloc(sizeof(t_list));
-//	if (link == NULL)
-//		return (FAILURE);
-//	link->content = room;
-//	neighbours = &(link);
-//	return (SUCCESS);
-//}
-
 int		get_link(t_lem_in *info, char *room_name1, char *room_name2)
 {
 	t_list *ptr1;
@@ -202,18 +183,12 @@ int		get_link(t_lem_in *info, char *room_name1, char *room_name2)
 		return (FAILURE);
 	room1 = (t_room*)(ptr1->content);
 	room2 = (t_room*)(ptr2->content);
-//	printf("ptr 1   |%20p|  ptr 2   |%20p|\n", ptr1, ptr2);
-//	printf("ROOM 1  |%20p|  ROOM 2  |%20p|\n", room1, room2);
-//	printf("roomN 1 |%20s|  roomN 2 |%20s|\n", room_name1, room_name2);
-//	printf("NEIGH 1 |%20p|  NEIGH 2 |%20p|\n\n", &(room1->neighbours), &(room2->neighbours));
 	new_link(&(room2->neighbours), room1);
 	new_link(&(room1->neighbours), room2);
+	//check if new_link faild and return FAILURE
 	return (SUCCESS);
 }
 
-/*
-** only works 
-*/
 int		get_links(t_lem_in *info)
 {
 	char **arr;
@@ -233,9 +208,6 @@ int		get_links(t_lem_in *info)
 			return (FAILURE);
 	}
 	display_data(info);
-	//while (1)
-	//{
-	//}
 	return (SUCCESS);
 }
 

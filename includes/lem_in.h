@@ -43,15 +43,14 @@ typedef struct	s_room
 	char		*room_name;
 	t_room		*parent;
 	t_list		*neighbours;
-	int			state;
 	int			level;
+	char		capacity;
 	char		command;
 }				t_room;
 
 /*
-** state int use bits to know:
+** state use bits:
 ** 	- 1 st bit is capacity: 0 Empty || 1 Full
-**	- 2 nd bit is 
 */
 
 /*

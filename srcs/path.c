@@ -35,13 +35,14 @@ int		breadth_first_search(t_list *start_ptr)
 		front_ptr = frontier;
 		while(front_ptr != NULL) 
 		{
-			neigh_ptr = (t_room*)(front_ptr->content)->neighbours;
+			neigh_ptr = ((t_room*)(front_ptr->content))->neighbours;
 			while (neigh_ptr != NULL)
 			{
-				if ((t_room*)(neigh_ptr->content)->level == 0)
+				if (((t_room*)(neigh_ptr->content))->level == 0
+					&& ((t_room*)(neigh_ptr->content))->capacity > 0)
 				{
-					(t_room*)(neigh_ptr->content)->level = levels;
-					(t_room*)(neigh_ptr->content)->parent = front_ptr;
+					((t_room*)(neigh_ptr->content))->level = levels;
+					((t_room*)(neigh_ptr->content))->parent = front_ptr;
 
 					if (new_link(&next_l, (t_room*)(neigh_ptr->content)) == FAILURE)
 					{
@@ -49,7 +50,6 @@ int		breadth_first_search(t_list *start_ptr)
 						free(frontier);
 						return (NULL);
 					}
-					
 					//if (free next & frontier && return NULL) 
 				}
 				neigh_ptr = neigh_ptr->next;
