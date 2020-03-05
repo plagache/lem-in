@@ -6,6 +6,8 @@ SRC = lem_in.c \
 	  tools.c \
 	  sort.c\
 	  print.c\
+	  flow.c\
+	  path.c\
 
 SRCS = $(addprefix srcs/,$(SRCS))
 

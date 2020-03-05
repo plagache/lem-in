@@ -12,65 +12,6 @@
 
 #include "lem_in.h"
 
-/*
-** input start
-** output start or NULL if error
-** visit all vertices with positive capacity
-*/
-
-int		bfs_neighbours(t_list *front_ptr, t_list **next_l, t_list *frontier)
-{
-	t_list	*neigh_ptr;
-
-	neigh_ptr = ((t_room*)(front_ptr->content))->neighbours;
-	while (neigh_ptr != NULL)
-	{
-		if (((t_room*)(neigh_ptr->content))->level == 0
-			&& ((t_room*)(neigh_ptr->content))->capacity > 0)
-		{
-			((t_room*)(neigh_ptr->content))->level = levels;
-			((t_room*)(neigh_ptr->content))->parent = front_ptr;
-			if (new_link(next_l, (t_room*)(neigh_ptr->content)) == FAILURE)
-			{
-				free(*next_l);
-				free(frontier);
-				return (FAILURE);
-			}
-			// make a function to free list properly without freeing content //
-		}
-		neigh_ptr = neigh_ptr->next;
-	}
-	return (SUCCESS);
-}
-
-int		breadth_first_search(t_list *start_ptr)
-{
-	int		levels;
-	t_list	*frontier;
-	t_list	*front_ptr;
-	t_list	*next_l;
-
-	levels = 1;
-	frontier = start_ptr;
-	while (frontier != NULL)
-	{
-		next_l = NULL;
-		front_ptr = frontier;
-		while(front_ptr != NULL) 
-		{
-			if (bfs_frontier(front_ptr, &next_l, frontier) == FAILURE)
-				return (FAILURE);
-			front_ptr = front_ptr->next;
-		}
-		free(frontier);
-		//free list 
-		frontier = next_l;
-		levels++;
-	}
-	return (SUCCESS);
-}
-
-
 t_list	*new_path(t_list *end)
 {
 	t_list	*ptr;
@@ -128,13 +69,66 @@ int		add_path(t_list **path_list, t_list *path)
 
 	new_link = (t_list*)ft_memalloc(sizeof(t_list));
 	if (new_link == NULL)
+	{
+		//free list path
 		return (FAILURE);
+	}
 	new_link->content = path;
 	ft_lstadd(path_list, new_link);
 	return (SUCCESS);
 }
 
-int		check_min_path()
+/*
+** input (...)
+** set path capacity to 0
+** and reset levels in all non paths nodes (capacity == 1)
+** output(nothing)
+*/
+void	clean_path(t_list *path, t_list *head)
 {
-	//check if start and end has link to any room (non empty neighbours_list for start and end)
+	t_list	*ptr;
+
+	ptr = path->next;
+	while (((t_room*)ptr->content)->command != END_COMMAND)
+	{
+		((t_room*)ptr->content)->capacity = 0;
+		ptr = ptr->next;
+	}
+	ptr = head;
+	while (ptr != NULL)
+	{
+		if (((t_room*)ptr->content)->capacity == 1)
+			((t_room*)ptr->content)->level = 0;
+		ptr = ptr->next;
+	}
+}
+
+/*
+** input (end, path_list)
+** will call new_/get_/add_path
+** output (SUCCES if all calls returned SUCCESS or not NULL)
+** (FAILURE if any of the procedure returned FAILURE or NULL)
+*/
+
+int		create_path(t_list **path_list, t_list *end, t_list *head)
+{
+	t_list	*neigh;
+	t_list	*path;
+
+	neigh = new_path(end);
+	if (neig == NULL)
+		return (NO_PATH);
+	path = get_path(end, neigh);
+	if (path == NULL)
+	{
+		//free list (path_list);
+		return (PATH_FAIL);
+	}
+	if (add_path(path_list, path) == FAILURE)
+	{
+		//free list path_list and path inside
+		return (LIST_FAIL);
+	}
+	clean_path(path, head);
+	return (SUCCESS);
 }

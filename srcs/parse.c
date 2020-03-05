@@ -207,7 +207,7 @@ int		get_links(t_lem_in *info)
 		else
 			return (FAILURE);
 	}
-	display_data(info);
+	//display_data(info);
 	return (SUCCESS);
 }
 
