@@ -13,14 +13,14 @@
 #include "lem_in.h"
 #include "ft_printf.h"
 
-int	display_list(t_lem_in *info)
+int	display_list(t_list *list)
 {
 	t_list	*ptr;
 	t_room	*rptr;
 	int		c;
 
 	c = 1;
-	ptr = info->head;
+	ptr = list;
 	while (ptr != NULL)
 	{
 		rptr = (t_room*)(ptr->content);

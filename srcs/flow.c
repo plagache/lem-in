@@ -1,4 +1,5 @@
 #include "lem_in.h"
+#include "ft_printf.h"
 
 /*
 ** input start
@@ -6,7 +7,7 @@
 ** visit all vertices with positive capacity
 */
 
-int		bfs_neighbours(t_list *front_ptr, t_list **next_l, t_list *frontier)
+int		bfs_neighbours(t_list *front_ptr, t_list **next_l, int levels)
 {
 	t_list	*neigh_ptr;
 
@@ -46,12 +47,13 @@ int		breadth_first_search(t_list *start_ptr)
 		front_ptr = frontier;
 		while(front_ptr != NULL) 
 		{
-			if (bfs_neighbours(front_ptr, &next_l, frontier) == FAILURE)
+			if (bfs_neighbours(front_ptr, &next_l, levels) == FAILURE)
 				return (FAILURE);
 			front_ptr = front_ptr->next;
 		}
-		free(frontier);
-		//free list 
+		//if (frontier != start_ptr)
+			//free(frontier);
+			//free list 
 		frontier = next_l;
 		levels++;
 	}
@@ -74,15 +76,18 @@ int		max_flow(t_list **path_list, t_list *end, t_list *start, t_list *head)
 	int	ret;
 
 	flow = 0;
+	ret = 1;
 	while (ret != NO_PATH)
 	{
-		ret = breadth_first_search(t_list *start);
+		ret = breadth_first_search(start);
 		if (ret == FAILURE)
 			return (-1);
-		ret = create_path(path_list, end, head);
+		ret = create_path(path_list, start, end, head);
 		if (ret == PATH_FAIL || ret == LIST_FAIL)
 			return (-1);
-		flow++;
+		display_list((t_list*)(*path_list)->content);
+		if (ret != NO_PATH)
+			flow++;
 	}
 	return (flow);
 }

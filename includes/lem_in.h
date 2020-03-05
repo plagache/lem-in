@@ -22,15 +22,20 @@
 # define SUCCESS 0
 # define FAILURE 1
 # define BUFF_SIZE 100
+# define END_COMMAND 64
+# define START_COMMAND 1
 # define STRNEW_FAILURE -1
 # define STRJOIN_FAILURE -2
 # define NO_ROOM 2
+# define NO_PATH -3
+# define LIST_FAIL -1
+# define PATH_FAIL -2
 
 typedef struct	s_lem_in
 {
 	char		**file_split;
 	char		*file;
-	t_list		**path_list;
+	t_list		*path_list;
 	t_list		*head;
 	t_list		*start_ptr;
 	t_list		*end_ptr;
@@ -41,12 +46,12 @@ typedef struct	s_lem_in
 
 typedef struct	s_room
 {
-	char		*room_name;
-	t_room		*parent;
-	t_list		*neighbours;
-	int			level;
-	char		capacity;
-	char		command;
+	char	*room_name;
+	t_list	*parent;
+	t_list	*neighbours;
+	int		level;
+	char	capacity;
+	char	command;
 }				t_room;
 
 /*
@@ -61,7 +66,9 @@ typedef struct	s_room
 ** bit 128 is end
 */
 
-int				master(t_lem_in *info);
+int				master(t_lem_in *);
+int				max_flow(t_list **, t_list *, t_list *, t_list *);
+int				create_path(t_list **, t_list *, t_list *, t_list *);
 
 /*
 ** Get_ info
@@ -85,12 +92,13 @@ int				is_room(char *str);
 int				is_link(char *str);
 void			free_arr(void **arr);
 int				occurrence_of(char *str, char c);
+int				new_link(t_list **head, t_room *room_ptr);
 
 /*
 ** print
 */
 
-int				display_list(t_lem_in *info);
+int				display_list(t_list *);
 int				display_data(t_lem_in *info);
 int				print_neighbours(t_room *room);
 void			print_roomnames(t_room *room);

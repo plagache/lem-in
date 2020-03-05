@@ -115,7 +115,8 @@ int		get_start(char **file, int line, t_lem_in *info)
 		ptr = ptr->next;
 	if (ptr == NULL)
 		return (FAILURE);
-	((t_room*)(ptr->content))->command ^= 1;
+	((t_room*)(ptr->content))->command ^= START_COMMAND;
+	((t_room*)(ptr->content))->level = -1;
 	info->start_ptr = ptr;
 	return (SUCCESS);
 }
@@ -139,18 +140,19 @@ int		get_end(char **file, int line, t_lem_in *info)
 		ptr = ptr->next;
 	if (ptr == NULL)
 		return (FAILURE);
-	((t_room*)(ptr->content))->command ^= 128;
+	((t_room*)(ptr->content))->command ^= END_COMMAND;
+	((t_room*)(ptr->content))->level = -1;
 	info->end_ptr = ptr;
 	return (SUCCESS);
 }
 
 int		get_commands(t_lem_in *info)
 {
+	sort_function(info->head);
 	if (get_start(info->file_split, info->line_ants, info) == FAILURE)
 		return (FAILURE);
 	if (get_end(info->file_split, info->line_ants, info) == FAILURE)
 		return (FAILURE);
-	sort_function(info->head);
 	//display_list(info);
 	return (SUCCESS);
 	//free list and file

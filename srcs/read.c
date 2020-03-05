@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "lem_in.h"
+#include "ft_printf.h"
 
 int	split_file(t_lem_in *info)
 {
@@ -54,7 +55,7 @@ int	master(t_lem_in *info)
 		|| get_links(info) == FAILURE)
 		return (FAILURE);
 	free(info->file_split);
-	flow = max_flow(info->path_list, info->end_ptr, info->start_ptr, info->head);
+	flow = max_flow(&(info->path_list), info->end_ptr, info->start_ptr, info->head);
 	if (flow == -1)
 		return (FAILURE);
 	ft_printf("FLOW = %i\n", flow);

@@ -11,16 +11,18 @@
 /* ************************************************************************** */
 
 #include "lem_in.h"
+#include "ft_printf.h"
 
 t_list	*new_path(t_list *end)
 {
 	t_list	*ptr;
 	t_room	*room;
 
-	ptr = ((t_room*)(end->content))->neighbours; 
+	room = (t_room*)end->content;
+	ptr = room->neighbours; 
 	while (ptr != NULL)
 	{
-		room = (t_room*)ptr->content;
+		room = (t_room*)(ptr->content);
 		if (room->capacity == 1 && room->level != 0)
 			return (ptr);
 		ptr = ptr->next;
@@ -41,7 +43,8 @@ t_list	*get_path(t_list *end, t_list *neigh)
 	t_list	*path;
 	t_list	*ptr;
 
-	if (new_link(&path, (t_room*)end->content) == FAILURE)
+	path = NULL;
+	if (new_link(&path, (t_room*)(end->content)) == FAILURE)
 		return (NULL);
 	ptr = neigh;
 	while (ptr != NULL)
@@ -84,7 +87,7 @@ int		add_path(t_list **path_list, t_list *path)
 ** and reset levels in all non paths nodes (capacity == 1)
 ** output(nothing)
 */
-void	clean_path(t_list *path, t_list *head)
+void	clean_path(t_list *path, t_list *head, t_list *start)
 {
 	t_list	*ptr;
 
@@ -98,9 +101,14 @@ void	clean_path(t_list *path, t_list *head)
 	while (ptr != NULL)
 	{
 		if (((t_room*)ptr->content)->capacity == 1)
+		{
 			((t_room*)ptr->content)->level = 0;
+			((t_room*)ptr->content)->parent = NULL;
+		}
 		ptr = ptr->next;
 	}
+	((t_room*)start->content)->level = -1;
+	((t_room*)start->content)->parent = NULL;
 }
 
 /*
@@ -110,13 +118,14 @@ void	clean_path(t_list *path, t_list *head)
 ** (FAILURE if any of the procedure returned FAILURE or NULL)
 */
 
-int		create_path(t_list **path_list, t_list *end, t_list *head)
+int		create_path(t_list **path_list, t_list *start, t_list *end,
+					t_list *head)
 {
 	t_list	*neigh;
 	t_list	*path;
 
 	neigh = new_path(end);
-	if (neig == NULL)
+	if (neigh == NULL)
 		return (NO_PATH);
 	path = get_path(end, neigh);
 	if (path == NULL)
@@ -129,6 +138,6 @@ int		create_path(t_list **path_list, t_list *end, t_list *head)
 		//free list path_list and path inside
 		return (LIST_FAIL);
 	}
-	clean_path(path, head);
+	clean_path(path, head, start);
 	return (SUCCESS);
 }
