@@ -1,0 +1,27 @@
+VALIDATE DATA BEFORE SEARCHING FOR SOLUTION IN IT
+//means check all assupmtions made before 
+//duplicate link 
+//start and end has at least one links
+//stop at first empty line or double \n
+//
+//if char command has more than 1 bit set == ERROR //start and end on a different room
+//if Start has End as neighbour == ERROR
+
+augmented path
+//we do not have max flow
+//
+
+clean
+//free list
+//free content
+
+ants display
+//path repartition
+//display turn
+//final clean
+
+
+DEBUGGING 
+
+WHY some time DOUBLE ON END
+sometime path start with end

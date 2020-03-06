@@ -42,11 +42,13 @@ t_list	*get_path(t_list *end, t_list *neigh)
 {
 	t_list	*path;
 	t_list	*ptr;
+	size_t	lenght;
 
 	path = NULL;
 	if (new_link(&path, (t_room*)(end->content)) == FAILURE)
 		return (NULL);
 	ptr = neigh;
+	lenght = 0;
 	while (ptr != NULL)
 	{
 		if (new_link(&path, (t_room*)ptr->content) == FAILURE)
@@ -55,7 +57,10 @@ t_list	*get_path(t_list *end, t_list *neigh)
 			return (NULL);
 		}
 		ptr = ((t_room*)(ptr->content))->parent;
+		lenght++;
 	}
+	path->content_size = lenght - 1;
+	ft_printf("path size |%u|\n", path->content_size);
 	return (path);
 }
 

@@ -212,15 +212,3 @@ int		get_links(t_lem_in *info)
 	//display_data(info);
 	return (SUCCESS);
 }
-
-/*
-** VALIDATE DATA BEFORE SEARCHING FOR SOLUTION IN IT
-** means check all assupmtions made before 
-** if char command has more than 1 bit set == ERROR
-** if Start has End as neighbour == ERROR
-*/
-
-/*
-** print lem-in 
-** check parsing
-*/

@@ -3,5 +3,5 @@
 make
 if [ $? -eq 0 ] ;
 then 
-	./lem-in < maptest
+	./lem-in < map/samples/little.txt
 fi

@@ -86,6 +86,7 @@ int		max_flow(t_list **path_list, t_list *end, t_list *start, t_list *head)
 		if (ret == PATH_FAIL || ret == LIST_FAIL)
 			return (-1);
 		display_list((t_list*)(*path_list)->content);
+		ft_printf("||||||||||||||||||||\n");
 		if (ret != NO_PATH)
 			flow++;
 	}
