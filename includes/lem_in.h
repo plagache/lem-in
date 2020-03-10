@@ -21,19 +21,22 @@
 
 # define SUCCESS 0
 # define FAILURE 1
-# define BUFF_SIZE 100
+# define BUFF_SIZE 4096
 # define END_COMMAND 64
 # define START_COMMAND 1
 # define STRNEW_FAILURE -1
 # define STRJOIN_FAILURE -2
 # define NO_ROOM 2
+# define NEW_PATH -2
 # define NO_PATH -3
 # define LIST_FAIL -1
 # define PATH_FAIL -2
+# define DEBUG -9876
 
 typedef struct	s_lem_in
 {
 	char		**file_split;
+	char		**m_flow;
 	char		*file;
 	t_list		*path_list;
 	t_list		*head;
@@ -50,8 +53,9 @@ typedef struct	s_room
 	t_list	*parent;
 	t_list	*neighbours;
 	int		level;
-	char	capacity;
+	char	visited;
 	char	command;
+	int		id;
 }				t_room;
 
 /*
@@ -67,7 +71,7 @@ typedef struct	s_room
 */
 
 int				master(t_lem_in *);
-int				max_flow(t_list **, t_list *, t_list *, t_list *);
+int				edmond_karp(t_lem_in *lem_in);
 int				create_path(t_list **, t_list *, t_list *, t_list *);
 
 /*
@@ -80,6 +84,7 @@ int				get_commands(t_lem_in *info);
 int				get_links(t_lem_in *info);
 int				mv_to_next_room(t_lem_in *info);
 void			sort_function(t_list *head);
+char			**create_matrice(t_lem_in *lem_in);
 
 /*
 ** Tools

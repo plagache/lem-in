@@ -65,7 +65,7 @@ int		fill_room(t_list *new, char *line)
 		return (FAILURE);
 	ft_strncpy(ptr, line, len);
 	((t_room*)(new->content))->room_name = ptr;
-	((t_room*)(new->content))->capacity ^= 1;
+	((t_room*)(new->content))->level = 0;
 	return (SUCCESS);
 }
 
@@ -141,7 +141,6 @@ int		get_end(char **file, int line, t_lem_in *info)
 	if (ptr == NULL)
 		return (FAILURE);
 	((t_room*)(ptr->content))->command ^= END_COMMAND;
-	((t_room*)(ptr->content))->level = -1;
 	info->end_ptr = ptr;
 	return (SUCCESS);
 }

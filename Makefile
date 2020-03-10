@@ -7,7 +7,8 @@ SRC = lem_in.c \
 	  sort.c\
 	  print.c\
 	  flow.c\
-	  path.c\
+	  matrice.c\
+	 # path.c\
 
 SRCS = $(addprefix srcs/,$(SRCS))
 
@@ -18,7 +19,7 @@ LIBDIR = libft
 LIBA = $(LIBDIR)/libft.a
 
 CFLAGS = -Wall -Wextra -Werror
-CFLAGS += -g
+CFLAGS += -g3
 
 CC = clang
 

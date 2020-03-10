@@ -92,29 +92,6 @@ int		add_path(t_list **path_list, t_list *path)
 ** and reset levels in all non paths nodes (capacity == 1)
 ** output(nothing)
 */
-void	clean_path(t_list *path, t_list *head, t_list *start)
-{
-	t_list	*ptr;
-
-	ptr = path->next;
-	while (((t_room*)ptr->content)->command != END_COMMAND)
-	{
-		((t_room*)ptr->content)->capacity = 0;
-		ptr = ptr->next;
-	}
-	ptr = head;
-	while (ptr != NULL)
-	{
-		if (((t_room*)ptr->content)->capacity == 1)
-		{
-			((t_room*)ptr->content)->level = 0;
-			((t_room*)ptr->content)->parent = NULL;
-		}
-		ptr = ptr->next;
-	}
-	((t_room*)start->content)->level = -1;
-	((t_room*)start->content)->parent = NULL;
-}
 
 /*
 ** input (end, path_list)
