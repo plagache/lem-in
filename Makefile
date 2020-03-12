@@ -6,8 +6,15 @@ SRC = lem_in.c \
 	  tools.c \
 	  sort.c\
 	  print.c\
-	  flow.c\
 	  matrice.c\
+	  ant.c\
+	  bfs.c\
+	  command.c\
+	  edmond_karp.c\
+	  link.c\
+	  room.c\
+	  validate_parsing.c\
+	  print_ants.c\
 	 # path.c\
 
 SRCS = $(addprefix srcs/,$(SRCS))

@@ -75,6 +75,14 @@ int				edmond_karp(t_lem_in *lem_in);
 int				create_path(t_list **, t_list *, t_list *, t_list *);
 
 /*
+** Read
+*/
+
+
+int				read_file(t_lem_in *);
+int				split_file(t_lem_in *);
+
+/*
 ** Get_ info
 */
 
@@ -107,5 +115,11 @@ int				display_list(t_list *);
 int				display_data(t_lem_in *info);
 int				print_neighbours(t_room *room);
 void			print_roomnames(t_room *room);
+
+/*
+** Algorithme
+*/
+
+int				breadth_first_search(t_list *, t_lem_in *);
 
 #endif

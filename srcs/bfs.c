@@ -19,8 +19,6 @@ int		set_levels(t_list *front_ptr, t_list **next_f, int levels,
 		//ft_printf("id neigh = ||%6i|| room neigh = ||%6s|| room front = ||%6s|| id front = ||%6i||\n"\
 		//		, ((t_room*)(neigh_ptr->content))->id, ((t_room*)(neigh_ptr->content))->room_name,\
 		//		((t_room*)(front_ptr->content))->room_name, ((t_room*)(front_ptr->content))->id);
-
-
 		if (((t_room*)(neigh_ptr->content))->level == 0
 				&& 1 - lem_in->m_flow[((t_room*)(front_ptr->content))->id]
 				[((t_room*)(neigh_ptr->content))->id] > 0)
@@ -115,80 +113,3 @@ int		breadth_first_search(t_list *start_ptr, t_lem_in *lem_in)
 ** set flow 1 between [parent][ptr]
 ** set flow -1 between [ptr][parent]
 */
-
-void	update_flow(t_list *end, t_list *start, char **m_flow)
-{
-	t_list	*ptr;
-	t_list	*parent;
-
-	ptr = end;
-	//(void)start;
-	while (ptr != start /*&& ((t_room*)(ptr->content))->parent != NULL*/)
-	{
-		parent = ((t_room*)(ptr->content))->parent;
-//		ft_printf("addr parent = ||%p||\n", parent);
-//		ft_printf("add parent content %p\n", ((t_room*)(parent->content)));
-//		ft_printf("id parent = ||%i||\n", ((t_room*)(parent->content))->id);
-//		ft_printf("id ptr = ||%i||\n", ((t_room*)(ptr->content))->id);
-		m_flow[((t_room*)(parent->content))->id][((t_room*)(ptr->content))->id] = 1;
-		m_flow[((t_room*)(ptr->content))->id][((t_room*)(parent->content))->id] = -1;
-		ft_printf("flow|\n");
-		ptr = parent;
-	}
-		ft_printf("end flow update|\n");
-}
-
-/*
- ** input Start, end, matrice_flow,
- ** Processe
- ** BFS
- ** 		1 NEW PATH
- **			return NOT MAX
- ** 		2 NO PATH
- **			return MAX
- */
-
-/*
- * reset all nodes lvl 
- * reset all nodes parent
- * set start lvl at -1;
-*/
-void	clean_graph(t_lem_in *lem_in)
-{
-	t_list	*ptr;
-
-	ptr = lem_in->head;
-	while (ptr != NULL)
-	{
-		((t_room*)ptr->content)->level = 0;
-		((t_room*)ptr->content)->parent = NULL;
-		ptr = ptr->next;
-	}
-	((t_room*)lem_in->start_ptr->content)->level = -1;
-}
-
-int		edmond_karp(t_lem_in *lem_in)
-{
-	int	flow;
-	int	ret;
-
-	flow = 0;
-	while (1)
-	{
-		ft_printf("before BFS\n");
-		ret = breadth_first_search(lem_in->start_ptr, lem_in);
-		ft_printf("flow = ||%i|| ret = ||%i||\n after BFS\n", flow, ret);
-		if (ret == FAILURE)
-			return (-1);
-		else if (ret == NO_PATH)
-			return (flow);
-		else
-		{
-			update_flow(lem_in->end_ptr, lem_in->start_ptr, lem_in->m_flow);
-			clean_graph(lem_in);
-			flow++;
-		}
-		//is flow_enough for ants to optimize search
-	}
-	return (DEBUG);
-}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alagache <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: plagache <plagache@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 16:51:59 by alagache          #+#    #+#             */
-/*   Updated: 2020/02/27 16:52:01 by alagache         ###   ########.fr       */
+/*   Updated: 2020/03/12 18:39:07 by plagache         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,35 +38,6 @@ int	read_file(t_lem_in *info)
 			return (STRJOIN_FAILURE);
 	}
 	if (ret == 0)
-		return (SUCCESS);
-	return (FAILURE);
-}
-
-int	master(t_lem_in *info)
-{
-	int	flow;
-
-	read_file(info);
-	split_file(info);
-	free(info->file);
-	ft_printf("before parsing\n");
-	if (get_ants(info) == FAILURE
-		|| get_rooms(info) == FAILURE
-		|| get_commands(info) == FAILURE
-		|| get_links(info) == FAILURE)
-		return (FAILURE);
-	ft_printf("after parsing\n");
-	//validate/clean_data();
-	if (create_matrice(info) == NULL)
-		return (FAILURE);
-	ft_printf("matrice created\n");
-	free(info->file_split);
-	ft_printf("after free\n");
-	flow = edmond_karp(info);
-	if (flow == -1)
-		return (FAILURE);
-	ft_printf("FLOW = %i\n", flow);
-	if (info->file == NULL)
 		return (SUCCESS);
 	return (FAILURE);
 }

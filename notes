@@ -12,6 +12,11 @@ clean
 //free list
 //free content
 
+//optimize search for max theorc flow
+	//count neighbours of start and end 
+		//min of neighbours is theorique max flow
+			// nbr path nescessaire = min ( max flow || nbr ant)
+
 ants display
 //path repartition
 //display turn :
@@ -19,9 +24,3 @@ ants display
 				- join move
 				- 
 //final clean
-
-
-DEBUGGING 
-
-WHY some time DOUBLE ON END
-sometime path start with end
