@@ -3,10 +3,8 @@ VALIDATE DATA BEFORE SEARCHING FOR SOLUTION IN IT
 //duplicate link / room
 //start and end has at least one links
 //stop at first empty line or double \n
-//
 //if char command has more than 1 bit set == ERROR //start and end on a different room
 //if Start has End as neighbour == ERROR
-//delete room if dead end
 
 clean
 //free list
