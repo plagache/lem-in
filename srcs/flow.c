@@ -15,6 +15,12 @@ int		set_levels(t_list *front_ptr, t_list **next_f, int levels,
 	neigh_ptr = ((t_room*)(front_ptr->content))->neighbours;
 	while (neigh_ptr != NULL)
 	{
+
+		//ft_printf("id neigh = ||%6i|| room neigh = ||%6s|| room front = ||%6s|| id front = ||%6i||\n"\
+		//		, ((t_room*)(neigh_ptr->content))->id, ((t_room*)(neigh_ptr->content))->room_name,\
+		//		((t_room*)(front_ptr->content))->room_name, ((t_room*)(front_ptr->content))->id);
+
+
 		if (((t_room*)(neigh_ptr->content))->level == 0
 				&& 1 - lem_in->m_flow[((t_room*)(front_ptr->content))->id]
 				[((t_room*)(neigh_ptr->content))->id] > 0)
@@ -26,17 +32,19 @@ int		set_levels(t_list *front_ptr, t_list **next_f, int levels,
 				//free list (*next_l);
 				return (FAILURE);
 			}
-			ft_printf("end :||%p|| neigh :||%p||\n", lem_in->end_ptr, neigh_ptr);
-			ft_printf("id front = ||%i|| room neigh = ||%s|| room front = ||%s||\n", ((t_room*)(front_ptr->content))->id, ((t_room*)(neigh_ptr->content))->room_name, ((t_room*)(front_ptr->content))->room_name);
+//			ft_printf("end :||%p|| neigh :||%p||\n", lem_in->end_ptr, neigh_ptr);
+			//ft_printf("id front = ||%i|| id neigh = ||%i|| room neigh = ||%s|| room front = ||%s||\n", ((t_room*)(front_ptr->content))->id, ((t_room*)(neigh_ptr->content))->id, ((t_room*)(neigh_ptr->content))->room_name, ((t_room*)(front_ptr->content))->room_name);
 			if (lem_in->end_ptr->content == neigh_ptr->content)
 				return (NEW_PATH);
 			// make a function to free list properly without freeing content //
 		}
 //			ft_printf("levels = ||%i||\n", ((t_room*)(neigh_ptr->content))->level);
-			ft_printf("residual = ||%i||\n", 1 - lem_in->m_flow[((t_room*)(front_ptr->content))->id]
-				[((t_room*)(neigh_ptr->content))->id]);
+//			ft_printf("residual = ||%i||\n", 1 - lem_in->m_flow[((t_room*)(front_ptr->content))->id]
+//			[((t_room*)(neigh_ptr->content))->id]);
 		neigh_ptr = neigh_ptr->next;
 	}
+	//ft_printf("levels = |%i|\n", levels);
+	//display_list(*next_f);
 	return (NO_PATH);
 }
 
@@ -57,7 +65,7 @@ int		set_frontier(t_list *frontier, t_lem_in *lem_in, t_list **next_f, int level
 		}
 		if (ret == NEW_PATH)
 			return (NEW_PATH);
-		front_ptr = front_ptr->next;
+		front_ptr = (((t_room*)front_ptr->content)->id == 0 ? NULL : front_ptr->next);
 	}
 	return (NO_PATH);
 }
@@ -114,8 +122,8 @@ void	update_flow(t_list *end, t_list *start, char **m_flow)
 	t_list	*parent;
 
 	ptr = end;
-	(void)start;
-	while (/*ptr != start && */((t_room*)(ptr->content))->parent != NULL)
+	//(void)start;
+	while (ptr != start /*&& ((t_room*)(ptr->content))->parent != NULL*/)
 	{
 		parent = ((t_room*)(ptr->content))->parent;
 //		ft_printf("addr parent = ||%p||\n", parent);
@@ -124,8 +132,10 @@ void	update_flow(t_list *end, t_list *start, char **m_flow)
 //		ft_printf("id ptr = ||%i||\n", ((t_room*)(ptr->content))->id);
 		m_flow[((t_room*)(parent->content))->id][((t_room*)(ptr->content))->id] = 1;
 		m_flow[((t_room*)(ptr->content))->id][((t_room*)(parent->content))->id] = -1;
+		ft_printf("flow|\n");
 		ptr = parent;
 	}
+		ft_printf("end flow update|\n");
 }
 
 /*
