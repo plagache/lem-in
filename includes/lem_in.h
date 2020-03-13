@@ -38,13 +38,14 @@ typedef struct	s_lem_in
 	char		**file_split;
 	char		**m_flow;
 	char		*file;
-	t_list		*path_list;
+	t_list		**paths;
 	t_list		*head;
 	t_list		*start_ptr;
 	t_list		*end_ptr;
 	long long	nbr_ants;
 	int			line;
 	int			line_ants;
+	int			rooms;
 }				t_lem_in;
 
 typedef struct	s_room
@@ -72,7 +73,6 @@ typedef struct	s_room
 
 int				master(t_lem_in *);
 int				edmond_karp(t_lem_in *lem_in);
-int				create_path(t_list **, t_list *, t_list *, t_list *);
 
 /*
 ** Read
@@ -115,11 +115,19 @@ int				display_list(t_list *);
 int				display_data(t_lem_in *info);
 int				print_neighbours(t_room *room);
 void			print_roomnames(t_room *room);
+int				display_paths(t_lem_in *lem_in, int flow);
 
 /*
 ** Algorithme
 */
 
 int				breadth_first_search(t_list *, t_lem_in *);
+
+/*
+** Path
+*/
+
+int				path(t_lem_in *lem_in, int flow);
+
 
 #endif

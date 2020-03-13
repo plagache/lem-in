@@ -13,9 +13,9 @@ SRC = lem_in.c \
 	  edmond_karp.c\
 	  link.c\
 	  room.c\
-	  validate_parsing.c\
 	  print_ants.c\
-	 # path.c\
+	  path.c\
+	#  validate_parsing.c\
 
 SRCS = $(addprefix srcs/,$(SRCS))
 

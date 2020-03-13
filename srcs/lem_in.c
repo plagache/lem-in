@@ -48,6 +48,8 @@ int	master(t_lem_in *info)
 	if (flow == -1)
 		return (FAILURE);
 	ft_printf("FLOW = %i\n", flow);
+	path(info, flow);
+	display_paths(info, flow);
 	if (info->file == NULL)
 		return (SUCCESS);
 	return (FAILURE);

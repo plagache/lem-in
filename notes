@@ -6,6 +6,9 @@ VALIDATE DATA BEFORE SEARCHING FOR SOLUTION IN IT
 //if char command has more than 1 bit set == ERROR //start and end on a different room
 //if Start has End as neighbour == ERROR
 
+
+//TO DO Finish PATH
+
 clean
 //free list
 //free content
