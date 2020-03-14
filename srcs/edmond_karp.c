@@ -16,8 +16,8 @@ void	update_flow(t_list *end, t_list *start, char **m_flow)
 //		ft_printf("add parent content %p\n", ((t_room*)(parent->content)));
 //		ft_printf("id parent = ||%i||\n", ((t_room*)(parent->content))->id);
 //		ft_printf("id ptr = ||%i||\n", ((t_room*)(ptr->content))->id);
-		m_flow[((t_room*)(parent->content))->id][((t_room*)(ptr->content))->id] = 1;
-		m_flow[((t_room*)(ptr->content))->id][((t_room*)(parent->content))->id] = -1;
+		m_flow[((t_room*)(parent->content))->id][((t_room*)(ptr->content))->id]++;
+		m_flow[((t_room*)(ptr->content))->id][((t_room*)(parent->content))->id]--;
 		ptr = parent;
 	}
 }

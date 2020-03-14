@@ -54,7 +54,6 @@ int		get_path(char **matrice, t_list *start, t_list *neigh, t_list **path)
 ** remove flow for every edges that exist with Vertices of the path;
 ** input matrice path;
 ** output nothing
-*/
 
 //need to change input to take only lem_in and init room_nbr to be used
 
@@ -80,6 +79,7 @@ void	remove_flow(char **matrice, int size, t_list *path)
 	//remove flow with start;
 }
 
+*/
 /*
 input matrice, arr of t_list *, start_ptr
 t_list neigh
@@ -105,8 +105,8 @@ int		add_paths(char **matrice, t_list **paths, t_list *start, int flow)
 			return (FAILURE);
 		}
 		//remove flow;
-		//matrice[((t_room*)start->content)->id][((t_room*)neigh->content)->id] = 0;
-		//neigh = neigh->next;
+		matrice[((t_room*)start->content)->id][((t_room*)neigh->content)->id] = 0;
+		neigh = neigh->next;
 		i++;
 	}
 	return (SUCCESS);
