@@ -108,7 +108,13 @@ int				occurrence_of(char *str, char c);
 int				new_link(t_list **head, t_room *room_ptr);
 
 /*
-** print
+** Clean
+*/
+
+void			free_list(t_list *lst);
+
+/*
+** Print
 */
 
 int				display_list(t_list *);
@@ -128,6 +134,5 @@ int				breadth_first_search(t_list *, t_lem_in *);
 */
 
 int				path(t_lem_in *lem_in, int flow);
-
 
 #endif

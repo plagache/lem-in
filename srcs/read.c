@@ -13,19 +13,19 @@
 #include "lem_in.h"
 #include "ft_printf.h"
 
-int	empty_line(char *str)
+int	empty_line(char **str)
 {
 	char *ptr;
 	char *new_str;
 
-	ptr = ft_strstr(str, "\n\n");
+	ptr = ft_strstr(*str, "\n\n");
 	if (ptr == NULL)
 		return (SUCCESS);
-	new_str = ft_strsub(str, 0, (ptr-str));
+	new_str = ft_strsub(*str, 0, (ptr-*str));
 	if (new_str == NULL)
 		return (FAILURE);
-	free(str);
-	str = new_str;
+	free(*str);
+	*str = new_str;
 	return (SUCCESS);
 }
 
@@ -53,7 +53,7 @@ int	read_file(t_lem_in *info)
 		if (info->file == NULL)
 			return (STRJOIN_FAILURE);
 	}
-	empty_line(info->file);
+	empty_line(&(info->file));
 	if (ret == 0)
 		return (SUCCESS);
 	return (FAILURE);

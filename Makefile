@@ -15,6 +15,7 @@ SRC = lem_in.c \
 	  room.c\
 	  print_ants.c\
 	  path.c\
+	  clean.c\
 	#  validate_parsing.c\
 
 SRCS = $(addprefix srcs/,$(SRCS))
@@ -26,7 +27,7 @@ LIBDIR = libft
 LIBA = $(LIBDIR)/libft.a
 
 CFLAGS = -Wall -Wextra -Werror
-CFLAGS += -g3
+CFLAGS += -g
 
 CC = clang
 
@@ -36,9 +37,7 @@ $(NAME): $(OBJECT)
 	make -s -C $(LIBDIR)
 	$(CC) $(CFLAGS) -I includes -I libft/includes -o $(NAME) $(OBJECT) $(LIBA)
 
-FORCE:
-
-out/%.o: srcs/%.c
+out/%.o: srcs/%.c includes/lem_in.h 
 	mkdir -p out
 	$(CC) $(CFLAGS) -I includes -I libft/includes -o $@ -c $<
 

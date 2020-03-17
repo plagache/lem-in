@@ -46,7 +46,6 @@ check_int_struct	libft/srcs/int_tools.c	/^int		check_int_struct(t_conv_id *ptr)$
 check_octal_struct	libft/srcs/octal_tools.c	/^int	check_octal_struct(t_conv_id *s_ptr)$/;"	f
 check_special_value	libft/srcs/special.c	/^int		check_special_value(t_s_e_m *dble_ptr)$/;"	f
 check_unsigned_struct	libft/srcs/unsigned_tools.c	/^int		check_unsigned_struct(t_conv_id *ptr)$/;"	f
-clean_edges	srcs/path.c	/^void	clean_edges(char **matrice, int size, int id)$/;"	f
 clean_graph	srcs/edmond_karp.c	/^void	clean_graph(t_lem_in *lem_in)$/;"	f
 command	includes/lem_in.h	/^	char	command;$/;"	m	struct:s_room
 command	srcs/validate_parsing.c	/^int		command(t_list *start, t_list *end)$/;"	f
@@ -72,7 +71,7 @@ duplicate_link	srcs/validate_parsing.c	/^int		duplicate_link(t_list *head)$/;"	f
 duplicate_room	srcs/validate_parsing.c	/^int		duplicate_room(t_list *head)$/;"	f
 e	libft/includes/arg.h	/^	unsigned short		e;$/;"	m	struct:s_double
 edmond_karp	srcs/edmond_karp.c	/^int		edmond_karp(t_lem_in *lem_in)$/;"	f
-empty_line	srcs/read.c	/^int	empty_line(char *str)$/;"	f
+empty_line	srcs/read.c	/^int	empty_line(char **str)$/;"	f
 end_ptr	includes/lem_in.h	/^	t_list		*end_ptr;$/;"	m	struct:s_lem_in
 fd	libft/includes/get_next_line.h	/^	int				fd;$/;"	m	struct:s_data
 file	includes/lem_in.h	/^	char		*file;$/;"	m	struct:s_lem_in
@@ -85,8 +84,8 @@ filline	libft/srcs/get_next_line.c	/^void			filline(t_data *current, char **line
 flag	libft/srcs/pflags.c	/^int		flag(char *ptr, int end, t_conv_id *struct_ptr)$/;"	f
 flags	libft/includes/arg.h	/^	char	flags;$/;"	m	struct:s_conv_info
 flags_in_struct	libft/srcs/pflags.c	/^void	flags_in_struct(char c, t_conv_id *struct_ptr)$/;"	f
-format	srcs/tags	/^!_TAG_FILE_FORMAT	2	\/extended format; --format=1 will not append ;" to lines\/$/;"	v
 free_arr	srcs/tools.c	/^void	free_arr(void **arr)$/;"	f
+free_list	srcs/clean.c	/^void	free_list(t_list *lst)$/;"	f
 free_struct	libft/srcs/get_next_line.c	/^void			free_struct(t_data *current, t_list **lst)$/;"	f
 ft_2lstaddend	libft/srcs/ft_2lstaddend.c	/^void	ft_2lstaddend(t_dlist **lst, t_dlist *link)$/;"	f
 ft_2lstaddstrt	libft/srcs/ft_2lstaddstrt.c	/^void	ft_2lstaddstrt(t_dlist **lst, t_dlist *link)$/;"	f
@@ -183,7 +182,7 @@ get_ldouble_value	libft/srcs/ldouble_tools.c	/^void	get_ldouble_value(va_list *a
 get_link	srcs/link.c	/^int		get_link(t_lem_in *info, char *room_name1, char *room_name2)$/;"	f
 get_links	srcs/link.c	/^int		get_links(t_lem_in *info)$/;"	f
 get_next_line	libft/srcs/get_next_line.c	/^int				get_next_line(const int fd, char **line)$/;"	f
-get_path	srcs/path.c	/^int		get_path(char **matrice, t_list *start, t_list *neigh, t_list **path)$/;"	f
+get_path	srcs/path.c	/^int		get_path(char **matrice, t_list *start, t_list *neigh, t_list **path,$/;"	f
 get_room_info	srcs/room.c	/^int		get_room_info(t_lem_in *info)$/;"	f
 get_rooms	srcs/room.c	/^int		get_rooms(t_lem_in *info)$/;"	f
 get_start	srcs/command.c	/^int		get_start(char **file, int line, t_lem_in *info)$/;"	f
@@ -264,7 +263,7 @@ print_neighbours	srcs/print.c	/^int		print_neighbours(t_room *room)$/;"	f
 read	libft/includes/arg.h	/^	int	read;$/;"	m	struct:s_point
 read_file	srcs/read.c	/^int	read_file(t_lem_in *info)$/;"	f
 readline	libft/srcs/get_next_line.c	/^int				readline(t_data *current)$/;"	f
-remove_flow	srcs/path.c	/^void	remove_flow(char **matrice, int size, t_list *path)$/;"	f
+remove_flow	srcs/path.c	/^void	remove_flow(t_list **path, char **matrice)$/;"	f
 room_name	includes/lem_in.h	/^	char	*room_name;$/;"	m	struct:s_room
 rooms	includes/lem_in.h	/^	int			rooms;$/;"	m	struct:s_lem_in
 s	libft/includes/arg.h	/^	char				s;$/;"	m	struct:s_double
@@ -279,7 +278,7 @@ s_long_double_arrs	libft/includes/arg.h	/^typedef struct	s_long_double_arrs$/;"	
 s_point	libft/includes/arg.h	/^typedef struct	s_point$/;"	s
 s_room	includes/lem_in.h	/^typedef struct	s_room$/;"	s
 search_room	srcs/link.c	/^t_list	*search_room(t_lem_in *info, char *room)$/;"	f
-set_frontier	srcs/bfs.c	/^int		set_frontier(t_list *frontier, t_lem_in *lem_in, t_list **next_f, int levels)$/;"	f
+set_frontier	srcs/bfs.c	/^int		set_frontier(t_list *frontier, t_lem_in *lem_in, t_list **next_f,$/;"	f
 set_levels	srcs/bfs.c	/^int		set_levels(t_list *front_ptr, t_list **next_f, int levels,$/;"	f
 sort_function	srcs/sort.c	/^void	sort_function(t_list *head)$/;"	f
 special_value	libft/srcs/special_tools.c	/^void	special_value(t_s_e_m *dble_ptr, t_conv_id *s_ptr, int len)$/;"	f

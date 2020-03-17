@@ -9,7 +9,7 @@ void	update_flow(t_list *end, t_list *start, char **m_flow)
 
 	ptr = end;
 	//(void)start;
-	while (ptr != start /*&& ((t_room*)(ptr->content))->parent != NULL*/)
+	while (ptr != start/* && ((t_room*)(ptr->content))->parent != NULL*/)
 	{
 		parent = ((t_room*)(ptr->content))->parent;
 //		ft_printf("addr parent = ||%p||\n", parent);

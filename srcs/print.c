@@ -84,7 +84,7 @@ int		display_paths(t_lem_in *lem_in, int flow)
 	i = 0;
 	while (i < flow)
 	{
-		ft_printf("Path n |%i|\n", i + 1);
+		ft_printf("Path n |%i|with len |%i|\n", i + 1, (lem_in->paths[i])->content_size);
 		display_list(lem_in->paths[i]);
 		i++;
 	}

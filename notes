@@ -15,10 +15,12 @@ clean
 		//min of neighbours is theorique max flow
 			// nbr path nescessaire = min ( max flow || nbr ant)
 
-ants display
+//ants display
+	//sort path by len
 //path repartition
+//"add ants" to minimize turns len1 + ants1 <= len2 + ants2 <= ... lenN + antsN
 //display turn :
 				- create ant move
 				- join move
-				- 
+				- print moves
 //final clean

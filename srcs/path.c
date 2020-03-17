@@ -22,64 +22,50 @@ get_path(matrice, start, neigh, t_list *path)
 output t_list*
 */
 
-int		get_path(char **matrice, t_list *start, t_list *neigh, t_list **path)
+int		get_path(char **matrice, t_list *start, t_list *neigh, t_list **path,
+				int len)
 {
 	t_list *ptr;
 
 	if (new_link(path, (t_room*)start->content) == FAILURE)
 	{
-		//free_list(*path);
+		free_list(*path);
 		return (FAILURE);
 	}
+	len++;
 	ptr = neigh;
 	while (ptr != NULL)
 	{
-		if (matrice[((t_room*)start->content)->id][((t_room*)ptr->content)->id] == 1)
+		if (matrice[((t_room*)start->content)->id][((t_room*)ptr->content)->id]
+			== 1)
 		{
-			if (get_path(matrice, ptr, ((t_room*)ptr->content)->neighbours, path) == FAILURE)
-			{
-				//free_list(*path);
+			if (get_path(matrice, ptr, ((t_room*)ptr->content)->neighbours,
+				path, len) == FAILURE)
 				return (FAILURE);
-			}
 			return (SUCCESS);
 		}
 		ptr = ptr->next;
 	}
+	(*path)->content_size = len - 2;
 	return (SUCCESS);
 }
 
 /*
-** take out the path of the graph
-** remove flow from end and next && next and start
-** remove flow for every edges that exist with Vertices of the path;
-** input matrice path;
-** output nothing
+** takes a t_list ** and a flow matrice
+** find the link between start and it s neighbours and remove flow between them
+*/
 
-//need to change input to take only lem_in and init room_nbr to be used
-
-void	remove_flow(char **matrice, int size, t_list *path)
+void	remove_flow(t_list **path, char **matrice)
 {
-	t_list	*ptr;
-	int		i;
+	t_list *ptr;
 
-	ptr = path;
-	//remove flow with end;
-	while (((t_room*)ptr->content)->id != 0)
-	{
-		//remove flow with id of Vertice;
-		i = -1;
-		while (++i < size)
-		{
-			matrice[i][id] = 0;
-			matrice[id][i] = 0;
-		}
-		//flow remove
+	ptr = *path;
+	while (ptr->next != NULL && ((t_room*)(ptr->next)->content)->id != 0)
 		ptr = ptr->next;
-	}
-	//remove flow with start;
+	matrice[((t_room*)ptr->content)->id][0] = 0;
+	matrice[0][((t_room*)ptr->content)->id] = 0;
 }
 
-*/
 /*
 input matrice, arr of t_list *, start_ptr
 t_list neigh
@@ -98,15 +84,12 @@ int		add_paths(char **matrice, t_list **paths, t_list *start, int flow)
 	neigh = ((t_room*)start->content)->neighbours;
 	while (i < flow)
 	{
-		ft_printf("ieme before get_path||%i||\n", i);
-		if (get_path(matrice, start, neigh, paths + i) == FAILURE)
+		if (get_path(matrice, start, neigh, paths + i, 0) == FAILURE)
 		{
 			//clean(paths);
 			return (FAILURE);
 		}
-		//remove flow;
-		matrice[((t_room*)start->content)->id][((t_room*)neigh->content)->id] = 0;
-		neigh = neigh->next;
+		remove_flow(paths + i, matrice);
 		i++;
 	}
 	return (SUCCESS);
