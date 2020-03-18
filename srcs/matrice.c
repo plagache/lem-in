@@ -46,8 +46,7 @@ char	**create_matrice(t_lem_in *lem_in)
 
 	counter = 0;
 	nbr = create_id(lem_in->head, lem_in->start_ptr, lem_in->end_ptr);
-//	ft_printf("id front = ||%i|| name room = ||%s||\n", ((t_room*)(front_ptr->content))->id, ((t_room*)(front_ptr->content))->room_name);
-	ft_printf("nbr = %i\n", nbr);
+	lem_in->rooms = nbr;
 	lem_in->m_flow = (char**)ft_memalloc(sizeof(char*) * nbr);
 	if (lem_in->m_flow == NULL)
 		return (NULL);
@@ -56,7 +55,7 @@ char	**create_matrice(t_lem_in *lem_in)
 		lem_in->m_flow[counter] = (char*)ft_memalloc(sizeof(char) * nbr);
 		if (lem_in->m_flow[counter] == NULL)
 		{
-			free_arr((void**)lem_in->m_flow);
+			free_matrice(lem_in->m_flow, counter);
 			return (NULL);
 		}
 		counter++;

@@ -7,8 +7,8 @@ VALIDATE DATA BEFORE SEARCHING FOR SOLUTION IN IT
 //if Start has End as neighbour == ERROR
 
 clean
-//free list
-//free content
+//free list OK
+//free content OK
 
 //optimize search for max theorc flow
 	//count neighbours of start and end 

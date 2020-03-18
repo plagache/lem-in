@@ -114,6 +114,9 @@ int				new_link(t_list **head, t_room *room_ptr);
 */
 
 void			free_list(t_list *lst);
+void			free_graph(t_list *head);
+void			free_matrice(char **matrice, int size);
+void			free_paths(t_list **paths, int size);
 
 /*
 ** Print
