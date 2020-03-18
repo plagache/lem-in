@@ -21,7 +21,7 @@ int		set_levels(t_list *front_ptr, t_list **next_f, int levels,
 				[((t_room*)(neigh_ptr->content))->id] > 0)
 		{
 			((t_room*)(neigh_ptr->content))->level = levels;
-			((t_room*)(neigh_ptr->content))->parent = front_ptr;
+			((t_room*)(neigh_ptr->content))->parent = front_ptr->content;
 			if (new_link(next_f, (t_room*)(neigh_ptr->content)) == FAILURE)
 				return (FAILURE);
 			if (lem_in->end_ptr->content == neigh_ptr->content)
@@ -45,8 +45,8 @@ int		set_frontier(t_list *frontier, t_lem_in *lem_in, t_list **next_f,
 		if (ret != NO_PATH)
 		{
 			if (frontier->content != lem_in->start_ptr->content)
-				//free_list(frontier);
-			//free_list(*next_f);
+				free_list(frontier);
+			free_list(*next_f);
 			if (ret == FAILURE)
 				return (FAILURE);
 			return (NEW_PATH);
@@ -75,10 +75,7 @@ int		breadth_first_search(t_list *start_ptr, t_lem_in *lem_in)
 		if (ret == NEW_PATH)
 			return (NEW_PATH);
 		if (frontier->content != start_ptr->content)
-		{
-			//free_list(frontier);
-			//free(frontier);
-		}
+			free_list(frontier);
 		frontier = next_f;
 		levels++;
 	}

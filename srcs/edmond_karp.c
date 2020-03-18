@@ -4,20 +4,20 @@
 
 void	update_flow(t_list *end, t_list *start, char **m_flow)
 {
-	t_list	*ptr;
-	t_list	*parent;
+	t_room	*ptr;
+	t_room	*parent;
 
-	ptr = end;
+	ptr = end->content;
 	//(void)start;
-	while (ptr != start/* && ((t_room*)(ptr->content))->parent != NULL*/)
+	while (ptr != start->content/* && ((t_room*)(ptr->content))->parent != NULL*/)
 	{
-		parent = ((t_room*)(ptr->content))->parent;
+		parent = ptr->parent;
 //		ft_printf("addr parent = ||%p||\n", parent);
 //		ft_printf("add parent content %p\n", ((t_room*)(parent->content)));
 //		ft_printf("id parent = ||%i||\n", ((t_room*)(parent->content))->id);
 //		ft_printf("id ptr = ||%i||\n", ((t_room*)(ptr->content))->id);
-		m_flow[((t_room*)(parent->content))->id][((t_room*)(ptr->content))->id]++;
-		m_flow[((t_room*)(ptr->content))->id][((t_room*)(parent->content))->id]--;
+		m_flow[parent->id][ptr->id]++;
+		m_flow[ptr->id][parent->id]--;
 		ptr = parent;
 	}
 }

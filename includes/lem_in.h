@@ -48,16 +48,18 @@ typedef struct	s_lem_in
 	int			rooms;
 }				t_lem_in;
 
-typedef struct	s_room
+typedef struct	s_room t_room;
+
+struct			s_room
 {
 	char	*room_name;
-	t_list	*parent;
+	t_room	*parent;
 	t_list	*neighbours;
 	int		level;
 	char	visited;
 	char	command;
 	int		id;
-}				t_room;
+};
 
 /*
 ** state use bits:
