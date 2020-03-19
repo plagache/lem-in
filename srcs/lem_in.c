@@ -6,7 +6,7 @@
 /*   By: plagache <plagache@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 16:47:08 by alagache          #+#    #+#             */
-/*   Updated: 2020/03/12 18:39:03 by plagache         ###   ########.fr       */
+/*   Updated: 2020/03/18 07:38:12 by plagache         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	master(t_lem_in *info)
 	path(info, flow);
 	display_paths(info, flow);
 	//FREE EVERYTHING
-	free_paths(info->paths, flow);
+	//free_paths(info->paths, flow);
 	free_graph(info->head);
 	free_matrice(info->m_flow, info->rooms);
 	//FREE END

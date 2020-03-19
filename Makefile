@@ -1,9 +1,9 @@
 NAME = lem-in
 
 SRC = lem_in.c \
-	  parse.c \
 	  read.c \
 	  tools.c \
+	  tools_2.c \
 	  sort.c\
 	  print.c\
 	  matrice.c\

@@ -1,11 +1,11 @@
 #include "lem_in.h"
 #include "ft_printf.h"
 
-t_list	**create_path_array(int flow)
+t_path	*create_path_array(int flow)
 {
-	t_list	**arr;
+	t_path	*arr;
 
-	arr = (t_list**)ft_memalloc(sizeof(t_list*) * flow);
+	arr = (t_path*)ft_memalloc(sizeof(t_path) * flow);
 	if (arr == NULL)
 		return (NULL);
 	return (arr);
@@ -22,8 +22,7 @@ get_path(matrice, start, neigh, t_list *path)
 output t_list*
 */
 
-int		get_path(char **matrice, t_list *start, t_list *neigh, t_list **path,
-				int len)
+int		get_path(char **matrice, t_list *start, t_list *neigh, t_list **path)
 {
 	t_list *ptr;
 
@@ -32,7 +31,6 @@ int		get_path(char **matrice, t_list *start, t_list *neigh, t_list **path,
 		free_list(*path);
 		return (FAILURE);
 	}
-	len++;
 	ptr = neigh;
 	while (ptr != NULL)
 	{
@@ -40,13 +38,12 @@ int		get_path(char **matrice, t_list *start, t_list *neigh, t_list **path,
 			== 1)
 		{
 			if (get_path(matrice, ptr, ((t_room*)ptr->content)->neighbours,
-				path, len) == FAILURE)
+				path) == FAILURE)
 				return (FAILURE);
 			return (SUCCESS);
 		}
 		ptr = ptr->next;
 	}
-	(*path)->content_size = len - 2;
 	return (SUCCESS);
 }
 
@@ -75,7 +72,7 @@ i++
 output fail or success
 */
 
-int		add_paths(char **matrice, t_list **paths, t_list *start, int flow)
+int		add_paths(char **matrice, t_path *paths, t_list *start, int flow)
 {
 	t_list	*neigh;
 	int		i;
@@ -84,12 +81,13 @@ int		add_paths(char **matrice, t_list **paths, t_list *start, int flow)
 	neigh = ((t_room*)start->content)->neighbours;
 	while (i < flow)
 	{
-		if (get_path(matrice, start, neigh, paths + i, 0) == FAILURE)
+		if (get_path(matrice, start, neigh, &((paths + i)->list)) == FAILURE)
 		{
 			//clean(paths);
 			return (FAILURE);
 		}
-		remove_flow(paths + i, matrice);
+		remove_flow(&((paths + i)->list), matrice);
+		(paths + i)->len = path_len((paths + i)->list);
 		i++;
 	}
 	return (SUCCESS);
@@ -100,5 +98,6 @@ int		path(t_lem_in *lem_in, int flow)
 	lem_in->paths = create_path_array(flow);
 	if (add_paths(lem_in->m_flow, lem_in->paths, lem_in->start_ptr, flow) == FAILURE)
 		return (FAILURE);
+	sort_paths(lem_in->paths, flow);
 	return (SUCCESS);
 }

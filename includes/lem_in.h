@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alagache <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: plagache <plagache@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 16:45:44 by alagache          #+#    #+#             */
-/*   Updated: 2020/02/27 16:46:58 by alagache         ###   ########.fr       */
+/*   Updated: 2020/03/18 08:22:24 by plagache         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,19 @@
 # define PATH_FAIL -2
 # define DEBUG -9876
 
+typedef struct	s_path
+{
+	t_list		*list;
+	int			len;
+	int			ants;
+}				t_path;
+
 typedef struct	s_lem_in
 {
 	char		**file_split;
 	char		**m_flow;
 	char		*file;
-	t_list		**paths;
+	t_path		*paths;
 	t_list		*head;
 	t_list		*start_ptr;
 	t_list		*end_ptr;
@@ -139,5 +146,7 @@ int				breadth_first_search(t_list *, t_lem_in *);
 */
 
 int				path(t_lem_in *lem_in, int flow);
+int				path_len(t_list *path);
+void			sort_paths(t_path *paths, int flow);
 
 #endif

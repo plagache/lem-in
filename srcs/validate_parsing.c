@@ -11,7 +11,7 @@ int		duplicate_room(t_list *head)
 {
 	t_list	*ptr;
 
-	ptr = *head;
+	ptr = head;
 	if (ptr->next != NULL)
 	{
 		if (ptr->content == ptr->next->content)

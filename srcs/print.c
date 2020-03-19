@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alagache <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: plagache <plagache@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 16:00:38 by alagache          #+#    #+#             */
-/*   Updated: 2020/02/27 16:49:43 by alagache         ###   ########.fr       */
+/*   Updated: 2020/03/18 08:25:17 by plagache         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,8 @@ int		display_paths(t_lem_in *lem_in, int flow)
 	i = 0;
 	while (i < flow)
 	{
-		ft_printf("Path n |%i|with len |%i|\n", i + 1, (lem_in->paths[i])->content_size);
-		display_list(lem_in->paths[i]);
+		ft_printf("Path n |%i|len n |%i|\n", i + 1, lem_in->paths[i].len);
+		//display_list(lem_in->paths[i].list);
 		i++;
 	}
 	return (SUCCESS);
