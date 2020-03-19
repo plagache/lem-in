@@ -6,21 +6,11 @@ VALIDATE DATA BEFORE SEARCHING FOR SOLUTION IN IT
 //if char command has more than 1 bit set == ERROR //start and end on a different room
 //if Start has End as neighbour == ERROR
 
-clean
-//free list OK
-//free content OK
-
 //optimize search for max theorc flow
 	//count neighbours of start and end 
 		//min of neighbours is theorique max flow
 			// nbr path nescessaire = min ( max flow || nbr ant)
 
-//ants display
-	//sort path by len
-//path repartition
-//"add ants" to minimize turns len1 + ants1 <= len2 + ants2 <= ... lenN + antsN
-//display turn :
-				- create ant move
-				- join move
-				- print moves
+//need to print spaces only if necessary (last move no space before \n)
+
 //final clean

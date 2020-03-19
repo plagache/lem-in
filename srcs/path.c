@@ -99,5 +99,8 @@ int		path(t_lem_in *lem_in, int flow)
 	if (add_paths(lem_in->m_flow, lem_in->paths, lem_in->start_ptr, flow) == FAILURE)
 		return (FAILURE);
 	sort_paths(lem_in->paths, flow);
+	split_ants(lem_in->nbr_ants, flow, lem_in->paths);
+	if (move_paths(flow, lem_in->paths) == FAILURE)
+		return (FAILURE);
 	return (SUCCESS);
 }

@@ -32,12 +32,12 @@ void	free_matrice(char **matrice, int size)
 	free(matrice);
 }
 
-void	free_paths(t_list **paths, int size)
+void	free_paths(t_path *paths, int size)
 {
 	int	i;
 
 	i = -1;
 	while (++i < size)
-		free_list(paths[i]);
+		free_list(paths[i].list);
 	free(paths);
 }

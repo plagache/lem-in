@@ -45,9 +45,9 @@ int	master(t_lem_in *info)
 		return (FAILURE);
 	ft_printf("FLOW = %i\n", flow);
 	path(info, flow);
-	display_paths(info, flow);
+	//display_paths(info, flow);
 	//FREE EVERYTHING
-	//free_paths(info->paths, flow);
+	free_paths(info->paths, flow);
 	free_graph(info->head);
 	free_matrice(info->m_flow, info->rooms);
 	//FREE END

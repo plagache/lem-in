@@ -38,6 +38,8 @@ typedef struct	s_path
 	t_list		*list;
 	int			len;
 	int			ants;
+	int			out;
+	int			in;
 }				t_path;
 
 typedef struct	s_lem_in
@@ -49,7 +51,7 @@ typedef struct	s_lem_in
 	t_list		*head;
 	t_list		*start_ptr;
 	t_list		*end_ptr;
-	long long	nbr_ants;
+	int			nbr_ants;
 	int			line;
 	int			line_ants;
 	int			rooms;
@@ -65,6 +67,7 @@ struct			s_room
 	int		level;
 	char	visited;
 	char	command;
+	int		ant_id;
 	int		id;
 };
 
@@ -123,7 +126,7 @@ int				new_link(t_list **head, t_room *room_ptr);
 void			free_list(t_list *lst);
 void			free_graph(t_list *head);
 void			free_matrice(char **matrice, int size);
-void			free_paths(t_list **paths, int size);
+void			free_paths(t_path *paths, int size);
 
 /*
 ** Print
@@ -148,5 +151,7 @@ int				breadth_first_search(t_list *, t_lem_in *);
 int				path(t_lem_in *lem_in, int flow);
 int				path_len(t_list *path);
 void			sort_paths(t_path *paths, int flow);
+void			split_ants(int ants, int flow, t_path *paths);
+int8_t			move_paths(int flow, t_path *paths);
 
 #endif
