@@ -46,6 +46,7 @@ void	clean_graph(t_lem_in *lem_in)
 	{
 		((t_room*)ptr->content)->level = 0;
 		((t_room*)ptr->content)->parent = NULL;
+		((t_room*)ptr->content)->next_front = NULL;
 		ptr = ptr->next;
 	}
 	((t_room*)lem_in->start_ptr->content)->level = -1;
@@ -62,9 +63,7 @@ int		edmond_karp(t_lem_in *lem_in)
 //		ft_printf("before BFS\n");
 		ret = breadth_first_search(lem_in->start_ptr, lem_in);
 //		ft_printf("flow = ||%i|| ret = ||%i||\n after BFS\n", flow, ret);
-		if (ret == FAILURE)
-			return (-1);
-		else if (ret == NO_PATH)
+		if (ret == NO_PATH)
 			return (flow);
 		else
 		{
