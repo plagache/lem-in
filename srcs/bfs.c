@@ -2,28 +2,37 @@
 #include "ft_printf.h"
 
 /*
- ** input start
- ** output start or NULL if error
- ** visit all vertices with positive capacity
- */
+** input start
+** output start or NULL if error
+** visit all vertices with positive capacity
+*/
 
-int		set_levels(t_list *front_ptr, t_list **next_f, int levels,
+//check all neighbours in neigh_list
+//add neigh to Q
+
+void	add_to_front(t_room *to_add, t_room **queue)
+{
+	to_add->next_front = *queue;
+	*queue = to_add;
+}
+
+int		set_levels(t_room *front_ptr, t_room **next_f, int levels,
 					t_lem_in *lem_in)
 {
 	t_list	*neigh_ptr;
 
-	neigh_ptr = ((t_room*)(front_ptr->content))->neighbours;
+	neigh_ptr = front_ptr->neighbours;
 	while (neigh_ptr != NULL)
 	{
 
 		if (((t_room*)(neigh_ptr->content))->level == 0
-				&& 1 - lem_in->m_flow[((t_room*)(front_ptr->content))->id]
+				&& 1 - lem_in->m_flow[front_ptr->id]
 				[((t_room*)(neigh_ptr->content))->id] > 0)
 		{
 			((t_room*)(neigh_ptr->content))->level = levels;
-			((t_room*)(neigh_ptr->content))->parent = front_ptr->content;
-			if (new_link(next_f, (t_room*)(neigh_ptr->content)) == FAILURE)
-				return (FAILURE);
+			((t_room*)(neigh_ptr->content))->parent = front_ptr;
+			//add neigh_ptr->content ROOM to the next_f queue
+			add_to_front((t_room*)(neigh_ptr->content), next_f);
 			if (lem_in->end_ptr->content == neigh_ptr->content)
 				return (NEW_PATH);
 		}
@@ -32,27 +41,19 @@ int		set_levels(t_list *front_ptr, t_list **next_f, int levels,
 	return (NO_PATH);
 }
 
-int		set_frontier(t_list *frontier, t_lem_in *lem_in, t_list **next_f,
+int		set_frontier(t_room *frontier, t_lem_in *lem_in, t_room **next_f,
 					int levels)
 {
-	t_list	*front_ptr;
+	t_room	*front_ptr;
 	int		ret;
 
 	front_ptr = frontier;
 	while(front_ptr != NULL) 
 	{
 		ret = set_levels(front_ptr, next_f, levels, lem_in);
-		if (ret != NO_PATH)
-		{
-			if (frontier->content != lem_in->start_ptr->content)
-				free_list(frontier);
-			free_list(*next_f);
-			if (ret == FAILURE)
-				return (FAILURE);
+		if (ret == NEW_PATH)
 			return (NEW_PATH);
-		}
-		front_ptr = (((t_room*)front_ptr->content)->id == 0 ? NULL
-						: front_ptr->next);
+		front_ptr = front_ptr->id == 0 ? NULL : front_ptr->next_front;
 	}
 	return (NO_PATH);
 }
@@ -61,21 +62,17 @@ int		breadth_first_search(t_list *start_ptr, t_lem_in *lem_in)
 {
 	int		levels;
 	int		ret;
-	t_list	*frontier;
-	t_list	*next_f;
+	t_room	*frontier;
+	t_room	*next_f;
 
 	levels = 1;
-	frontier = start_ptr;
+	frontier = start_ptr->content;
 	while (frontier != NULL)
 	{
 		next_f = NULL;
 		ret = set_frontier(frontier, lem_in, &next_f, levels);
-		if (ret == FAILURE)
-			return (FAILURE);
 		if (ret == NEW_PATH)
 			return (NEW_PATH);
-		if (frontier->content != start_ptr->content)
-			free_list(frontier);
 		frontier = next_f;
 		levels++;
 	}

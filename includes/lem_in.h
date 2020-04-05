@@ -63,6 +63,7 @@ struct			s_room
 {
 	char	*room_name;
 	t_room	*parent;
+	t_room	*next_front;
 	t_list	*neighbours;
 	int		level;
 	char	visited;
