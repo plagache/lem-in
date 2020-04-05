@@ -41,7 +41,7 @@ int	master(t_lem_in *info)
 		return (FAILURE);
 	free_arr((void**)info->file_split);
 	flow = edmond_karp(info);
-	if (flow == -1)
+	if (flow == 0)
 		return (FAILURE);
 	ft_printf("FLOW = %i\n", flow);
 	path(info, flow);
@@ -50,7 +50,6 @@ int	master(t_lem_in *info)
 	free_paths(info->paths, flow);
 	free_graph(info->head);
 	free_matrice(info->m_flow, info->rooms);
-	//FREE END
 	if (info->file == NULL)
 		return (SUCCESS);
 	return (FAILURE);

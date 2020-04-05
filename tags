@@ -9,13 +9,11 @@ BUFF_SIZE	includes/lem_in.h	24;"	d
 BUFF_SIZE	libft/includes/get_next_line.h	15;"	d
 DEBUG	includes/lem_in.h	34;"	d
 END_COMMAND	includes/lem_in.h	25;"	d
-F	libft/libft.a	/^/;"	v
 FAILURE	includes/lem_in.h	23;"	d
 FALSE	libft/includes/libft.h	19;"	d
 FLAGSMAX	libft/includes/arg.h	16;"	d
 FT_PRINTF_H	libft/includes/ft_printf.h	14;"	d
 GET_NEXT_LINE_H	libft/includes/get_next_line.h	14;"	d
-I	out/command.o	/^:;9/;"	v
 LEM_IN_H	includes/lem_in.h	14;"	d
 LIBFT_H	libft/includes/libft.h	14;"	d
 LIST_FAIL	includes/lem_in.h	32;"	d
@@ -30,6 +28,7 @@ SUCCESS	includes/lem_in.h	22;"	d
 TRUE	libft/includes/libft.h	20;"	d
 add_paths	srcs/path.c	/^int		add_paths(char **matrice, t_path *paths, t_list *start, int flow)$/;"	f
 add_strings	libft/srcs/printf/float_tools.c	/^void	add_strings(char *dst, char *src, int len)$/;"	f
+add_to_front	srcs/bfs.c	/^void	add_to_front(t_room *to_add, t_room **queue)$/;"	f
 ant_id	includes/lem_in.h	/^	int		ant_id;$/;"	m	struct:s_room
 ants	includes/lem_in.h	/^	int			ants;$/;"	m	struct:s_path
 ants_to_move	srcs/print_ants.c	/^int8_t	ants_to_move(t_path *paths, int flow)$/;"	f
@@ -298,7 +297,7 @@ s_path	includes/lem_in.h	/^typedef struct	s_path$/;"	s
 s_point	libft/includes/arg.h	/^typedef struct	s_point$/;"	s
 s_room	includes/lem_in.h	/^struct			s_room$/;"	s
 search_room	srcs/link.c	/^t_list	*search_room(t_lem_in *info, char *room)$/;"	f
-set_frontier	srcs/bfs.c	/^int		set_frontier(t_list *frontier, t_lem_in *lem_in, t_list **next_f,$/;"	f
+set_frontier	srcs/bfs.c	/^int		set_frontier(t_room *frontier, t_lem_in *lem_in, t_room **next_f,$/;"	f
 set_levels	srcs/bfs.c	/^int		set_levels(t_room *front_ptr, t_room **next_f, int levels,$/;"	f
 sort_function	srcs/sort.c	/^void	sort_function(t_list *head)$/;"	f
 sort_paths	srcs/sort.c	/^void	sort_paths(t_path *paths, int flow)$/;"	f
