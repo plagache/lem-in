@@ -46,6 +46,7 @@ void	clean_graph(t_lem_in *lem_in)
 	{
 		((t_room*)ptr->content)->level = 0;
 		((t_room*)ptr->content)->parent = NULL;
+		((t_room*)ptr->content)->next_front = NULL;
 		ptr = ptr->next;
 	}
 	((t_room*)lem_in->start_ptr->content)->level = -1;
