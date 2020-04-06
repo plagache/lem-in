@@ -43,9 +43,8 @@ int	master(t_lem_in *info)
 	flow = edmond_karp(info);
 	if (flow == 0)
 		return (FAILURE);
-	ft_printf("FLOW = %i\n", flow);
-	path(info, flow);
-	//display_paths(info, flow);
+	//ft_printf("FLOW = %i\n", flow);
+	path(info, &flow);
 	//FREE EVERYTHING
 	free_paths(info->paths, flow);
 	free_graph(info->head);

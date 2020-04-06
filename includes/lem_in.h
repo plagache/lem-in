@@ -149,8 +149,10 @@ int				breadth_first_search(t_list *, t_lem_in *);
 ** Path
 */
 
-int				path(t_lem_in *lem_in, int flow);
+int				path(t_lem_in *lem_in, int *flow);
 int				path_len(t_list *path);
+t_path			*create_path_array(int flow);
+int				check_collision(t_path **paths, int *flow);
 void			sort_paths(t_path *paths, int flow);
 void			split_ants(int ants, int flow, t_path *paths);
 int8_t			move_paths(int flow, t_path *paths);

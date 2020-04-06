@@ -17,6 +17,7 @@ SRC = lem_in.c \
 	  path.c\
 	  clean.c\
 	  split_ants.c\
+	  collision.c\
 	#  validate_parsing.c\
 
 SRCS = $(addprefix srcs/,$(SRCS))

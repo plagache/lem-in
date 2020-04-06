@@ -24,7 +24,7 @@ int	display_list(t_list *list)
 	while (ptr != NULL)
 	{
 		rptr = (t_room*)(ptr->content);
-		ft_printf("ROOM NBR IS|%i|\n", c);
+		ft_printf("ROOM NBR IS|%i|", c);
 		ft_printf("ROOM NAME IS|%6s| ID = |%6i|\n", rptr->room_name, rptr->id);
 //		ft_printf("ROOM ADDRESS IS|%p| in link|%p|\n\n", rptr, ptr);
 		c++;
@@ -85,7 +85,7 @@ int		display_paths(t_lem_in *lem_in, int flow)
 	while (i < flow)
 	{
 		ft_printf("Path n |%i|len n |%i|\n", i + 1, lem_in->paths[i].len);
-		//display_list(lem_in->paths[i].list);
+		display_list(lem_in->paths[i].list);
 		i++;
 	}
 	return (SUCCESS);

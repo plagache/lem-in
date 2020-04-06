@@ -93,14 +93,23 @@ int		add_paths(char **matrice, t_path *paths, t_list *start, int flow)
 	return (SUCCESS);
 }
 
-int		path(t_lem_in *lem_in, int flow)
+int		path(t_lem_in *lem_in, int *flow)
 {
-	lem_in->paths = create_path_array(flow);
-	if (add_paths(lem_in->m_flow, lem_in->paths, lem_in->start_ptr, flow) == FAILURE)
+	lem_in->paths = create_path_array(*flow);
+	if (lem_in->paths == NULL)
 		return (FAILURE);
-	sort_paths(lem_in->paths, flow);
-	split_ants(lem_in->nbr_ants, flow, lem_in->paths);
-	if (move_paths(flow, lem_in->paths) == FAILURE)
+	if (add_paths(lem_in->m_flow, lem_in->paths, lem_in->start_ptr, *flow) == FAILURE)
+		return (FAILURE);
+	sort_paths(lem_in->paths, *flow);
+	if (check_collision(&lem_in->paths, flow) == FAILURE)
+	{
+		free_paths(lem_in->paths, *flow);
+		return (FAILURE);
+	}
+	split_ants(lem_in->nbr_ants, *flow, lem_in->paths);
+	//display_paths(lem_in, *flow);
+	//ft_printf("no collisiob flow is %i", *flow);
+	if (move_paths(*flow, lem_in->paths) == FAILURE)
 		return (FAILURE);
 	return (SUCCESS);
 }
