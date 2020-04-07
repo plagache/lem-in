@@ -1,5 +1,6 @@
 #include "lem_in.h"
 #include "ft_printf.h"
+#include <stdio.h>
 
 t_path	*create_path_array(int flow)
 {
@@ -58,7 +59,13 @@ void	remove_flow(t_list **path, char **matrice)
 
 	ptr = *path;
 	while (ptr->next != NULL && ((t_room*)(ptr->next)->content)->id != 0)
+	{
+		matrice[((t_room*)ptr->content)->id]
+		[((t_room*)(ptr->next)->content)->id] = 0;
+		matrice[((t_room*)(ptr->next)->content)->id]
+		[((t_room*)ptr->content)->id] = 0;
 		ptr = ptr->next;
+	}
 	matrice[((t_room*)ptr->content)->id][0] = 0;
 	matrice[0][((t_room*)ptr->content)->id] = 0;
 }
@@ -101,14 +108,16 @@ int		path(t_lem_in *lem_in, int *flow)
 	if (add_paths(lem_in->m_flow, lem_in->paths, lem_in->start_ptr, *flow) == FAILURE)
 		return (FAILURE);
 	sort_paths(lem_in->paths, *flow);
+	//dprintf(2, "collision flow is %i\n", *flow);
+	//display_paths(lem_in, *flow);
 	if (check_collision(&lem_in->paths, flow) == FAILURE)
 	{
 		free_paths(lem_in->paths, *flow);
 		return (FAILURE);
 	}
 	split_ants(lem_in->nbr_ants, *flow, lem_in->paths);
+	//dprintf(2, "no collision flow is %i\n", *flow);
 	//display_paths(lem_in, *flow);
-	//ft_printf("no collisiob flow is %i", *flow);
 	if (move_paths(*flow, lem_in->paths) == FAILURE)
 		return (FAILURE);
 	return (SUCCESS);

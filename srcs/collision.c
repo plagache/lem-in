@@ -14,7 +14,10 @@ int		has_collision(t_path *little, t_path *big)
 		{
 			if (((t_room*)ptr_big->content)->id
 				== ((t_room*)ptr_little->content)->id)
+			{
+				ft_printf("path that collided at |%i|", ((t_room*)ptr_little->content)->id);
 				return (TRUE);
+			}
 			ptr_big = ptr_big->next;
 		}
 		ptr_little = ptr_little->next;

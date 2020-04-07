@@ -66,6 +66,7 @@ struct			s_room
 	t_room	*next_front;
 	t_list	*neighbours;
 	int		level;
+	int		flow;
 	char	visited;
 	char	command;
 	int		ant_id;

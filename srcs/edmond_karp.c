@@ -2,7 +2,7 @@
 #include "lem_in.h"
 #include "ft_printf.h"
 
-void	update_flow(t_list *end, t_list *start, char **m_flow)
+void	update_flow(t_list *end, t_list *start, char **m_flow, int *len)
 {
 	t_room	*ptr;
 	t_room	*parent;
@@ -14,11 +14,14 @@ void	update_flow(t_list *end, t_list *start, char **m_flow)
 		parent = ptr->parent;
 //		ft_printf("addr parent = ||%p||\n", parent);
 //		ft_printf("add parent content %p\n", ((t_room*)(parent->content)));
-//		ft_printf("id parent = ||%i||\n", ((t_room*)(parent->content))->id);
-//		ft_printf("id ptr = ||%i||\n", ((t_room*)(ptr->content))->id);
+//		ft_printf("parent name ||%s|| id parent = ||%i||\n", parent->room_name, parent->id);
+//		ft_printf("ptr name ||%s|| id ptr = ||%i||\n", ptr->room_name, ptr->id);
+		if (ptr->flow == 0 && ptr != end->content)
+			ptr->flow++;
 		m_flow[parent->id][ptr->id]++;
 		m_flow[ptr->id][parent->id]--;
 		ptr = parent;
+		*len = *len + 1;
 	}
 }
 
@@ -67,11 +70,13 @@ int		edmond_karp(t_lem_in *lem_in)
 			return (flow);
 		else
 		{
-			update_flow(lem_in->end_ptr, lem_in->start_ptr, lem_in->m_flow);
+			ret = 0;
+			update_flow(lem_in->end_ptr, lem_in->start_ptr, lem_in->m_flow, &ret);
 			clean_graph(lem_in);
 			flow++;
+			if (lem_in->nbr_ants * 16 < ret * flow * 8)
+				return (flow);
 		}
-		//is flow_enough for ants to optimize search
 	}
 	return (DEBUG);
 }

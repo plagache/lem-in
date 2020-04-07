@@ -1,7 +1,7 @@
-#! /bin/sh
+#! /bin/bash
 
-make
-if [ $? -eq 0 ] ;
-then 
-	./lem-in < map/samples/little.txt
-fi
+for ((x = 1; x <= 100; x++))
+do
+	echo "game $x";
+	./generator --big-superposition > bigsup; ./lem-in < bigsup | wc -l; head -n2 bigsup |  grep -e '^#' | cut -d" " -f8;
+done

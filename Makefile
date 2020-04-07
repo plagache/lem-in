@@ -29,7 +29,7 @@ LIBDIR = libft
 LIBA = $(LIBDIR)/libft.a
 
 CFLAGS = -Wall -Wextra -Werror
-CFLAGS += -g
+CFLAGS += -g -fsanitize=address -fno-omit-frame-pointer
 
 CC = clang
 

@@ -26,15 +26,19 @@ int		set_levels(t_room *front_ptr, t_room **next_f, int levels,
 	{
 
 		if (((t_room*)(neigh_ptr->content))->level == 0
-				&& 1 - lem_in->m_flow[front_ptr->id]
-				[((t_room*)(neigh_ptr->content))->id] > 0)
+			&& lem_in->m_flow[front_ptr->id][((t_room*)(neigh_ptr->content))->id] < 1)
 		{
-			((t_room*)(neigh_ptr->content))->level = levels;
-			((t_room*)(neigh_ptr->content))->parent = front_ptr;
-			//add neigh_ptr->content ROOM to the next_f queue
-			add_to_front((t_room*)(neigh_ptr->content), next_f);
-			if (lem_in->end_ptr->content == neigh_ptr->content)
-				return (NEW_PATH);
+			if (front_ptr == lem_in->start_ptr->content
+				|| !(front_ptr->parent->flow == 0 && front_ptr->flow == 1
+				&& ((t_room*)(neigh_ptr->content))->flow == 0))
+			{
+				((t_room*)(neigh_ptr->content))->level = levels;
+				((t_room*)(neigh_ptr->content))->parent = front_ptr;
+				//add neigh_ptr->content ROOM to the next_f queue
+				add_to_front((t_room*)(neigh_ptr->content), next_f);
+				if (lem_in->end_ptr->content == neigh_ptr->content)
+					return (NEW_PATH);
+			}
 		}
 		neigh_ptr = neigh_ptr->next;
 	}

@@ -24,9 +24,10 @@ int	display_list(t_list *list)
 	while (ptr != NULL)
 	{
 		rptr = (t_room*)(ptr->content);
-		ft_printf("ROOM NBR IS|%i|", c);
+//		ft_printf("ROOM NBR IS|%i|", c);
 		ft_printf("ROOM NAME IS|%6s| ID = |%6i|\n", rptr->room_name, rptr->id);
 //		ft_printf("ROOM ADDRESS IS|%p| in link|%p|\n\n", rptr, ptr);
+//		ft_printf("ROOM|%s|ID |%i|>>", rptr->room_name, rptr->id);
 		c++;
 		ptr = ptr->next;
 	}
