@@ -91,3 +91,16 @@ int		display_paths(t_lem_in *lem_in, int flow)
 	}
 	return (SUCCESS);
 }
+
+void	print_farm(char **arr)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i] != NULL)
+	{
+		ft_printf("%s\n", arr[i]);
+		i++;
+	}
+	ft_printf("\n");
+}

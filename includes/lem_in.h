@@ -134,6 +134,7 @@ void			free_paths(t_path *paths, int size);
 ** Print
 */
 
+void			print_farm(char **arr);
 int				display_list(t_list *);
 int				display_data(t_lem_in *info);
 int				print_neighbours(t_room *room);

@@ -39,6 +39,7 @@ int	master(t_lem_in *info)
 	//validate/clean_data();
 	if (create_matrice(info) == NULL)
 		return (FAILURE);
+	//print_farm(info->file_split);
 	free_arr((void**)info->file_split);
 	flow = edmond_karp(info);
 	if (flow == 0)

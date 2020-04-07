@@ -71,11 +71,12 @@ int		edmond_karp(t_lem_in *lem_in)
 		else
 		{
 			ret = 0;
-			update_flow(lem_in->end_ptr, lem_in->start_ptr, lem_in->m_flow, &ret);
+			update_flow(lem_in->end_ptr, lem_in->start_ptr, lem_in->m_flow,
+						&ret);
 			clean_graph(lem_in);
 			flow++;
-			if (lem_in->nbr_ants * 16 < ret * flow * 8)
-				return (flow);
+			//if (lem_in->nbr_ants * 16 < ret * flow * 8)
+			//	return (flow);
 		}
 	}
 	return (DEBUG);
