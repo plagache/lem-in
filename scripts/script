@@ -3,5 +3,5 @@
 for ((x = 1; x <= 100; x++))
 do
 	echo "game $x";
-	./generator --big-superposition > bigsup; ./lem-in < bigsup | wc -l; head -n2 bigsup |  grep -e '^#' | cut -d" " -f8;
+	./generator --big-superposition > ./maps/bigsup; ./lem-in < ./maps/bigsup | wc -l; head -n2 ./m,aps/bigsup |  grep -e '^#' | cut -d" " -f8;
 done
