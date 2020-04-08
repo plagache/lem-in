@@ -12,6 +12,7 @@
 
 #include "lem_in.h"
 #include "ft_printf.h"
+#include <limits.h>
 
 int	main(void)
 {
@@ -41,13 +42,15 @@ int	master(t_lem_in *info)
 		return (FAILURE);
 	//print_farm(info->file_split);
 	free_arr((void**)info->file_split);
+	info->best_paths.turns = INT_MAX;
 	flow = edmond_karp(info);
-	if (flow == 0)
+	if (flow == 0 || flow == FAILURE)
 		return (FAILURE);
-	//ft_printf("FLOW = %i\n", flow);
-	path(info, &flow);
+	//path(info, &flow);
+	//display_paths(info->best_paths.paths, info->best_paths.flow);
+	move_paths(info->best_paths.flow, info->best_paths.paths);
 	//FREE EVERYTHING
-	free_paths(info->paths, flow);
+	free_paths(info->best_paths.paths, info->best_paths.flow);
 	free_graph(info->head);
 	free_matrice(info->m_flow, info->rooms);
 	if (info->file == NULL)

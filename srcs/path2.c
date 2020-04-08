@@ -1,6 +1,7 @@
 #include "lem_in.h"
 #include "ft_printf.h"
 #include <stdio.h>
+#include <limits.h>
 
 t_path	*create_path_array(int flow)
 {
@@ -36,7 +37,7 @@ int		get_path(char **matrice, t_list *start, t_list *neigh, t_list **path)
 	while (ptr != NULL)
 	{
 		if (matrice[((t_room*)start->content)->id][((t_room*)ptr->content)->id]
-			== 1)
+			== 1)//&& ((t_room*)ptr->content)->in_path == 0)
 		{
 			if (get_path(matrice, ptr, ((t_room*)ptr->content)->neighbours,
 				path) == FAILURE)
@@ -59,13 +60,7 @@ void	remove_flow(t_list **path, char **matrice)
 
 	ptr = *path;
 	while (ptr->next != NULL && ((t_room*)(ptr->next)->content)->id != 0)
-	{
-		matrice[((t_room*)ptr->content)->id]
-		[((t_room*)(ptr->next)->content)->id] = 0;
-		matrice[((t_room*)(ptr->next)->content)->id]
-		[((t_room*)ptr->content)->id] = 0;
 		ptr = ptr->next;
-	}
 	matrice[((t_room*)ptr->content)->id][0] = 0;
 	matrice[0][((t_room*)ptr->content)->id] = 0;
 }
@@ -100,25 +95,68 @@ int		add_paths(char **matrice, t_path *paths, t_list *start, int flow)
 	return (SUCCESS);
 }
 
+void	readd_flow(t_path *paths, int flow, char **matrice)
+{
+	int	i;
+	t_list *ptr;
+
+	i = 0;
+	while (i < flow)
+	{
+		ptr = (paths + i)->list;
+		while (ptr->next != NULL && ((t_room*)(ptr->next)->content)->id != 0)
+			ptr = ptr->next;
+		matrice[((t_room*)ptr->content)->id][0] = -1;
+		matrice[0][((t_room*)ptr->content)->id] = 1;
+		i++;
+	}
+}
+
+void	update_best_paths(t_path_cont *best, t_path_cont *new)
+{
+	if (best->turns > new->turns)
+	{
+		if (best->turns != INT_MAX)
+			free_paths(best->paths, best->flow);
+		best->paths = new->paths;
+		best->flow = new->flow;
+		best->turns = new->turns;
+	}
+	else
+		free_paths(new->paths, new->flow);
+	//put new into best if new has less turn
+}
+
 int		path(t_lem_in *lem_in, int *flow)
 {
-	lem_in->paths = create_path_array(*flow);
-	if (lem_in->paths == NULL)
+	t_path_cont new;
+
+	new.flow = *flow;
+	new.paths = create_path_array(new.flow);
+	if (new.paths == NULL)
 		return (FAILURE);
-	if (add_paths(lem_in->m_flow, lem_in->paths, lem_in->start_ptr, *flow) == FAILURE)
+	if (add_paths(lem_in->m_flow, new.paths, lem_in->start_ptr, new.flow) == FAILURE)
 		return (FAILURE);
-	sort_paths(lem_in->paths, *flow);
-	//dprintf(2, "collision flow is %i\n", *flow);
-	//display_paths(lem_in, *flow);
-	if (check_collision(&lem_in->paths, flow) == FAILURE)
+	readd_flow(new.paths, new.flow, lem_in->m_flow);
+	sort_paths(new.paths, new.flow);
+	//dprintf(2, "collision flow is %i\n", new.flow);
+	//dprintf(1, "collision flow is %i\n", new.flow);
+	//display_paths(new.paths, new.flow);
+	//dprintf(1, "END OF PATH\n");
+	//dprintf(2, "END OF PATH\n");
+	if (check_collision(&(new.paths), &(new.flow)) == FAILURE)
 	{
-		free_paths(lem_in->paths, *flow);
+		free_paths(new.paths, new.flow);
 		return (FAILURE);
 	}
-	split_ants(lem_in->nbr_ants, *flow, lem_in->paths);
-	//dprintf(2, "no collision flow is %i\n", *flow);
-	//display_paths(lem_in, *flow);
-	if (move_paths(*flow, lem_in->paths) == FAILURE)
-		return (FAILURE);
+	split_ants(lem_in->nbr_ants, new.flow, new.paths);
+	new.turns = (new.paths)[0].len + (new.paths)[0].ants;
+	update_best_paths(&(lem_in->best_paths), &new);
+	//dprintf(2, "no collision flow is %i\n", new.flow);
+	//display_paths((lem_in->best_paths).paths, (lem_in->best_paths).flow);
+	//dprintf(2, "END OF PATH\n\n");
 	return (SUCCESS);
 }
+
+	/*
+	*/

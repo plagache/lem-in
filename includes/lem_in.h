@@ -42,11 +42,19 @@ typedef struct	s_path
 	int			in;
 }				t_path;
 
+typedef struct	s_path_container
+{
+	t_path	*paths;
+	int		flow;
+	int		turns;
+}				t_path_cont;
+
 typedef struct	s_lem_in
 {
 	char		**file_split;
 	char		**m_flow;
 	char		*file;
+	t_path_cont	best_paths;
 	t_path		*paths;
 	t_list		*head;
 	t_list		*start_ptr;
@@ -67,6 +75,7 @@ struct			s_room
 	t_list	*neighbours;
 	int		level;
 	int		flow;
+	int		in_path;
 	char	visited;
 	char	command;
 	int		ant_id;
@@ -139,7 +148,7 @@ int				display_list(t_list *);
 int				display_data(t_lem_in *info);
 int				print_neighbours(t_room *room);
 void			print_roomnames(t_room *room);
-int				display_paths(t_lem_in *lem_in, int flow);
+int				display_paths(t_path *paths, int flow);
 
 /*
 ** Algorithme

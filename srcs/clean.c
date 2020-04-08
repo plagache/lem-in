@@ -38,6 +38,8 @@ void	free_paths(t_path *paths, int size)
 
 	i = -1;
 	while (++i < size)
-		free_list(paths[i].list);
+	{
+		free_list((paths + i)->list);
+	}
 	free(paths);
 }

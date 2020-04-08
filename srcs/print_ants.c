@@ -11,7 +11,9 @@ int8_t	ants_to_move(t_path *paths, int flow)
 	while (++i < flow)
 	{
 		if (paths[i].out != paths[i].ants)
+		{
 			return (TRUE);
+		}
 	}
 	return (FALSE);
 }

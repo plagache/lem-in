@@ -78,15 +78,15 @@ int		display_data(t_lem_in *info)
 	return (0);
 }
 
-int		display_paths(t_lem_in *lem_in, int flow)
+int		display_paths(t_path *paths, int flow)
 {
 	int i;
 
 	i = 0;
 	while (i < flow)
 	{
-		ft_printf("Path n |%i|len n |%i|\n", i + 1, lem_in->paths[i].len);
-		display_list(lem_in->paths[i].list);
+		ft_printf("Path n |%i|len n |%i|\n", i + 1, paths[i].len);
+		display_list(paths[i].list);
 		i++;
 	}
 	return (SUCCESS);
