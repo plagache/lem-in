@@ -24,8 +24,7 @@
 # define BUFF_SIZE 4096
 # define END_COMMAND 64
 # define START_COMMAND 1
-# define STRNEW_FAILURE -1
-# define STRJOIN_FAILURE -2
+# define MALLOC_FAILURE -1
 # define NO_ROOM 2
 # define NEW_PATH -2
 # define NO_PATH -3
@@ -94,7 +93,6 @@ struct			s_room
 ** bit 128 is end
 */
 
-int				master(t_lem_in *);
 int				edmond_karp(t_lem_in *lem_in);
 
 /*
@@ -115,6 +113,7 @@ int				get_commands(t_lem_in *info);
 int				get_links(t_lem_in *info);
 int				mv_to_next_room(t_lem_in *info);
 void			sort_function(t_list *head);
+int				validate_data(t_lem_in *info);
 char			**create_matrice(t_lem_in *lem_in);
 
 /*
@@ -135,7 +134,8 @@ int				new_link(t_list **head, t_room *room_ptr);
 */
 
 void			free_list(t_list *lst);
-void			free_graph(t_list *head);
+void			free_file(char **arr, char *str);
+void			free_graph(t_list *head, int code);
 void			free_matrice(char **matrice, int size);
 void			free_paths(t_path *paths, int size);
 

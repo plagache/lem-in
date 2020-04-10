@@ -1,6 +1,12 @@
 #include "lem_in.h"
 #include "ft_printf.h"
 
+void	free_file(char **arr, char *str)
+{
+	free(str);
+	free_arr((void**)arr);
+}
+
 void	free_list(t_list *lst)
 {
 	if (lst->next != NULL)
@@ -9,15 +15,17 @@ void	free_list(t_list *lst)
 	free(lst);
 }
 
-void	free_graph(t_list *head)
+void	free_graph(t_list *head, int code)
 {
 	t_room	*room;
 
 	if (head->next != NULL)
-		free_graph(head->next);
+		free_graph(head->next, code);
 	room = (t_room*)head->content;
-	free_list(room->neighbours);
-	free(room->room_name);
+	if ((code & 1) != 0 && room->neighbours != NULL)
+		free_list(room->neighbours);
+	if ((code & 2) != 0 && room->room_name != NULL)
+		free(room->room_name);
 	free(room);
 	free(head);
 }

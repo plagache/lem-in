@@ -8,7 +8,8 @@ int		get_ants(t_lem_in *info)
 
 	c = 0;
 	line = 0;
-	while (is_command(info->file_split[line]) == FAILURE
+	while (is_room(info->file_split[line]) == FAILURE
+			&& is_command(info->file_split[line]) == FAILURE
 			&& is_comment(info->file_split[line]) == SUCCESS)
 	line++;
 	while (ft_isdigit(info->file_split[line][c]) == TRUE)

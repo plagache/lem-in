@@ -9,7 +9,7 @@ ARG_H	libft/includes/arg.h	14;"	d
 B	out/sort.o	/^:;9/;"	v
 BUFF_SIZE	includes/lem_in.h	24;"	d
 BUFF_SIZE	libft/includes/get_next_line.h	15;"	d
-DEBUG	includes/lem_in.h	34;"	d
+DEBUG	includes/lem_in.h	33;"	d
 END_COMMAND	includes/lem_in.h	25;"	d
 F	libft/libft.a	/^/;"	v
 FAILURE	includes/lem_in.h	23;"	d
@@ -21,18 +21,17 @@ I	out/sort.o	/^:;9/;"	v
 I	out/sort.o	/^Ï/;"	v
 LEM_IN_H	includes/lem_in.h	14;"	d
 LIBFT_H	libft/includes/libft.h	14;"	d
-LIST_FAIL	includes/lem_in.h	32;"	d
-NEW_PATH	includes/lem_in.h	30;"	d
-NO_PATH	includes/lem_in.h	31;"	d
-NO_ROOM	includes/lem_in.h	29;"	d
-PATH_FAIL	includes/lem_in.h	33;"	d
+LIST_FAIL	includes/lem_in.h	31;"	d
+MALLOC_FAILURE	includes/lem_in.h	27;"	d
+NEW_PATH	includes/lem_in.h	29;"	d
+NO_PATH	includes/lem_in.h	30;"	d
+NO_ROOM	includes/lem_in.h	28;"	d
+PATH_FAIL	includes/lem_in.h	32;"	d
 START_COMMAND	includes/lem_in.h	26;"	d
-STRJOIN_FAILURE	includes/lem_in.h	28;"	d
-STRNEW_FAILURE	includes/lem_in.h	27;"	d
 SUCCESS	includes/lem_in.h	22;"	d
 TRUE	libft/includes/libft.h	20;"	d
 U	out/sort.o	/^¾/;"	v
-add_paths	srcs/path2.c	/^int		add_paths(char **matrice, t_path *paths, t_list *start, int flow)$/;"	f
+add_paths	srcs/path.c	/^int		add_paths(char **matrice, t_path *paths, t_list *start, int flow)$/;"	f
 add_strings	libft/srcs/printf/float_tools.c	/^void	add_strings(char *dst, char *src, int len)$/;"	f
 add_to_front	srcs/bfs.c	/^void	add_to_front(t_room *to_add, t_room **queue)$/;"	f
 ant_id	includes/lem_in.h	/^	int		ant_id;$/;"	m	struct:s_room
@@ -61,7 +60,7 @@ check_special_value	libft/srcs/printf/special.c	/^int		check_special_value(t_s_e
 check_unsigned_struct	libft/srcs/printf/unsigned_tools.c	/^int		check_unsigned_struct(t_conv_id *ptr)$/;"	f
 clean_graph	srcs/edmond_karp.c	/^void	clean_graph(t_lem_in *lem_in)$/;"	f
 command	includes/lem_in.h	/^	char	command;$/;"	m	struct:s_room
-command	srcs/validate_parsing.c	/^int		command(t_list *start, t_list *end)$/;"	f
+command	srcs/validate_parsing.c	/^int	command(t_list *start, t_list *end)$/;"	f
 content	libft/includes/get_next_line.h	/^	char			*content;$/;"	m	struct:s_data
 content	libft/includes/libft.h	/^	void			*content;$/;"	m	struct:s_dlist
 content	libft/includes/libft.h	/^	void			*content;$/;"	m	struct:s_list
@@ -73,7 +72,7 @@ copy_paths	srcs/collision.c	/^void	copy_paths(t_path *new, t_path *old, int old_
 countwords	libft/srcs/string/ft_strsplit.c	/^static size_t		countwords(char const *s, char c)$/;"	f	file:
 create_id	srcs/matrice.c	/^int		create_id(t_list * head, t_list *start, t_list *end)$/;"	f
 create_matrice	srcs/matrice.c	/^char	**create_matrice(t_lem_in *lem_in)$/;"	f
-create_path_array	srcs/path2.c	/^t_path	*create_path_array(int flow)$/;"	f
+create_path_array	srcs/path.c	/^t_path	*create_path_array(int flow)$/;"	f
 display_data	srcs/print.c	/^int		display_data(t_lem_in *info)$/;"	f
 display_list	srcs/print.c	/^int	display_list(t_list *list)$/;"	f
 display_paths	srcs/print.c	/^int		display_paths(t_path *paths, int flow)$/;"	f
@@ -81,13 +80,13 @@ divide_str_by_two	libft/srcs/printf/float_tools.c	/^void	divide_str_by_two(char 
 double_exponant	libft/srcs/printf/double_tools.c	/^void	double_exponant(t_s_e_m *dble_ptr, t_d_arrs *a_ptr)$/;"	f
 double_mantissa	libft/srcs/printf/double_tools.c	/^void	double_mantissa(t_s_e_m *dble_ptr, t_d_arrs *a_ptr)$/;"	f
 double_rounding	libft/srcs/printf/double_tools.c	/^void	double_rounding(t_d_arrs *a_ptr, t_conv_id *s_ptr)$/;"	f
-duplicate_link	srcs/validate_parsing.c	/^int		duplicate_link(t_list *head)$/;"	f
-duplicate_room	srcs/validate_parsing.c	/^int		duplicate_room(t_list *head)$/;"	f
+duplicate_room	srcs/validate_parsing.c	/^int	duplicate_room(t_list *head)$/;"	f
 e	libft/includes/arg.h	/^	unsigned short		e;$/;"	m	struct:s_double
 edmond_karp	srcs/edmond_karp.c	/^int		edmond_karp(t_lem_in *lem_in)$/;"	f
 empty_line	srcs/read.c	/^int	empty_line(char **str)$/;"	f
 end_ptr	includes/lem_in.h	/^	t_list		*end_ptr;$/;"	m	struct:s_lem_in
 equilibrate_ants	srcs/split_ants.c	/^void	equilibrate_ants(int *ants, int flow, t_path *paths)$/;"	f
+fail_links	srcs/link.c	/^int		fail_links(t_list *head)$/;"	f
 fd	libft/includes/get_next_line.h	/^	int				fd;$/;"	m	struct:s_data
 file	includes/lem_in.h	/^	char		*file;$/;"	m	struct:s_lem_in
 file_split	includes/lem_in.h	/^	char		**file_split;$/;"	m	struct:s_lem_in
@@ -103,7 +102,8 @@ flags_in_struct	libft/srcs/printf/pflags.c	/^void	flags_in_struct(char c, t_conv
 flow	includes/lem_in.h	/^	int		flow;$/;"	m	struct:s_path_container
 flow	includes/lem_in.h	/^	int		flow;$/;"	m	struct:s_room
 free_arr	srcs/tools.c	/^void	free_arr(void **arr)$/;"	f
-free_graph	srcs/clean.c	/^void	free_graph(t_list *head)$/;"	f
+free_file	srcs/clean.c	/^void	free_file(char **arr, char *str)$/;"	f
+free_graph	srcs/clean.c	/^void	free_graph(t_list *head, int code)$/;"	f
 free_list	srcs/clean.c	/^void	free_list(t_list *lst)$/;"	f
 free_matrice	srcs/clean.c	/^void	free_matrice(char **matrice, int size)$/;"	f
 free_paths	srcs/clean.c	/^void	free_paths(t_path *paths, int size)$/;"	f
@@ -203,12 +203,11 @@ get_ldouble_value	libft/srcs/printf/ldouble_tools.c	/^void	get_ldouble_value(va_
 get_link	srcs/link.c	/^int		get_link(t_lem_in *info, char *room_name1, char *room_name2)$/;"	f
 get_links	srcs/link.c	/^int		get_links(t_lem_in *info)$/;"	f
 get_next_line	libft/srcs/get_next_line/get_next_line.c	/^int				get_next_line(const int fd, char **line)$/;"	f
-get_path	srcs/path2.c	/^int		get_path(char **matrice, t_list *start, t_list *neigh, t_list **path)$/;"	f
+get_path	srcs/path.c	/^int		get_path(char **matrice, t_list *start, t_list *neigh, t_list **path)$/;"	f
 get_room_info	srcs/room.c	/^int		get_room_info(t_lem_in *info)$/;"	f
 get_rooms	srcs/room.c	/^int		get_rooms(t_lem_in *info)$/;"	f
 get_start	srcs/command.c	/^int		get_start(char **file, int line, t_lem_in *info)$/;"	f
 get_unsigned_value	libft/srcs/printf/unsigned_tools.c	/^void	get_unsigned_value(unsigned long long *val_ptr, va_list *arg_ptr,$/;"	f
-h	out/room.o	/^ELF/;"	v
 has_collision	srcs/collision.c	/^int		has_collision(t_path *little, t_path *big)$/;"	f
 head	includes/lem_in.h	/^	t_list		*head;$/;"	m	struct:s_lem_in
 id	includes/lem_in.h	/^	int		id;$/;"	m	struct:s_room
@@ -276,7 +275,6 @@ no_flag_octal	libft/srcs/printf/octal.c	/^void	no_flag_octal(t_conv_id *s_ptr, i
 no_flag_percent	libft/srcs/printf/percent.c	/^void	no_flag_percent(t_conv_id *s_ptr, int len)$/;"	f
 no_flag_string	libft/srcs/printf/string.c	/^void		no_flag_string(t_conv_id *s_ptr, int len, char *str)$/;"	f
 no_flag_unsigned	libft/srcs/printf/unsigned.c	/^void	no_flag_unsigned(t_conv_id *s_ptr, int len, unsigned long long nb)$/;"	f
-no_path	srcs/validate_parsing.c	/^int		no_path(t_list *start, t_list *end)$/;"	f
 null_ptr	libft/srcs/printf/address.c	/^int		null_ptr(t_conv_id *s_ptr, int len)$/;"	f
 null_ptr_zero	libft/srcs/printf/address.c	/^int		null_ptr_zero(t_conv_id *s_ptr, int len)$/;"	f
 null_string	libft/srcs/printf/string.c	/^int			null_string(t_conv_id *s_ptr)$/;"	f
@@ -286,7 +284,7 @@ output	libft/includes/arg.h	/^	char	*output;$/;"	m	struct:s_conv_info
 p	out/edmond_karp.o	/^ELF/;"	v
 parent	includes/lem_in.h	/^	t_room	*parent;$/;"	m	struct:s_room
 parsing	libft/srcs/printf/ft_printf.c	/^int			parsing(char *ptr, int end, t_conv_id *struct_ptr)$/;"	f
-path	srcs/path2.c	/^int		path(t_lem_in *lem_in, int *flow)$/;"	f
+path	srcs/path.c	/^int		path(t_lem_in *lem_in, int *flow)$/;"	f
 path_len	srcs/tools_2.c	/^int		path_len(t_list *path)$/;"	f
 paths	includes/lem_in.h	/^	t_path		*paths;$/;"	m	struct:s_lem_in
 paths	includes/lem_in.h	/^	t_path	*paths;$/;"	m	struct:s_path_container
@@ -298,12 +296,15 @@ prev	libft/includes/libft.h	/^	struct s_dlist	*prev;$/;"	m	struct:s_dlist	typere
 print_farm	srcs/print.c	/^void	print_farm(char **arr)$/;"	f
 print_neighbours	srcs/print.c	/^int		print_neighbours(t_room *room)$/;"	f
 read	libft/includes/arg.h	/^	int	read;$/;"	m	struct:s_point
+read_ant_parse	srcs/lem_in.c	/^int	read_ant_parse(t_lem_in *info)$/;"	f
+read_content	srcs/read.c	/^int	read_content(int len, char *read, char *to_free)$/;"	f
 read_file	srcs/read.c	/^int	read_file(t_lem_in *info)$/;"	f
-readd_flow	srcs/path2.c	/^void	readd_flow(t_path *paths, int flow, char **matrice)$/;"	f
+readd_flow	srcs/path.c	/^void	readd_flow(t_path *paths, int flow, char **matrice)$/;"	f
 readline	libft/srcs/get_next_line/get_next_line.c	/^int				readline(t_data *current)$/;"	f
 remove_collision	srcs/collision.c	/^int		remove_collision(t_path *paths, int flow)$/;"	f
-remove_flow	srcs/path2.c	/^void	remove_flow(t_list **path, char **matrice)$/;"	f
+remove_flow	srcs/path.c	/^void	remove_flow(t_list **path, char **matrice)$/;"	f
 returns	notes	/^and move paths after EK returns;$/;"	v
+room_link_parse	srcs/lem_in.c	/^int	room_link_parse(t_lem_in *info)$/;"	f
 room_name	includes/lem_in.h	/^	char	*room_name;$/;"	m	struct:s_room
 rooms	includes/lem_in.h	/^	int			rooms;$/;"	m	struct:s_lem_in
 s	libft/includes/arg.h	/^	char				s;$/;"	m	struct:s_double
@@ -351,10 +352,11 @@ tmp	libft/includes/arg.h	/^	char	tmp[21500];$/;"	m	struct:s_long_double_arrs
 total	libft/includes/arg.h	/^	char	*total;$/;"	m	struct:s_double_arrs
 total	libft/includes/arg.h	/^	char	*total;$/;"	m	struct:s_long_double_arrs
 turns	includes/lem_in.h	/^	int		turns;$/;"	m	struct:s_path_container
-ultimate_path	srcs/validate_parsing.c	/^int		ultimate_path(t_list *start, t_list *end)$/;"	f
+ultimate_path	srcs/validate_parsing.c	/^int	ultimate_path(t_list *start, t_list *end)$/;"	f
 unsigned_len_base	libft/srcs/printf/global_tools.c	/^int	unsigned_len_base(unsigned long long val, unsigned base)$/;"	f
-update_best_paths	srcs/path2.c	/^void	update_best_paths(t_path_cont *best, t_path_cont *new)$/;"	f
+update_best_paths	srcs/path.c	/^void	update_best_paths(t_path_cont *best, t_path_cont *new)$/;"	f
 update_flow	srcs/edmond_karp.c	/^void	update_flow(t_list *end, t_list *start, char **m_flow)$/;"	f
+validate_data	srcs/validate_parsing.c	/^int	validate_data(t_lem_in *info)$/;"	f
 visited	includes/lem_in.h	/^	char	visited;$/;"	m	struct:s_room
 width	libft/includes/arg.h	/^	int		width;$/;"	m	struct:s_conv_info
 width	libft/srcs/printf/pwidth.c	/^int		width(char *ptr, int end, t_conv_id *struct_ptr)$/;"	f

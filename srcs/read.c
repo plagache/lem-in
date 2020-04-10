@@ -13,6 +13,33 @@
 #include "lem_in.h"
 #include "ft_printf.h"
 
+int	read_content(int len, char *read, char *to_free)
+{
+	int	i;
+
+	i = -1;
+	while (++i < len)
+	{
+		if (read[i] <= 0)
+		{
+			free(to_free);
+			return (FAILURE);
+		}
+	}
+	return (SUCCESS);
+}
+
+int	split_file(t_lem_in *info)
+{
+	info->file_split = ft_strsplit(info->file, '\n');
+	if (info->file_split == NULL)
+	{
+		free(info->file);
+		return (FAILURE);
+	}
+	return (SUCCESS);
+}
+
 int	empty_line(char **str)
 {
 	char *ptr;
@@ -23,38 +50,38 @@ int	empty_line(char **str)
 		return (SUCCESS);
 	new_str = ft_strsub(*str, 0, (ptr-*str));
 	if (new_str == NULL)
+	{
+		free(*str);
 		return (FAILURE);
+	}
 	free(*str);
 	*str = new_str;
 	return (SUCCESS);
 }
 
-int	split_file(t_lem_in *info)
-{
-	info->file_split = ft_strsplit(info->file, '\n');
-	if (info->file_split != NULL)
-		return (SUCCESS);
-	return (FAILURE);
-}
-
 int	read_file(t_lem_in *info)
 {
 	int		ret;
-	char	tab[BUFF_SIZE + 1];
+	char	arr[BUFF_SIZE + 1];
 
-	ft_memset(info, 0, sizeof(t_lem_in));
 	info->file = ft_strnew(0);
 	if (info->file == NULL)
-		return (STRNEW_FAILURE);
-	while ((ret = read(0, tab, BUFF_SIZE)) > 0)
+		return (MALLOC_FAILURE);
+	while ((ret = read(0, arr, BUFF_SIZE)) > 0)
 	{
-		tab[ret] = '\0';
-		info->file = ft_strjoinfree(1, info->file, tab);
+		arr[ret] = '\0';
+		if (read_content(ret, arr, info->file) == FAILURE)
+			return (FAILURE);
+		info->file = ft_strjoinfree(1, info->file, arr);
 		if (info->file == NULL)
-			return (STRJOIN_FAILURE);
+			return (MALLOC_FAILURE);
 	}
-	empty_line(&(info->file));
-	if (ret == 0)
-		return (SUCCESS);
-	return (FAILURE);
+	if (ret == -1 || (ret == 0 && *(info->file) == '\0'))
+	{
+		free(info->file);
+		return (FAILURE);
+	}
+	if (empty_line(&(info->file)) == FAILURE)
+		return (FAILURE);
+	return (SUCCESS);
 }
