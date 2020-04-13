@@ -21,17 +21,17 @@ int	read_ant_parse(t_lem_in *info)
 	ret = read_file(info);
 	if (ret == FAILURE || ret == MALLOC_FAILURE)
 	{
-		ft_printf("ERROR: an error occurred while reading\n");
+		ft_printf("ERROR\n");
 		return (FAILURE);
 	}
 	if (split_file(info) == FAILURE)
 	{
-		ft_printf("ERROR: an error occurred splitting the file\n");
+		ft_printf("ERROR\n");
 		return (FAILURE);
 	}
 	if (get_ants(info) == FAILURE)
 	{
-		ft_printf("ERROR: no ant line found\n");
+		ft_printf("ERROR\n");
 		free_file(info->file_split, info->file);
 		return (FAILURE);
 	}
@@ -42,20 +42,20 @@ int	room_link_parse(t_lem_in *info)
 {
 	if (get_rooms(info) == FAILURE || info->head == NULL)
 	{
-		ft_printf("ERROR: an error occured parsing the rooms\n");
+		ft_printf("ERROR\n");
 		free_file(info->file_split, info->file);
 		return (FAILURE);
 	}
 	if (get_commands(info) == FAILURE)
 	{
-		ft_printf("ERROR: an error occured parsing the commands\n");
+		ft_printf("ERROR\n");
 		free_graph(info->head, 2);
 		free_file(info->file_split, info->file);
 		return (FAILURE);
 	}
 	if (get_links(info) == FAILURE)
 	{
-		ft_printf("ERROR: an error occured parsing the links\n");
+		ft_printf("ERROR\n");
 		free_graph(info->head, 3);
 		free_file(info->file_split, info->file);
 		return (FAILURE);
@@ -63,33 +63,49 @@ int	room_link_parse(t_lem_in *info)
 	return (SUCCESS);
 }
 
-int	master(t_lem_in *info)
+int	resolve(t_lem_in *info)
 {
 	int	flow;
 
 	if (validate_data(info) == FAILURE)
 		return (FAILURE);
-	ft_printf("%s", info->file);
-	free_file(info->file_split, info->file);
-	return (SUCCESS);
 	if (create_matrice(info) == NULL)
+	{
+		ft_printf("ERROR\n");
+		free_graph(info->head, 3);
+		free_file(info->file_split, info->file);
 		return (FAILURE);
-	//print_farm(info->file_split);
-	free_arr((void**)info->file_split);
+	}
+
 	info->best_paths.turns = INT_MAX;
 	flow = edmond_karp(info);
 	if (flow == 0 || flow == FAILURE)
+	{
+		ft_printf("ERROR\n");
+		free_graph(info->head, 3);
+		free_matrice(info->m_flow, info->rooms);
+		free_file(info->file_split, info->file);
 		return (FAILURE);
-	//path(info, &flow);
-	//display_paths(info->best_paths.paths, info->best_paths.flow);
-	move_paths(info->best_paths.flow, info->best_paths.paths);
-	//FREE EVERYTHING
+	}
+	ft_printf("%s", info->file);
+	free_file(info->file_split, info->file);
+	return (SUCCESS);
+}
+
+int	print(t_lem_in *info)
+{
+	int	ret;
+
+	ret = move_paths(info->best_paths.flow, info->best_paths.paths);
 	free_paths(info->best_paths.paths, info->best_paths.flow);
 	free_graph(info->head, 3);
 	free_matrice(info->m_flow, info->rooms);
-	if (info->file == NULL)
-		return (SUCCESS);
-	return (FAILURE);
+	if (ret == FAILURE)
+	{
+		ft_printf("ERROR\n");
+		return (FAILURE);
+	}
+	return (SUCCESS);
 }
 
 int	main(void)
@@ -104,7 +120,10 @@ int	main(void)
 	ret = room_link_parse(&info);
 	if (ret == FAILURE)
 		return (EXIT_FAILURE);
-	ret = master(&info);
+	ret = resolve(&info);
+	if (ret == FAILURE)
+		return (EXIT_FAILURE);
+	ret = print(&info);
 	if (ret == FAILURE)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);

@@ -63,13 +63,11 @@ int		edmond_karp(t_lem_in *lem_in)
 	flow = 0;
 	while (1)
 	{
-//		ft_printf("before BFS\n");
 		ret = breadth_first_search(lem_in->start_ptr, lem_in);
 		if (ret == NO_PATH)
 			return (flow);
 		else
 		{
-			//ft_printf("flow = ||%i||\n", flow);
 			update_flow(lem_in->end_ptr, lem_in->start_ptr, lem_in->m_flow);
 			clean_graph(lem_in);
 			flow++;

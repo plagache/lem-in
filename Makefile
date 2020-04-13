@@ -32,6 +32,7 @@ CFLAGS = -Wall -Wextra -Werror
 CFLAGS += -g -fsanitize=address -fno-omit-frame-pointer
 
 CC = clang
+#CC = gcc
 
 all: $(NAME)
 

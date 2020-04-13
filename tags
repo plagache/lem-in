@@ -9,6 +9,7 @@ ARG_H	libft/includes/arg.h	14;"	d
 B	out/sort.o	/^:;9/;"	v
 BUFF_SIZE	includes/lem_in.h	24;"	d
 BUFF_SIZE	libft/includes/get_next_line.h	15;"	d
+D	lem-in	/^/;"	v
 DEBUG	includes/lem_in.h	33;"	d
 END_COMMAND	includes/lem_in.h	25;"	d
 F	libft/libft.a	/^/;"	v
@@ -242,7 +243,6 @@ loop_conv	libft/srcs/printf/ft_printf.c	/^int			loop_conv(const char *fmt, va_li
 m	libft/includes/arg.h	/^	unsigned long long	m;$/;"	m	struct:s_double
 m_flow	includes/lem_in.h	/^	char		**m_flow;$/;"	m	struct:s_lem_in
 main	srcs/lem_in.c	/^int	main(void)$/;"	f
-master	srcs/lem_in.c	/^int	master(t_lem_in *info)$/;"	f
 minus_flag_address	libft/srcs/printf/address.c	/^void	minus_flag_address(t_conv_id *s_ptr, int len, unsigned long nb)$/;"	f
 minus_flag_double	libft/srcs/printf/double.c	/^void	minus_flag_double(t_d_arrs *a_ptr, t_conv_id *s_ptr, t_s_e_m *dble_ptr,$/;"	f
 minus_flag_hexa	libft/srcs/printf/hexa.c	/^void	minus_flag_hexa(t_conv_id *s_ptr, int len, unsigned long long nb)$/;"	f
@@ -303,6 +303,7 @@ readd_flow	srcs/path.c	/^void	readd_flow(t_path *paths, int flow, char **matrice
 readline	libft/srcs/get_next_line/get_next_line.c	/^int				readline(t_data *current)$/;"	f
 remove_collision	srcs/collision.c	/^int		remove_collision(t_path *paths, int flow)$/;"	f
 remove_flow	srcs/path.c	/^void	remove_flow(t_list **path, char **matrice)$/;"	f
+resolve	srcs/lem_in.c	/^int	resolve(t_lem_in *info)$/;"	f
 returns	notes	/^and move paths after EK returns;$/;"	v
 room_link_parse	srcs/lem_in.c	/^int	room_link_parse(t_lem_in *info)$/;"	f
 room_name	includes/lem_in.h	/^	char	*room_name;$/;"	m	struct:s_room
