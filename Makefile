@@ -18,7 +18,7 @@ SRC = lem_in.c \
 	  clean.c\
 	  split_ants.c\
 	  collision.c\
-	#  validate_parsing.c\
+	  validate_parsing.c\
 
 SRCS = $(addprefix srcs/,$(SRCS))
 
@@ -32,6 +32,7 @@ CFLAGS = -Wall -Wextra -Werror
 CFLAGS += -g -fsanitize=address -fno-omit-frame-pointer
 
 CC = clang
+#CC = gcc
 
 all: $(NAME)
 

@@ -1,7 +1,14 @@
 #! /bin/bash
 
-for ((x = 1; x <= 100; x++))
+for ((x = 1; x <= 10; x++))
 do
 	echo "game $x";
-	./generator --big-superposition > ./maps/bigsup; ./lem-in < ./maps/bigsup | wc -l; head -n2 ./m,aps/bigsup |  grep -e '^#' | cut -d" " -f8;
+	./generator --big-superposition > maps/bigsup;
+	time ./lem-in < maps/bigsup > maps/ress;
+	self=$(cat maps/ress | wc -l);
+	echo -e "$self";
+	expected=$(head -n2 maps/bigsup |  grep -e '^#' | cut -d" " -f8);
+	echo -e "$expected";
+	res=$(($self - $expected));
+	echo "$self - $expected" | bc;
 done

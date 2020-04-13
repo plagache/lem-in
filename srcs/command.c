@@ -7,11 +7,11 @@ int		get_start(char **file, int line, t_lem_in *info)
 	int		len;
 	t_list	*ptr;
 
-	while (ft_strcmp("##start", file[line]) != 0 && line < info->line)
+	while (ft_strcmp("##start", file[line]) != 0 && line + 1 < info->line)
 		line++;
-	if (line == info->line)
+	if (line + 1 == info->line)
 		return (FAILURE);
-	while (is_room(file[line]) == FAILURE && line < info->line)
+	while (is_room(file[line]) == FAILURE && line + 1 < info->line)
 		line++;
 	if (line == info->line)
 		return (FAILURE);
@@ -32,11 +32,11 @@ int		get_end(char **file, int line, t_lem_in *info)
 	int		len;
 	t_list	*ptr;
 
-	while (ft_strcmp("##end", file[line]) != 0 && line < info->line)
+	while (ft_strcmp("##end", file[line]) != 0 && line + 1 < info->line)
 		line++;
-	if (line == info->line)
+	if (line + 1 == info->line)
 		return (FAILURE);
-	while (is_room(file[line]) == FAILURE && line < info->line)
+	while (is_room(file[line]) == FAILURE && line + 1 < info->line)
 		line++;
 	if (line == info->line)
 		return (FAILURE);
@@ -58,7 +58,6 @@ int		get_commands(t_lem_in *info)
 		return (FAILURE);
 	if (get_end(info->file_split, info->line_ants, info) == FAILURE)
 		return (FAILURE);
-	//display_list(info);
 	return (SUCCESS);
 	//free list and file
 }

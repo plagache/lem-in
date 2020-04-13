@@ -4,10 +4,12 @@
 
 int		mv_to_next_room(t_lem_in *info)
 {
-	while (is_command(info->file_split[info->line]) == SUCCESS
-			|| is_comment(info->file_split[info->line]) == SUCCESS)
+	while (info->file_split[info->line] != NULL &&
+			(is_command(info->file_split[info->line]) == SUCCESS
+			|| is_comment(info->file_split[info->line]) == SUCCESS))
 		info->line++;
-	if (is_link(info->file_split[info->line]) == SUCCESS)
+	if (info->file_split[info->line] == NULL
+		|| is_link(info->file_split[info->line]) == SUCCESS)
 		return (FAILURE);
 	return (SUCCESS);
 }
@@ -39,8 +41,12 @@ int		get_room_info(t_lem_in *info)
 	if (info->head == NULL)
 		return (FAILURE);
 	if (fill_room(info->head, info->file_split[info->line]) == FAILURE)
+	{
+		free(info->head->content);
+		free_graph(info->head->next, 2);
+		free(info->head);
 		return (FAILURE);
-	/* free room then link*/
+	}
 	return (SUCCESS);
 }
 
