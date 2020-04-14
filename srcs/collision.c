@@ -1,5 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   collision.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: plagache <plagache@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/04/14 14:16:27 by plagache          #+#    #+#             */
+/*   Updated: 2020/04/14 14:29:41 by plagache         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lem_in.h"
 #include "ft_printf.h"
+
+/*
+** //ft_printf("path that collided at |%i|",
+**		((t_room*)ptr_little->content)->id);
+*/
 
 int		has_collision(t_path *little, t_path *big)
 {
@@ -15,7 +32,6 @@ int		has_collision(t_path *little, t_path *big)
 			if (((t_room*)ptr_big->content)->id
 				== ((t_room*)ptr_little->content)->id)
 			{
-				//ft_printf("path that collided at |%i|", ((t_room*)ptr_little->content)->id);
 				return (TRUE);
 			}
 			ptr_big = ptr_big->next;
@@ -39,7 +55,7 @@ int		remove_collision(t_path *paths, int flow)
 		while (j < flow)
 		{
 			if (paths[j].len != -1 && paths[i].len != -1
-			&& has_collision(paths  + i, paths + j) == TRUE)
+				&& has_collision(paths + i, paths + j) == TRUE)
 			{
 				paths[j].len = -1;
 				len--;

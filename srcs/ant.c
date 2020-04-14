@@ -1,17 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ant.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: plagache <plagache@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/04/14 15:02:28 by plagache          #+#    #+#             */
+/*   Updated: 2020/04/14 15:02:48 by plagache         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lem_in.h"
-#include "ft_printf.h"
 
 int		get_ants(t_lem_in *info)
 {
-	int		line;
-	int 	c;
+	int	line;
+	int	c;
 
 	c = 0;
 	line = 0;
 	while (is_room(info->file_split[line]) == FAILURE
 			&& is_command(info->file_split[line]) == FAILURE
 			&& is_comment(info->file_split[line]) == SUCCESS)
-	line++;
+		line++;
 	while (ft_isdigit(info->file_split[line][c]) == TRUE)
 		c++;
 	if (info->file_split[line][c] != '\0')

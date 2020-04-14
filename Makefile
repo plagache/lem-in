@@ -15,6 +15,7 @@ SRC = lem_in.c \
 	  room.c\
 	  print_ants.c\
 	  path.c\
+	  path_2.c \
 	  clean.c\
 	  split_ants.c\
 	  collision.c\

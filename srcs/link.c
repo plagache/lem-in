@@ -1,7 +1,16 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   link.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: plagache <plagache@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/04/14 15:05:21 by plagache          #+#    #+#             */
+/*   Updated: 2020/04/14 15:05:55 by plagache         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "lem_in.h"
-#include "ft_printf.h"
 
 int		fail_links(t_list *head)
 {
@@ -23,7 +32,7 @@ int		fail_links(t_list *head)
 t_list	*search_room(t_lem_in *info, char *room)
 {
 	t_list *ptr;
-	
+
 	ptr = info->head;
 	while (ptr != NULL
 			&& ft_strcmp(((t_room*)ptr->content)->room_name, room) <= 0)
@@ -34,6 +43,11 @@ t_list	*search_room(t_lem_in *info, char *room)
 	}
 	return (NULL);
 }
+
+/*
+** comment in function
+**	//check if new_link faild and return FAILURE
+*/
 
 int		get_link(t_lem_in *info, char *room_name1, char *room_name2)
 {
@@ -51,7 +65,6 @@ int		get_link(t_lem_in *info, char *room_name1, char *room_name2)
 	if (new_link(&(room2->neighbours), room1) == FAILURE
 		|| new_link(&(room1->neighbours), room2) == FAILURE)
 		return (FAILURE);
-	//check if new_link faild and return FAILURE
 	return (SUCCESS);
 }
 
@@ -63,7 +76,7 @@ int		get_links(t_lem_in *info)
 	{
 		if (is_comment(info->file_split[info->line]) == SUCCESS)
 			info->line++;
-		else if (is_link(info->file_split[info->line]) == SUCCESS) 
+		else if (is_link(info->file_split[info->line]) == SUCCESS)
 		{
 			if ((arr = ft_strsplit(info->file_split[info->line], '-')) == NULL)
 				return (FAILURE);

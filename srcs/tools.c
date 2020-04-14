@@ -3,16 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alagache <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: plagache <plagache@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 16:54:59 by alagache          #+#    #+#             */
-/*   Updated: 2020/02/27 16:55:30 by alagache         ###   ########.fr       */
+/*   Updated: 2020/04/14 14:59:32 by plagache         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-// put occurence and free arr in libft
+/*
+** put occurence and free arr in libft
+*/
 
 int		is_command(char *str)
 {
@@ -34,7 +36,6 @@ int		is_comment(char *str)
 		return (SUCCESS);
 	return (FAILURE);
 }
-
 
 int		is_link(char *str)
 {
@@ -67,31 +68,33 @@ int		is_room(char *str)
 	return (SUCCESS);
 }
 
-void	free_arr(void **arr)
-{
-	int i;
-
-	i = 0;
-	while (arr[i] != NULL)
-	{
-		free(arr[i]);
-		i++;
-	}
-	free(arr);
-}
-
-int		occurrence_of(char *str, char c)
-{
-	int count;
-	int i;
-
-	i = 0;
-	count = 0;
-	while (str[i])
-	{
-		if (str[i] == c)
-			count++;
-		i++;
-	}
-	return (count);
-}
+/*
+** void	free_arr(void **arr)
+** {
+**	int i;
+**
+**	i = 0;
+**	while (arr[i] != NULL)
+**	{
+**		free(arr[i]);
+**		i++;
+**	}
+**	free(arr);
+**}
+**
+** int		occurrence_of(char *str, char c)
+** {
+** 	int count;
+**	int i;
+**
+**	i = 0;
+**	count = 0;
+**	while (str[i])
+**	{
+**		if (str[i] == c)
+**			count++;
+**		i++;
+**	}
+**	return (count);
+** }
+*/

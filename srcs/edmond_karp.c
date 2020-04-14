@@ -1,6 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   edmond_karp.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: plagache <plagache@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/04/14 13:10:24 by plagache          #+#    #+#             */
+/*   Updated: 2020/04/14 15:10:18 by plagache         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "lem_in.h"
 #include "ft_printf.h"
+
+/*
+** keep things
+** //(void)start;
+** in function // && ((t_room*)(ptr->content))->parent != NULL
+**
+**		ft_printf("addr parent = ||%p||\n", parent);
+**		ft_printf("add parent content %p\n", ((t_room*)(parent->content)));
+**		ft_printf("parent name ||%s|| id parent = ||%i||\n",
+**			parent->room_name, parent->id);
+**		ft_printf("ptr name ||%s|| id ptr = ||%i||\n", ptr->room_name, ptr->id);
+**		ft_printf("id[%i][%i]==%i ++ \n", parent->id,
+**			ptr->id, m_flow[parent->id][ptr->id]);
+*/
 
 void	update_flow(t_list *end, t_list *start, char **m_flow)
 {
@@ -8,17 +33,11 @@ void	update_flow(t_list *end, t_list *start, char **m_flow)
 	t_room	*parent;
 
 	ptr = end->content;
-	//(void)start;
-	while (ptr != start->content/* && ((t_room*)(ptr->content))->parent != NULL*/)
+	while (ptr != start->content)
 	{
 		parent = ptr->parent;
-//		ft_printf("addr parent = ||%p||\n", parent);
-//		ft_printf("add parent content %p\n", ((t_room*)(parent->content)));
-//		ft_printf("parent name ||%s|| id parent = ||%i||\n", parent->room_name, parent->id);
-//		ft_printf("ptr name ||%s|| id ptr = ||%i||\n", ptr->room_name, ptr->id);
 		if (ptr->flow == 0 && ptr != end->content)
 			ptr->flow++;
-		//ft_printf("id[%i][%i]==%i ++ \n", parent->id, ptr->id, m_flow[parent->id][ptr->id]);
 		m_flow[parent->id][ptr->id]++;
 		m_flow[ptr->id][parent->id]--;
 		ptr = parent;
@@ -26,20 +45,21 @@ void	update_flow(t_list *end, t_list *start, char **m_flow)
 }
 
 /*
- ** input Start, end, matrice_flow,
- ** Processe
- ** BFS
- ** 		1 NEW PATH
- **			return NOT MAX
- ** 		2 NO PATH
- **			return MAX
- */
+** input Start, end, matrice_flow,
+** Processe
+** BFS
+** 		1 NEW PATH
+**			return NOT MAX
+** 		2 NO PATH
+**			return MAX
+*/
 
 /*
- * reset all nodes lvl 
- * reset all nodes parent
- * set start lvl at -1;
+** reset all nodes lvl
+** reset all nodes parent
+** set start lvl at -1;
 */
+
 void	clean_graph(t_lem_in *lem_in)
 {
 	t_list	*ptr;

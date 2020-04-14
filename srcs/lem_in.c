@@ -6,7 +6,7 @@
 /*   By: plagache <plagache@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 16:47:08 by alagache          #+#    #+#             */
-/*   Updated: 2020/03/18 07:38:12 by plagache         ###   ########.fr       */
+/*   Updated: 2020/04/14 14:41:10 by plagache         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ int	resolve(t_lem_in *info)
 		free_file(info->file_split, info->file);
 		return (FAILURE);
 	}
-
 	info->best_paths.turns = INT_MAX;
 	flow = edmond_karp(info);
 	if (flow == 0 || flow == FAILURE)

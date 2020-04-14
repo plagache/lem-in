@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   command.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: plagache <plagache@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/04/14 14:26:14 by plagache          #+#    #+#             */
+/*   Updated: 2020/04/14 14:27:05 by plagache         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "lem_in.h"
 #include "ft_printf.h"
@@ -17,7 +28,8 @@ int		get_start(char **file, int line, t_lem_in *info)
 		return (FAILURE);
 	len = ft_strchr(file[line], ' ') - file[line];
 	ptr = info->head;
-	while (ptr != NULL && ft_strncmp(file[line], ((t_room*)(ptr->content))->room_name, len) != 0)
+	while (ptr != NULL && ft_strncmp(file[line],
+		((t_room*)(ptr->content))->room_name, len) != 0)
 		ptr = ptr->next;
 	if (ptr == NULL)
 		return (FAILURE);
@@ -42,7 +54,8 @@ int		get_end(char **file, int line, t_lem_in *info)
 		return (FAILURE);
 	len = ft_strchr(file[line], ' ') - file[line];
 	ptr = info->head;
-	while (ptr != NULL && ft_strncmp(file[line], ((t_room*)(ptr->content))->room_name, len) != 0)
+	while (ptr != NULL && ft_strncmp(file[line],
+		((t_room*)(ptr->content))->room_name, len) != 0)
 		ptr = ptr->next;
 	if (ptr == NULL)
 		return (FAILURE);
@@ -50,6 +63,11 @@ int		get_end(char **file, int line, t_lem_in *info)
 	info->end_ptr = ptr;
 	return (SUCCESS);
 }
+
+/*
+** comment in function
+**	//free list and file
+*/
 
 int		get_commands(t_lem_in *info)
 {
@@ -59,5 +77,4 @@ int		get_commands(t_lem_in *info)
 	if (get_end(info->file_split, info->line_ants, info) == FAILURE)
 		return (FAILURE);
 	return (SUCCESS);
-	//free list and file
 }

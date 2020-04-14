@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   room.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: plagache <plagache@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/04/14 13:03:56 by plagache          #+#    #+#             */
+/*   Updated: 2020/04/14 13:05:35 by plagache         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "lem_in.h"
 #include "ft_printf.h"
@@ -5,16 +16,14 @@
 int		mv_to_next_room(t_lem_in *info)
 {
 	while (info->file_split[info->line] != NULL &&
-			(is_command(info->file_split[info->line]) == SUCCESS
-			|| is_comment(info->file_split[info->line]) == SUCCESS))
+		(is_command(info->file_split[info->line]) == SUCCESS
+		|| is_comment(info->file_split[info->line]) == SUCCESS))
 		info->line++;
 	if (info->file_split[info->line] == NULL
 		|| is_link(info->file_split[info->line]) == SUCCESS)
 		return (FAILURE);
 	return (SUCCESS);
 }
-
-
 
 int		fill_room(t_list *new, char *line)
 {
@@ -31,7 +40,6 @@ int		fill_room(t_list *new, char *line)
 	((t_room*)(new->content))->level = 0;
 	return (SUCCESS);
 }
-
 
 int		get_room_info(t_lem_in *info)
 {

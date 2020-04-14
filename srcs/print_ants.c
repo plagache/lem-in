@@ -1,7 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_ants.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: plagache <plagache@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/04/14 13:07:18 by plagache          #+#    #+#             */
+/*   Updated: 2020/04/14 13:09:55 by plagache         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lem_in.h"
 #include "ft_printf.h"
 
-//utils ants_to_move
+/*
+** utils ants_to_move
+*/
 
 int8_t	ants_to_move(t_path *paths, int flow)
 {
@@ -18,7 +32,9 @@ int8_t	ants_to_move(t_path *paths, int flow)
 	return (FALSE);
 }
 
-//core move ant
+/*
+** core move ant
+*/
 
 int8_t	move_ant(t_room *dst, t_room *src)
 {
@@ -28,7 +44,10 @@ int8_t	move_ant(t_room *dst, t_room *src)
 		return (FAILURE);
 	return (SUCCESS);
 }
-//inner move_path
+
+/*
+** inner move_path
+*/
 
 int8_t	move_path(t_path *path, int *next_ant)
 {
@@ -39,7 +58,8 @@ int8_t	move_path(t_path *path, int *next_ant)
 	{
 		if (((t_room*)(ptr->next)->content)->ant_id != 0)
 		{
-			if (move_ant(ptr->content, (t_room*)(ptr->next)->content) == FAILURE)
+			if (move_ant(ptr->content,
+				(t_room*)(ptr->next)->content) == FAILURE)
 				return (FAILURE);
 			if (((t_room*)ptr->content)->id == 1)
 				path->out++;
@@ -58,7 +78,10 @@ int8_t	move_path(t_path *path, int *next_ant)
 	return (SUCCESS);
 }
 
-//outer iterate over paths
+/*
+** outer iterate over paths
+*/
+
 int8_t	move_paths(int flow, t_path *paths)
 {
 	int	next_ant;

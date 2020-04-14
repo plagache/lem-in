@@ -6,7 +6,7 @@
 /*   By: plagache <plagache@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 16:45:44 by alagache          #+#    #+#             */
-/*   Updated: 2020/03/18 08:22:24 by plagache         ###   ########.fr       */
+/*   Updated: 2020/04/14 14:14:10 by plagache         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct	s_lem_in
 	int			rooms;
 }				t_lem_in;
 
-typedef struct	s_room t_room;
+typedef	struct s_room	t_room;
 
 struct			s_room
 {
@@ -99,9 +99,8 @@ int				edmond_karp(t_lem_in *lem_in);
 ** Read
 */
 
-
-int				read_file(t_lem_in *);
-int				split_file(t_lem_in *);
+int				read_file(t_lem_in *info);
+int				split_file(t_lem_in *info);
 
 /*
 ** Get_ info
@@ -144,7 +143,7 @@ void			free_paths(t_path *paths, int size);
 */
 
 void			print_farm(char **arr);
-int				display_list(t_list *);
+int				display_list(t_list *info);
 int				display_data(t_lem_in *info);
 int				print_neighbours(t_room *room);
 void			print_roomnames(t_room *room);
@@ -154,7 +153,7 @@ int				display_paths(t_path *paths, int flow);
 ** Algorithme
 */
 
-int				breadth_first_search(t_list *, t_lem_in *);
+int				breadth_first_search(t_list *start_ptr, t_lem_in *info);
 
 /*
 ** Path
@@ -167,5 +166,6 @@ int				check_collision(t_path **paths, int *flow);
 void			sort_paths(t_path *paths, int flow);
 void			split_ants(int ants, int flow, t_path *paths);
 int8_t			move_paths(int flow, t_path *paths);
+void			update_best_paths(t_path_cont *best, t_path_cont *new);
 
 #endif

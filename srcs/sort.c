@@ -6,7 +6,7 @@
 /*   By: plagache <plagache@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 15:15:54 by alagache          #+#    #+#             */
-/*   Updated: 2020/03/18 08:20:27 by plagache         ###   ########.fr       */
+/*   Updated: 2020/04/14 14:24:56 by plagache         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ void	sort_function(t_list *head)
 
 void	sort_paths(t_path *paths, int flow)
 {
-	t_path tmp;
-	int c;
-	int d;
+	t_path	tmp;
+	int		c;
+	int		d;
 
 	c = 0;
 	while (c + 1 < flow)

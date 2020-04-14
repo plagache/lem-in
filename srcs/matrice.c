@@ -1,13 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   matrice.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: plagache <plagache@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/04/14 14:42:36 by plagache          #+#    #+#             */
+/*   Updated: 2020/04/14 14:43:16 by plagache         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lem_in.h"
 #include "ft_printf.h"
+
 /*
-function attribution ID  + comptage
-//input head 
-// boucler until NULL // recup number of room and attribution of ID
-// output nbr room
+** function attribution ID  + comptage
+** //input head
+** // boucler until NULL // recup number of room and attribution of ID
+** // output nbr room
 */
 
-int		create_id(t_list * head, t_list *start, t_list *end)
+int		create_id(t_list *head, t_list *start, t_list *end)
 {
 	int		nbr;
 	t_list	*ptr;
@@ -30,13 +43,12 @@ int		create_id(t_list * head, t_list *start, t_list *end)
 	return (nbr);
 }
 
-
 /*
-function creation de matrice
-// input struct avec la list des room 
-//	malloc tableau de N
-//	des petit tableau de N memallocer les petit tableau
-//	ouput matrice char **
+** function creation de matrice
+** // input struct avec la list des room
+** //	malloc tableau de N
+** //	des petit tableau de N memallocer les petit tableau
+** //	ouput matrice char **
 */
 
 char	**create_matrice(t_lem_in *lem_in)
@@ -50,7 +62,7 @@ char	**create_matrice(t_lem_in *lem_in)
 	lem_in->m_flow = (char**)ft_memalloc(sizeof(char*) * nbr);
 	if (lem_in->m_flow == NULL)
 		return (NULL);
-	while(nbr > counter)
+	while (nbr > counter)
 	{
 		lem_in->m_flow[counter] = (char*)ft_memalloc(sizeof(char) * nbr);
 		if (lem_in->m_flow[counter] == NULL)
