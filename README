@@ -1,43 +1,8 @@
-VALIDATE DATA BEFORE SEARCHING FOR SOLUTION IN IT
-//means check all assupmtions made before 
-//duplicate link / room
-//start and end has at least one links
-//stop at first empty line or double \n
-//if char command has more than 1 bit set == ERROR //start and end on a different room
-//if Start has End as neighbour == ERROR
-
-//optimize search for max theorc flow
-	//count neighbours of start and end 
-		//min of neighbours is theorique max flow
-			// nbr path nescessaire = min ( max flow || nbr ant)
-
-//need to print spaces only if necessary (last move no space before \n)
-
-//final clean
-
-
-
-
-
-|||||||||||||||||||||||||||||||
-PATH ROUTINE IN BFS to calculate
-	if (new bfs lowers number of turn)
-		use new set of paths
-	else
-		keep old one
-so get paths, sort paths, split ants in EK
-
-and move paths after EK returns;
-||||||||||||||||||||||||||||||
-
-
-
 ###BEGIN OF INPUT###
-
-lines that start with '#' are comments
 
 ##LINES RULES##
 empty lines are forbidden
+lines that start with '#' are comments
 
 ##ROOM RULES##
 name cannot start with 'L' or '#'
@@ -59,8 +24,8 @@ RoomName1-RoomName2
 
 ###BEGIN OF OUTPUT###
 
-LAnt#1-Room#1 
-LAnt#2-Room#1 LAnt1-Room#2
+LAnt#1-Room#2 
+LAnt#2-Room#2 LAnt1-Room#3
 .
 .
 .
