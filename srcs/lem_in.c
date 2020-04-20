@@ -6,7 +6,7 @@
 /*   By: plagache <plagache@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 16:47:08 by alagache          #+#    #+#             */
-/*   Updated: 2020/04/14 14:41:10 by plagache         ###   ########.fr       */
+/*   Updated: 2020/04/20 13:57:13 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	resolve(t_lem_in *info)
 		free_file(info->file_split, info->file);
 		return (FAILURE);
 	}
-	ft_printf("%s", info->file);
+	ft_printf("%s\n", info->file);
 	free_file(info->file_split, info->file);
 	return (SUCCESS);
 }

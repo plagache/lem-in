@@ -4,22 +4,18 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
-$	out/sort.o	/^¾/;"	v
 ARG_H	libft/includes/arg.h	14;"	d
-B	out/sort.o	/^:;9/;"	v
 BUFF_SIZE	includes/lem_in.h	24;"	d
 BUFF_SIZE	libft/includes/get_next_line.h	15;"	d
-D	lem-in	/^/;"	v
 DEBUG	includes/lem_in.h	33;"	d
 END_COMMAND	includes/lem_in.h	25;"	d
-F	libft/libft.a	/^/;"	v
 FAILURE	includes/lem_in.h	23;"	d
 FALSE	libft/includes/libft.h	19;"	d
 FLAGSMAX	libft/includes/arg.h	16;"	d
 FT_PRINTF_H	libft/includes/ft_printf.h	14;"	d
 GET_NEXT_LINE_H	libft/includes/get_next_line.h	14;"	d
-I	out/sort.o	/^:;9/;"	v
-I	out/sort.o	/^Ï/;"	v
+H	lem-in	/^x‡ò/;"	v
+H	libft/libft.a	/^ELF/;"	v
 LEM_IN_H	includes/lem_in.h	14;"	d
 LIBFT_H	libft/includes/libft.h	14;"	d
 LIST_FAIL	includes/lem_in.h	31;"	d
@@ -31,19 +27,26 @@ PATH_FAIL	includes/lem_in.h	32;"	d
 START_COMMAND	includes/lem_in.h	26;"	d
 SUCCESS	includes/lem_in.h	22;"	d
 TRUE	libft/includes/libft.h	20;"	d
-U	out/sort.o	/^¾/;"	v
+Z	libft/libft.a	/^/;"	v
+add_entry_exit	lemin_generator_c.c	/^add_entry_exit(t_maze *maze, t_room *start, t_room *end)$/;"	f
 add_paths	srcs/path.c	/^int		add_paths(char **matrice, t_path *paths, t_list *start, int flow)$/;"	f
+add_room	lemin_generator_c.c	/^add_room(struct s_maze *maze, struct s_room *room)$/;"	f
 add_strings	libft/srcs/printf/float_tools.c	/^void	add_strings(char *dst, char *src, int len)$/;"	f
 add_to_front	srcs/bfs.c	/^void	add_to_front(t_room *to_add, t_room **queue)$/;"	f
+algo_ret	lemin_generator_c.c	/^	int algo_ret;$/;"	m	struct:s_maze	file:
+algorithm	lemin_generator_c.c	/^algorithm(t_maze *maze)$/;"	f
+alternative_path	lemin_generator_c.c	/^alternative_path(t_maze *maze, t_room *a2, t_room *a3, unsigned int a4)$/;"	f
 ant_id	includes/lem_in.h	/^	int		ant_id;$/;"	m	struct:s_room
 ants	includes/lem_in.h	/^	int			ants;$/;"	m	struct:s_path
 ants_to_move	srcs/print_ants.c	/^int8_t	ants_to_move(t_path *paths, int flow)$/;"	f
 apply_d_rounding	libft/srcs/printf/float_tools.c	/^void	apply_d_rounding(t_d_arrs *a_ptr, int prec)$/;"	f
 apply_ld_rounding	libft/srcs/printf/float_tools.c	/^void	apply_ld_rounding(t_ld_arrs *a_ptr, int prec)$/;"	f
+ascend	lemin_generator_c.c	/^ascend(t_maze *maze, t_room *a2)$/;"	f
 bc	scripts/script	/^	echo "$self - $expected" | bc;$/;"	v
 best_paths	includes/lem_in.h	/^	t_path_cont	best_paths;$/;"	m	struct:s_lem_in
 blank	libft/srcs/string/ft_strtrim.c	/^static int		blank(char const *s)$/;"	f	file:
 breadth_first_search	srcs/bfs.c	/^int		breadth_first_search(t_list *start_ptr, t_lem_in *lem_in)$/;"	f
+build_path	lemin_generator_c.c	/^build_path(t_maze *maze)$/;"	f
 calc_len_address	libft/srcs/printf/address_tools.c	/^int		calc_len_address(t_conv_id *s_ptr, unsigned long value)$/;"	f
 calc_len_double	libft/srcs/printf/double.c	/^int		calc_len_double(t_d_arrs *a_ptr, t_conv_id *s_ptr, t_s_e_m *dble_ptr)$/;"	f
 calc_len_hexa	libft/srcs/printf/hexa_tools.c	/^int	calc_len_hexa(t_conv_id *s_ptr, unsigned long long value)$/;"	f
@@ -60,6 +63,7 @@ check_octal_struct	libft/srcs/printf/octal_tools.c	/^int	check_octal_struct(t_co
 check_special_value	libft/srcs/printf/special.c	/^int		check_special_value(t_s_e_m *dble_ptr)$/;"	f
 check_unsigned_struct	libft/srcs/printf/unsigned_tools.c	/^int		check_unsigned_struct(t_conv_id *ptr)$/;"	f
 clean_graph	srcs/edmond_karp.c	/^void	clean_graph(t_lem_in *lem_in)$/;"	f
+clear_maze	lemin_generator_c.c	/^clear_maze(t_maze *maze, int a2)$/;"	f
 command	includes/lem_in.h	/^	char	command;$/;"	m	struct:s_room
 command	srcs/validate_parsing.c	/^int	command(t_list *start, t_list *end)$/;"	f
 content	libft/includes/get_next_line.h	/^	char			*content;$/;"	m	struct:s_data
@@ -70,10 +74,15 @@ content_swap	srcs/sort.c	/^void	content_swap(t_list *link, t_list *to_swap)$/;"	
 conv	libft/includes/arg.h	/^	char	conv;$/;"	m	struct:s_conv_info
 conv_path	libft/srcs/printf/ft_printf.c	/^t_point		conv_path(const char *fmt, va_list *arg_ptr)$/;"	f
 copy_paths	srcs/collision.c	/^void	copy_paths(t_path *new, t_path *old, int old_len)$/;"	f
+count_lines	lemin_generator_c.c	/^count_lines(t_maze *maze)$/;"	f
 countwords	libft/srcs/string/ft_strsplit.c	/^static size_t		countwords(char const *s, char c)$/;"	f	file:
-create_id	srcs/matrice.c	/^int		create_id(t_list * head, t_list *start, t_list *end)$/;"	f
+create_header	lemin_generator_c.c	/^create_header(struct s_maze *maze)$/;"	f
+create_id	srcs/matrice.c	/^int		create_id(t_list *head, t_list *start, t_list *end)$/;"	f
 create_matrice	srcs/matrice.c	/^char	**create_matrice(t_lem_in *lem_in)$/;"	f
-create_path_array	srcs/path.c	/^t_path	*create_path_array(int flow)$/;"	f
+create_new_paths	lemin_generator_c.c	/^create_new_paths(t_maze *maze, t_tube *a2)$/;"	f
+create_path_array	srcs/path_2.c	/^t_path	*create_path_array(int flow)$/;"	f
+create_room	lemin_generator_c.c	/^create_room(struct s_maze *maze, char *name) {$/;"	f
+create_tube	lemin_generator_c.c	/^create_tube(struct s_maze *maze, struct s_room *src, struct s_room *dst)$/;"	f
 display_data	srcs/print.c	/^int		display_data(t_lem_in *info)$/;"	f
 display_list	srcs/print.c	/^int	display_list(t_list *list)$/;"	f
 display_paths	srcs/print.c	/^int		display_paths(t_path *paths, int flow)$/;"	f
@@ -81,14 +90,37 @@ divide_str_by_two	libft/srcs/printf/float_tools.c	/^void	divide_str_by_two(char 
 double_exponant	libft/srcs/printf/double_tools.c	/^void	double_exponant(t_s_e_m *dble_ptr, t_d_arrs *a_ptr)$/;"	f
 double_mantissa	libft/srcs/printf/double_tools.c	/^void	double_mantissa(t_s_e_m *dble_ptr, t_d_arrs *a_ptr)$/;"	f
 double_rounding	libft/srcs/printf/double_tools.c	/^void	double_rounding(t_d_arrs *a_ptr, t_conv_id *s_ptr)$/;"	f
+draw_path	lemin_generator_c.c	/^draw_path(t_maze *maze, t_room *a2)$/;"	f
+dst	lemin_generator_c.c	/^	struct s_room *dst;$/;"	m	struct:s_link	typeref:struct:s_link::s_room	file:
 duplicate_room	srcs/validate_parsing.c	/^int	duplicate_room(t_list *head)$/;"	f
 e	libft/includes/arg.h	/^	unsigned short		e;$/;"	m	struct:s_double
 edmond_karp	srcs/edmond_karp.c	/^int		edmond_karp(t_lem_in *lem_in)$/;"	f
 empty_line	srcs/read.c	/^int	empty_line(char **str)$/;"	f
+end	lemin_generator_c.c	/^	struct s_room *end;$/;"	m	struct:s_header	typeref:struct:s_header::s_room	file:
 end_ptr	includes/lem_in.h	/^	t_list		*end_ptr;$/;"	m	struct:s_lem_in
+entangle	lemin_generator_c.c	/^entangle(t_maze *maze)$/;"	f
 equilibrate_ants	srcs/split_ants.c	/^void	equilibrate_ants(int *ants, int flow, t_path *paths)$/;"	f
 fail_links	srcs/link.c	/^int		fail_links(t_list *head)$/;"	f
 fd	libft/includes/get_next_line.h	/^	int				fd;$/;"	m	struct:s_data
+field_0	lemin_generator_c.c	/^	int field_0;$/;"	m	struct:s_room	file:
+field_10	lemin_generator_c.c	/^	int field_10;$/;"	m	struct:s_maze	file:
+field_10	lemin_generator_c.c	/^	int field_10;$/;"	m	struct:s_room	file:
+field_14	lemin_generator_c.c	/^	int field_14;$/;"	m	struct:s_room	file:
+field_18	lemin_generator_c.c	/^	int field_18;$/;"	m	struct:s_maze	file:
+field_18	lemin_generator_c.c	/^	ssize_t field_18;$/;"	m	struct:s_room	file:
+field_1C	lemin_generator_c.c	/^	int field_1C;$/;"	m	struct:s_maze	file:
+field_20	lemin_generator_c.c	/^	int field_20;$/;"	m	struct:s_maze	file:
+field_20	lemin_generator_c.c	/^	int field_20;$/;"	m	struct:s_room	file:
+field_24	lemin_generator_c.c	/^	int field_24;$/;"	m	struct:s_maze	file:
+field_24	lemin_generator_c.c	/^	int field_24;$/;"	m	struct:s_room	file:
+field_28	lemin_generator_c.c	/^	ssize_t field_28;$/;"	m	struct:s_maze	file:
+field_28	lemin_generator_c.c	/^	struct s_room *field_28;$/;"	m	struct:s_room	typeref:struct:s_room::s_room	file:
+field_30	lemin_generator_c.c	/^	ssize_t field_30;$/;"	m	struct:s_maze	file:
+field_30	lemin_generator_c.c	/^	ssize_t field_30;$/;"	m	struct:s_room	file:
+field_38	lemin_generator_c.c	/^	struct s_room *field_38;$/;"	m	struct:s_room	typeref:struct:s_room::s_room	file:
+field_4	lemin_generator_c.c	/^	int field_4;$/;"	m	struct:s_room	file:
+field_8	lemin_generator_c.c	/^	int field_8; \/\/ other ants$/;"	m	struct:s_maze	file:
+field_C	lemin_generator_c.c	/^	int field_C;$/;"	m	struct:s_maze	file:
 file	includes/lem_in.h	/^	char		*file;$/;"	m	struct:s_lem_in
 file_split	includes/lem_in.h	/^	char		**file_split;$/;"	m	struct:s_lem_in
 fill_arr	libft/srcs/printf/func_selector.c	/^void			fill_arr(t_conv_func *arr)$/;"	f
@@ -97,12 +129,18 @@ fill_ld_tabs	libft/srcs/printf/ldouble_tools.c	/^void	fill_ld_tabs(t_ld_arrs *a_
 fill_rest	srcs/split_ants.c	/^void	fill_rest(int *ants, int flow, t_path *paths)$/;"	f
 fill_room	srcs/room.c	/^int		fill_room(t_list *new, char *line)$/;"	f
 filline	libft/srcs/get_next_line/get_next_line.c	/^void			filline(t_data *current, char **line)$/;"	f
+find_another_path	lemin_generator_c.c	/^find_another_path(t_maze *maze)$/;"	f
+find_best_combination	lemin_generator_c.c	/^find_best_combination(t_maze *maze)$/;"	f
+find_the_shortest	lemin_generator_c.c	/^find_the_shortest(t_maze *maze, t_room *nodes)$/;"	f
+flag	lemin_generator_c.c	/^flag(const char *arg)$/;"	f
 flag	libft/srcs/printf/pflags.c	/^int		flag(char *ptr, int end, t_conv_id *struct_ptr)$/;"	f
 flags	libft/includes/arg.h	/^	char	flags;$/;"	m	struct:s_conv_info
 flags_in_struct	libft/srcs/printf/pflags.c	/^void	flags_in_struct(char c, t_conv_id *struct_ptr)$/;"	f
 flow	includes/lem_in.h	/^	int		flow;$/;"	m	struct:s_path_container
 flow	includes/lem_in.h	/^	int		flow;$/;"	m	struct:s_room
-free_arr	srcs/tools.c	/^void	free_arr(void **arr)$/;"	f
+format	tags	/^!_TAG_FILE_FORMAT	2	\/extended format; --format=1 will not append ;" to lines\/$/;"	v
+forward_ants	lemin_generator_c.c	/^forward_ants(t_maze *maze, t_room *a2, int a3)$/;"	f
+free_arr	libft/srcs/mem/ft_free_arr.c	/^void		free_arr(void **arr)$/;"	f
 free_file	srcs/clean.c	/^void	free_file(char **arr, char *str)$/;"	f
 free_graph	srcs/clean.c	/^void	free_graph(t_list *head, int code)$/;"	f
 free_list	srcs/clean.c	/^void	free_list(t_list *lst)$/;"	f
@@ -129,6 +167,7 @@ ft_conv_percent	libft/srcs/printf/percent.c	/^int		ft_conv_percent(t_conv_id *s_
 ft_conv_string	libft/srcs/printf/string.c	/^int			ft_conv_string(t_conv_id *s_ptr, va_list *arg_ptr)$/;"	f
 ft_conv_unsigned	libft/srcs/printf/unsigned.c	/^int		ft_conv_unsigned(t_conv_id *s_ptr, va_list *arg_ptr)$/;"	f
 ft_double_special	libft/srcs/printf/special.c	/^int		ft_double_special(t_conv_id *s_ptr, t_s_e_m *dble)$/;"	f
+ft_error	lemin_generator_c.c	/^ft_error(void)$/;"	f
 ft_isalnum	libft/srcs/is/ft_isalnum.c	/^int	ft_isalnum(int character)$/;"	f
 ft_isalpha	libft/srcs/is/ft_isalpha.c	/^int	ft_isalpha(int c)$/;"	f
 ft_isascii	libft/srcs/is/ft_isascii.c	/^int	ft_isascii(int c)$/;"	f
@@ -153,6 +192,7 @@ ft_memcpy	libft/srcs/mem/ft_memcpy.c	/^void	*ft_memcpy(void *dst, const void *sr
 ft_memdel	libft/srcs/mem/ft_memdel.c	/^void	ft_memdel(void **ap)$/;"	f
 ft_memmove	libft/srcs/mem/ft_memmove.c	/^void	*ft_memmove(void *dst, const void *src, size_t len)$/;"	f
 ft_memset	libft/srcs/mem/ft_memset.c	/^void	*ft_memset(void *b, int c, size_t len)$/;"	f
+ft_normal	lemin_generator_c.c	/^ft_normal(t_maze *a1, t_room *a2, t_room *a3, int a4)$/;"	f
 ft_printf	libft/srcs/printf/ft_printf.c	/^int			ft_printf(const char *format, ...)$/;"	f
 ft_putchar	libft/srcs/string/ft_putchar.c	/^void	ft_putchar(char c)$/;"	f
 ft_putchar_fd	libft/srcs/string/ft_putchar_fd.c	/^void	ft_putchar_fd(char c, int fd)$/;"	f
@@ -191,8 +231,23 @@ ft_strsub	libft/srcs/string/ft_strsub.c	/^char	*ft_strsub(char const *s, unsigne
 ft_strtrim	libft/srcs/string/ft_strtrim.c	/^char			*ft_strtrim(char const *s)$/;"	f
 ft_tolower	libft/srcs/string/ft_tolower.c	/^int	ft_tolower(int c)$/;"	f
 ft_toupper	libft/srcs/string/ft_toupper.c	/^int	ft_toupper(int c)$/;"	f
+ft_usage	lemin_generator_c.c	/^ft_usage(void)$/;"	f
 ftoa_double	libft/srcs/printf/double.c	/^int		ftoa_double(t_s_e_m *dble, t_conv_id *s_ptr)$/;"	f
 ftoa_ldouble	libft/srcs/printf/ldouble.c	/^int		ftoa_ldouble(t_s_e_m *dble, t_conv_id *s_ptr)$/;"	f
+gen_type	lemin_generator_c.c	/^	int gen_type;$/;"	m	struct:s_maze	file:
+generate_big	lemin_generator_c.c	/^generate_big(t_maze *maze, t_room *start, t_room *end)$/;"	f
+generate_name	lemin_generator_c.c	/^generate_name(struct s_maze *maze)$/;"	f
+generate_name_lower	lemin_generator_c.c	/^const char *generate_name_lower = "abcdefghijklmnopqrstuvwxyz___";$/;"	v
+generate_name_upper	lemin_generator_c.c	/^const char *generate_name_upper = "ABCDEFGHIJKMNOPQRSTUVWXYZ";$/;"	v
+generate_one	lemin_generator_c.c	/^generate_one(t_maze *maze, t_room *start, t_room *end)$/;"	f
+generate_path	lemin_generator_c.c	/^generate_path(t_maze *maze, t_room *start, t_room *end, int length)$/;"	f
+generate_path_with_useless	lemin_generator_c.c	/^generate_path_with_useless(t_maze *maze, t_room *start, t_room *end, int length)$/;"	f
+generate_star	lemin_generator_c.c	/^generate_star(t_maze *maze, t_room *start, t_room *end, int length)$/;"	f
+generate_superpath	lemin_generator_c.c	/^generate_superpath(t_maze *maze, t_room *rsi0, int a3)$/;"	f
+generate_superposition	lemin_generator_c.c	/^generate_superposition(t_maze *maze, t_room *start, t_room *end)$/;"	f
+generate_ten	lemin_generator_c.c	/^generate_ten(t_maze *maze, t_room *start, t_room *end)$/;"	f
+generate_thousand	lemin_generator_c.c	/^generate_thousand(t_maze *maze, t_room *start, t_room *end)$/;"	f
+generate_useless	lemin_generator_c.c	/^generate_useless(t_maze *maze, t_room *current_room, t_room *new_room, int length, int a5)$/;"	f
 get_address_value	libft/srcs/printf/address_tools.c	/^void	get_address_value(unsigned long *val_ptr, va_list *arg_ptr)$/;"	f
 get_ants	srcs/ant.c	/^int		get_ants(t_lem_in *info)$/;"	f
 get_commands	srcs/command.c	/^int		get_commands(t_lem_in *info)$/;"	f
@@ -211,6 +266,7 @@ get_start	srcs/command.c	/^int		get_start(char **file, int line, t_lem_in *info)
 get_unsigned_value	libft/srcs/printf/unsigned_tools.c	/^void	get_unsigned_value(unsigned long long *val_ptr, va_list *arg_ptr,$/;"	f
 has_collision	srcs/collision.c	/^int		has_collision(t_path *little, t_path *big)$/;"	f
 head	includes/lem_in.h	/^	t_list		*head;$/;"	m	struct:s_lem_in
+header	lemin_generator_c.c	/^	struct s_header *header;$/;"	m	struct:s_maze	typeref:struct:s_maze::s_header	file:
 id	includes/lem_in.h	/^	int		id;$/;"	m	struct:s_room
 in	includes/lem_in.h	/^	int			in;$/;"	m	struct:s_path
 in_path	includes/lem_in.h	/^	int		in_path;$/;"	m	struct:s_room
@@ -224,6 +280,9 @@ is_room	srcs/tools.c	/^int		is_room(char *str)$/;"	f
 ldouble_exponant	libft/srcs/printf/ldouble_tools.c	/^void	ldouble_exponant(t_s_e_m *dble_ptr, t_ld_arrs *a_ptr)$/;"	f
 ldouble_mantissa	libft/srcs/printf/ldouble_tools.c	/^void	ldouble_mantissa(unsigned long long mant, t_ld_arrs *a_ptr)$/;"	f
 ldouble_rounding	libft/srcs/printf/ldouble_tools.c	/^void	ldouble_rounding(t_ld_arrs *a_ptr, t_conv_id *s_ptr)$/;"	f
+lem_generate	lemin_generator_c.c	/^lem_generate(t_maze *maze)$/;"	f
+lem_options	lemin_generator_c.c	/^lem_options(int argc, const char **argv)$/;"	f
+lemin	lemin_generator_c.c	/^lemin(int opt)$/;"	f
 len	includes/lem_in.h	/^	int			len;$/;"	m	struct:s_path
 len_f	libft/includes/arg.h	/^	int		len_f;$/;"	m	struct:s_double_arrs
 len_f	libft/includes/arg.h	/^	int		len_f;$/;"	m	struct:s_long_double_arrs
@@ -237,12 +296,18 @@ lenword	libft/srcs/string/ft_strsplit.c	/^static size_t		lenword(char const *s, 
 level	includes/lem_in.h	/^	int		level;$/;"	m	struct:s_room
 line	includes/lem_in.h	/^	int			line;$/;"	m	struct:s_lem_in
 line_ants	includes/lem_in.h	/^	int			line_ants;$/;"	m	struct:s_lem_in
+links	lemin_generator_c.c	/^	struct s_link *links;$/;"	m	struct:s_maze	typeref:struct:s_maze::s_link	file:
 list	includes/lem_in.h	/^	t_list		*list;$/;"	m	struct:s_path
+lock_path	lemin_generator_c.c	/^lock_path(t_maze *maze, t_room *a2)$/;"	f
+lock_path_new	lemin_generator_c.c	/^lock_path_new(t_maze *maze, t_room *a2)$/;"	f
+lock_path_other	lemin_generator_c.c	/^lock_path_other(t_maze *maze)$/;"	f
 longd_special_value	libft/srcs/printf/special.c	/^int		longd_special_value(t_s_e_m *dble_ptr)$/;"	f
 loop_conv	libft/srcs/printf/ft_printf.c	/^int			loop_conv(const char *fmt, va_list *arg_ptr, int written)$/;"	f
 m	libft/includes/arg.h	/^	unsigned long long	m;$/;"	m	struct:s_double
 m_flow	includes/lem_in.h	/^	char		**m_flow;$/;"	m	struct:s_lem_in
+main	lemin_generator_c.c	/^main(int argc, const char *argv[])$/;"	f
 main	srcs/lem_in.c	/^int	main(void)$/;"	f
+man	lemin_generator_c.c	/^man(void)$/;"	f
 minus_flag_address	libft/srcs/printf/address.c	/^void	minus_flag_address(t_conv_id *s_ptr, int len, unsigned long nb)$/;"	f
 minus_flag_double	libft/srcs/printf/double.c	/^void	minus_flag_double(t_d_arrs *a_ptr, t_conv_id *s_ptr, t_s_e_m *dble_ptr,$/;"	f
 minus_flag_hexa	libft/srcs/printf/hexa.c	/^void	minus_flag_hexa(t_conv_id *s_ptr, int len, unsigned long long nb)$/;"	f
@@ -259,9 +324,14 @@ move_path	srcs/print_ants.c	/^int8_t	move_path(t_path *path, int *next_ant)$/;"	
 move_paths	srcs/print_ants.c	/^int8_t	move_paths(int flow, t_path *paths)$/;"	f
 multiply_str_by_two	libft/srcs/printf/float_tools.c	/^void	multiply_str_by_two(char *str, int len)$/;"	f
 mv_to_next_room	srcs/room.c	/^int		mv_to_next_room(t_lem_in *info)$/;"	f
+name	lemin_generator_c.c	/^	char *name;$/;"	m	struct:s_room	file:
 nbr_ants	includes/lem_in.h	/^	int			nbr_ants;$/;"	m	struct:s_lem_in
 neighbours	includes/lem_in.h	/^	t_list	*neighbours;$/;"	m	struct:s_room
 new_link	srcs/tools_2.c	/^int		new_link(t_list **head, t_room *room_ptr)$/;"	f
+new_path	lemin_generator_c.c	/^new_path(t_maze *maze, t_room *start)$/;"	f
+next	lemin_generator_c.c	/^	struct s_link *next;$/;"	m	struct:s_link	typeref:struct:s_link::s_link	file:
+next	lemin_generator_c.c	/^	struct s_room *next;$/;"	m	struct:s_room	typeref:struct:s_room::s_room	file:
+next	lemin_generator_c.c	/^	struct s_tube *next;$/;"	m	struct:s_tube	typeref:struct:s_tube::s_tube	file:
 next	libft/includes/libft.h	/^	struct s_dlist	*next;$/;"	m	struct:s_dlist	typeref:struct:s_dlist::s_dlist
 next	libft/includes/libft.h	/^	struct s_list	*next;$/;"	m	struct:s_list	typeref:struct:s_list::s_list
 next_front	includes/lem_in.h	/^	t_room	*next_front;$/;"	m	struct:s_room
@@ -278,33 +348,44 @@ no_flag_unsigned	libft/srcs/printf/unsigned.c	/^void	no_flag_unsigned(t_conv_id 
 null_ptr	libft/srcs/printf/address.c	/^int		null_ptr(t_conv_id *s_ptr, int len)$/;"	f
 null_ptr_zero	libft/srcs/printf/address.c	/^int		null_ptr_zero(t_conv_id *s_ptr, int len)$/;"	f
 null_string	libft/srcs/printf/string.c	/^int			null_string(t_conv_id *s_ptr)$/;"	f
-occurrence_of	srcs/tools.c	/^int		occurrence_of(char *str, char c)$/;"	f
+occurrence_of	libft/srcs/string/ft_occurence_of.c	/^int		occurrence_of(char *str, char c)$/;"	f
 out	includes/lem_in.h	/^	int			out;$/;"	m	struct:s_path
 output	libft/includes/arg.h	/^	char	*output;$/;"	m	struct:s_conv_info
-p	out/edmond_karp.o	/^ELF/;"	v
 parent	includes/lem_in.h	/^	t_room	*parent;$/;"	m	struct:s_room
+parse_negative_way	lemin_generator_c.c	/^parse_negative_way(t_maze *maze, t_room *a2, t_room *a3, unsigned int a4)$/;"	f
 parsing	libft/srcs/printf/ft_printf.c	/^int			parsing(char *ptr, int end, t_conv_id *struct_ptr)$/;"	f
 path	srcs/path.c	/^int		path(t_lem_in *lem_in, int *flow)$/;"	f
 path_len	srcs/tools_2.c	/^int		path_len(t_list *path)$/;"	f
 paths	includes/lem_in.h	/^	t_path		*paths;$/;"	m	struct:s_lem_in
 paths	includes/lem_in.h	/^	t_path	*paths;$/;"	m	struct:s_path_container
-paths	notes	/^so get paths, sort paths, split ants in EK$/;"	v
 precision	libft/includes/arg.h	/^	int		precision;$/;"	m	struct:s_conv_info
 precision	libft/srcs/printf/pprecision.c	/^int		precision(char *ptr, int end, t_conv_id *struct_ptr)$/;"	f
 precision_in_struct	libft/srcs/printf/pprecision.c	/^void	precision_in_struct(char c, t_conv_id *struct_ptr)$/;"	f
+prev	lemin_generator_c.c	/^	struct s_room *prev;$/;"	m	struct:s_room	typeref:struct:s_room::s_room	file:
 prev	libft/includes/libft.h	/^	struct s_dlist	*prev;$/;"	m	struct:s_dlist	typeref:struct:s_dlist::s_dlist
+prev_room	lemin_generator_c.c	/^prev_room(t_room *room)$/;"	f
+print	srcs/lem_in.c	/^int	print(t_lem_in *info)$/;"	f
 print_farm	srcs/print.c	/^void	print_farm(char **arr)$/;"	f
+print_link	lemin_generator_c.c	/^print_link(t_link *a1)$/;"	f
+print_map	lemin_generator_c.c	/^print_map(t_maze *maze)$/;"	f
 print_neighbours	srcs/print.c	/^int		print_neighbours(t_room *room)$/;"	f
+print_room	lemin_generator_c.c	/^print_room(t_room *a1, int a2)$/;"	f
+processing	lemin_generator_c.c	/^processing(t_maze *maze)$/;"	f
+put_back	lemin_generator_c.c	/^put_back(t_maze *maze, t_room *a2)$/;"	f
+random_room	lemin_generator_c.c	/^random_room(t_maze *maze)$/;"	f
+re_add_flow	srcs/path.c	/^void	re_add_flow(t_path *paths, int flow, char **matrice)$/;"	f
+re_distance	lemin_generator_c.c	/^re_distance(t_room *a1)$/;"	f
 read	libft/includes/arg.h	/^	int	read;$/;"	m	struct:s_point
 read_ant_parse	srcs/lem_in.c	/^int	read_ant_parse(t_lem_in *info)$/;"	f
 read_content	srcs/read.c	/^int	read_content(int len, char *read, char *to_free)$/;"	f
 read_file	srcs/read.c	/^int	read_file(t_lem_in *info)$/;"	f
-readd_flow	srcs/path.c	/^void	readd_flow(t_path *paths, int flow, char **matrice)$/;"	f
 readline	libft/srcs/get_next_line/get_next_line.c	/^int				readline(t_data *current)$/;"	f
 remove_collision	srcs/collision.c	/^int		remove_collision(t_path *paths, int flow)$/;"	f
 remove_flow	srcs/path.c	/^void	remove_flow(t_list **path, char **matrice)$/;"	f
 resolve	srcs/lem_in.c	/^int	resolve(t_lem_in *info)$/;"	f
-returns	notes	/^and move paths after EK returns;$/;"	v
+reverse_normal	lemin_generator_c.c	/^reverse_normal(t_maze *maze, t_room *a2, t_room *a3, unsigned int a4)$/;"	f
+room	lemin_generator_c.c	/^	struct s_room *room;$/;"	m	struct:s_tube	typeref:struct:s_tube::s_room	file:
+room_exists	lemin_generator_c.c	/^room_exists(struct s_maze *maze, const char *name)$/;"	f
 room_link_parse	srcs/lem_in.c	/^int	room_link_parse(t_lem_in *info)$/;"	f
 room_name	includes/lem_in.h	/^	char	*room_name;$/;"	m	struct:s_room
 rooms	includes/lem_in.h	/^	int			rooms;$/;"	m	struct:s_lem_in
@@ -314,21 +395,33 @@ s_data	libft/includes/get_next_line.h	/^typedef struct		s_data$/;"	s
 s_dlist	libft/includes/libft.h	/^typedef struct		s_dlist$/;"	s
 s_double	libft/includes/arg.h	/^typedef struct	s_double$/;"	s
 s_double_arrs	libft/includes/arg.h	/^typedef struct	s_double_arrs$/;"	s
+s_header	lemin_generator_c.c	/^typedef struct s_header {$/;"	s	file:
 s_lem_in	includes/lem_in.h	/^typedef struct	s_lem_in$/;"	s
+s_link	lemin_generator_c.c	/^typedef struct s_link {$/;"	s	file:
 s_list	libft/includes/libft.h	/^typedef struct		s_list$/;"	s
 s_long_double_arrs	libft/includes/arg.h	/^typedef struct	s_long_double_arrs$/;"	s
+s_maze	lemin_generator_c.c	/^typedef struct s_maze {$/;"	s	file:
 s_path	includes/lem_in.h	/^typedef struct	s_path$/;"	s
 s_path_container	includes/lem_in.h	/^typedef struct	s_path_container$/;"	s
 s_point	libft/includes/arg.h	/^typedef struct	s_point$/;"	s
 s_room	includes/lem_in.h	/^struct			s_room$/;"	s
+s_room	lemin_generator_c.c	/^typedef struct s_room {$/;"	s	file:
+s_tube	lemin_generator_c.c	/^typedef struct s_tube {$/;"	s	file:
+save_link	lemin_generator_c.c	/^save_link(struct s_maze *maze, struct s_room *src, struct s_room *dst)$/;"	f
+score	lemin_generator_c.c	/^score(t_maze *maze, int a2, int a3)$/;"	f
 search_room	srcs/link.c	/^t_list	*search_room(t_lem_in *info, char *room)$/;"	f
 set_frontier	srcs/bfs.c	/^int		set_frontier(t_room *frontier, t_lem_in *lem_in, t_room **next_f,$/;"	f
 set_levels	srcs/bfs.c	/^int		set_levels(t_room *front_ptr, t_room **next_f, int levels,$/;"	f
+set_longest	lemin_generator_c.c	/^set_longest(t_maze *maze, int a2, int a3)$/;"	f
+skip_end	lemin_generator_c.c	/^skip_end(struct s_tube *a1, struct s_room *a2)$/;"	f
 sort_function	srcs/sort.c	/^void	sort_function(t_list *head)$/;"	f
 sort_paths	srcs/sort.c	/^void	sort_paths(t_path *paths, int flow)$/;"	f
 special_value	libft/srcs/printf/special_tools.c	/^void	special_value(t_s_e_m *dble_ptr, t_conv_id *s_ptr, int len)$/;"	f
 split_ants	srcs/split_ants.c	/^void	split_ants(int ants, int flow, t_path *paths)$/;"	f
 split_file	srcs/read.c	/^int	split_file(t_lem_in *info)$/;"	f
+src	lemin_generator_c.c	/^	struct s_room *src;$/;"	m	struct:s_link	typeref:struct:s_link::s_room	file:
+start	lemin_generator_c.c	/^	struct s_room *start;$/;"	m	struct:s_header	typeref:struct:s_header::s_room	file:
+start_ants	lemin_generator_c.c	/^	int start_ants;$/;"	m	struct:s_maze	file:
 start_ptr	includes/lem_in.h	/^	t_list		*start_ptr;$/;"	m	struct:s_lem_in
 start_with_char	srcs/tools.c	/^int		start_with_char(char *str, char c)$/;"	f
 str	libft/includes/arg.h	/^	char				*str;$/;"	m	struct:s_double
@@ -338,24 +431,35 @@ t_conv_id	libft/includes/arg.h	/^}				t_conv_id;$/;"	t	typeref:struct:s_conv_inf
 t_d_arrs	libft/includes/arg.h	/^}				t_d_arrs;$/;"	t	typeref:struct:s_double_arrs
 t_data	libft/includes/get_next_line.h	/^}					t_data;$/;"	t	typeref:struct:s_data
 t_dlist	libft/includes/libft.h	/^}					t_dlist;$/;"	t	typeref:struct:s_dlist
+t_header	lemin_generator_c.c	/^} t_header;$/;"	t	typeref:struct:s_header	file:
 t_ld_arrs	libft/includes/arg.h	/^}				t_ld_arrs;$/;"	t	typeref:struct:s_long_double_arrs
 t_lem_in	includes/lem_in.h	/^}				t_lem_in;$/;"	t	typeref:struct:s_lem_in
+t_link	lemin_generator_c.c	/^} t_link;$/;"	t	typeref:struct:s_link	file:
 t_list	libft/includes/libft.h	/^}					t_list;$/;"	t	typeref:struct:s_list
+t_maze	lemin_generator_c.c	/^} t_maze;$/;"	t	typeref:struct:s_maze	file:
 t_path	includes/lem_in.h	/^}				t_path;$/;"	t	typeref:struct:s_path
 t_path_cont	includes/lem_in.h	/^}				t_path_cont;$/;"	t	typeref:struct:s_path_container
 t_point	libft/includes/arg.h	/^}				t_point;$/;"	t	typeref:struct:s_point
-t_room	includes/lem_in.h	/^typedef struct	s_room t_room;$/;"	t	typeref:struct:s_room
+t_room	includes/lem_in.h	/^typedef	struct s_room	t_room;$/;"	t	typeref:struct:s_room
+t_room	lemin_generator_c.c	/^} t_room;$/;"	t	typeref:struct:s_room	file:
 t_s_e_m	libft/includes/arg.h	/^}				t_s_e_m;$/;"	t	typeref:struct:s_double
+t_tube	lemin_generator_c.c	/^} t_tube;$/;"	t	typeref:struct:s_tube	file:
 tab	libft/includes/arg.h	/^	char	tab[1500];$/;"	m	struct:s_double_arrs
 tab	libft/includes/arg.h	/^	char	tab[21500];$/;"	m	struct:s_long_double_arrs
 tmp	libft/includes/arg.h	/^	char	tmp[1500];$/;"	m	struct:s_double_arrs
 tmp	libft/includes/arg.h	/^	char	tmp[21500];$/;"	m	struct:s_long_double_arrs
 total	libft/includes/arg.h	/^	char	*total;$/;"	m	struct:s_double_arrs
 total	libft/includes/arg.h	/^	char	*total;$/;"	m	struct:s_long_double_arrs
+total_nodes	lemin_generator_c.c	/^	int total_nodes;$/;"	m	struct:s_maze	file:
+tube_already_exist	lemin_generator_c.c	/^tube_already_exist(t_room *src, t_room *dst)$/;"	f
+tube_head	lemin_generator_c.c	/^	struct s_room *tube_head;$/;"	m	struct:s_header	typeref:struct:s_header::s_room	file:
+tube_len	lemin_generator_c.c	/^tube_len(t_tube *tube)$/;"	f
+tube_tail	lemin_generator_c.c	/^	struct s_room *tube_tail;$/;"	m	struct:s_header	typeref:struct:s_header::s_room	file:
+tubes	lemin_generator_c.c	/^	struct s_tube *tubes;$/;"	m	struct:s_room	typeref:struct:s_room::s_tube	file:
 turns	includes/lem_in.h	/^	int		turns;$/;"	m	struct:s_path_container
 ultimate_path	srcs/validate_parsing.c	/^int	ultimate_path(t_list *start, t_list *end)$/;"	f
 unsigned_len_base	libft/srcs/printf/global_tools.c	/^int	unsigned_len_base(unsigned long long val, unsigned base)$/;"	f
-update_best_paths	srcs/path.c	/^void	update_best_paths(t_path_cont *best, t_path_cont *new)$/;"	f
+update_best_paths	srcs/path_2.c	/^void	update_best_paths(t_path_cont *best, t_path_cont *new)$/;"	f
 update_flow	srcs/edmond_karp.c	/^void	update_flow(t_list *end, t_list *start, char **m_flow)$/;"	f
 validate_data	srcs/validate_parsing.c	/^int	validate_data(t_lem_in *info)$/;"	f
 visited	includes/lem_in.h	/^	char	visited;$/;"	m	struct:s_room
@@ -363,6 +467,7 @@ width	libft/includes/arg.h	/^	int		width;$/;"	m	struct:s_conv_info
 width	libft/srcs/printf/pwidth.c	/^int		width(char *ptr, int end, t_conv_id *struct_ptr)$/;"	f
 width_in_struct	libft/srcs/printf/pwidth.c	/^void	width_in_struct(char c, t_conv_id *struct_ptr)$/;"	f
 written	libft/includes/arg.h	/^	int	written;$/;"	m	struct:s_point
+z	libft/libft.a	/^Î/;"	v
 zero_flag_double	libft/srcs/printf/double.c	/^void	zero_flag_double(t_d_arrs *a_ptr, t_conv_id *s_ptr, t_s_e_m *dble_ptr,$/;"	f
 zero_flag_hexa	libft/srcs/printf/hexa.c	/^void	zero_flag_hexa(t_conv_id *s_ptr, int len, unsigned long long nb)$/;"	f
 zero_flag_hexa_upper	libft/srcs/printf/hexa_upper.c	/^void	zero_flag_hexa_upper(t_conv_id *s_ptr, int len, unsigned long long nb)$/;"	f
