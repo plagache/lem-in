@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: alagache <alagache@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2020/04/21 17:56:28 by alagache          #+#    #+#              #
+#    Updated: 2020/04/21 17:57:15 by alagache         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = lem-in
 
 SRC = lem_in.c \
@@ -55,5 +67,5 @@ fclean:
 
 re: fclean all
 
-.PHONY: all clean fclean re FORCE
-.SILENT: fclean clean re
+.PHONY: fclean clean re FORCE
+.SILENT: fclean clean re FORCE $(NAME) $(OBJECT)
