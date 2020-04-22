@@ -6,7 +6,7 @@
 /*   By: plagache <plagache@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 16:47:08 by alagache          #+#    #+#             */
-/*   Updated: 2020/04/22 16:21:02 by alagache         ###   ########.fr       */
+/*   Updated: 2020/04/22 16:29:29 by alagache         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,10 @@ int	resolve(t_lem_in *info)
 	free_file(info->file_split, info->file);
 	return (SUCCESS);
 }
+
+/*
+** ft_printf("%i\n", (info->best_paths).turns);
+*/
 
 int	print(t_lem_in *info)
 {
