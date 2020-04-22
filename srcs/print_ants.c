@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_ants2.c                                      :+:      :+:    :+:   */
+/*   print_ants.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alagache <alagache@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/22 15:35:56 by alagache          #+#    #+#             */
-/*   Updated: 2020/04/22 15:56:43 by alagache         ###   ########.fr       */
+/*   Updated: 2020/04/22 16:47:18 by alagache         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int8_t	ants_to_move(t_path *paths, int flow)
 ** core move ant
 */
 
-int8_t	move_ant(t_room *dst, t_room *src, int* space)
+int8_t	move_ant(t_room *dst, t_room *src, int *space)
 {
 	dst->ant_id = src->ant_id;
 	src->ant_id = 0;
