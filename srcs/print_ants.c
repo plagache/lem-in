@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_ants.c                                       :+:      :+:    :+:   */
+/*   print_ants2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plagache <plagache@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alagache <alagache@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/14 13:07:18 by plagache          #+#    #+#             */
-/*   Updated: 2020/04/14 13:09:55 by plagache         ###   ########.fr       */
+/*   Created: 2020/04/22 15:35:56 by alagache          #+#    #+#             */
+/*   Updated: 2020/04/22 15:56:43 by alagache         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,32 @@ int8_t	ants_to_move(t_path *paths, int flow)
 ** core move ant
 */
 
-int8_t	move_ant(t_room *dst, t_room *src)
+int8_t	move_ant(t_room *dst, t_room *src, int* space)
 {
 	dst->ant_id = src->ant_id;
 	src->ant_id = 0;
-	if (ft_printf("L%i-%s ", dst->ant_id, dst->room_name) == -1)
+	if (*space == 1 && ft_printf(" L%i-%s", dst->ant_id, dst->room_name) == -1)
 		return (FAILURE);
+	if (*space == 0 && ft_printf("L%i-%s", dst->ant_id, dst->room_name) == -1)
+		return (FAILURE);
+	if (*space == 0)
+		*space = 1;
+	return (SUCCESS);
+}
+
+int8_t	move_new_ant(t_path *path, t_room *room, int *next_ant, int *space)
+{
+	room->ant_id = *next_ant;
+	(*next_ant)++;
+	path->in++;
+	if (*space == 0
+		&& ft_printf("L%i-%s", room->ant_id, room->room_name) == -1)
+		return (FAILURE);
+	if (*space == 1
+		&& ft_printf(" L%i-%s", room->ant_id, room->room_name) == -1)
+		return (FAILURE);
+	if (*space == 0)
+		*space = 1;
 	return (SUCCESS);
 }
 
@@ -49,7 +69,7 @@ int8_t	move_ant(t_room *dst, t_room *src)
 ** inner move_path
 */
 
-int8_t	move_path(t_path *path, int *next_ant)
+int8_t	move_path(t_path *path, int *next_ant, int move)
 {
 	t_list	*ptr;
 
@@ -59,7 +79,7 @@ int8_t	move_path(t_path *path, int *next_ant)
 		if (((t_room*)(ptr->next)->content)->ant_id != 0)
 		{
 			if (move_ant(ptr->content,
-				(t_room*)(ptr->next)->content) == FAILURE)
+				(t_room*)(ptr->next)->content, &move) == FAILURE)
 				return (FAILURE);
 			if (((t_room*)ptr->content)->id == 1)
 				path->out++;
@@ -68,11 +88,7 @@ int8_t	move_path(t_path *path, int *next_ant)
 	}
 	if (path->in != path->ants)
 	{
-		((t_room*)ptr->content)->ant_id = *next_ant;
-		(*next_ant)++;
-		path->in++;
-		if (ft_printf("L%i-%s ", ((t_room*)ptr->content)->ant_id,
-			((t_room*)ptr->content)->room_name) == -1)
+		if (move_new_ant(path, ptr->content, next_ant, &move) == FAILURE)
 			return (FAILURE);
 	}
 	return (SUCCESS);
@@ -86,17 +102,20 @@ int8_t	move_paths(int flow, t_path *paths)
 {
 	int	next_ant;
 	int	i;
+	int	move;
 
 	next_ant = 1;
 	while (ants_to_move(paths, flow) == TRUE)
 	{
 		i = -1;
+		move = 0;
 		while (++i < flow)
 		{
 			if (paths[i].out != paths[i].ants)
 			{
-				if (move_path(paths + i, &next_ant) == FAILURE)
+				if (move_path(paths + i, &next_ant, move) == FAILURE)
 					return (FAILURE);
+				move = 1;
 			}
 		}
 		if (ft_printf("\n") == -1)
