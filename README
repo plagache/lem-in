@@ -1,3 +1,6 @@
+Need to modifiy printing to only print spaces before plays after the first
+add a parse option to get -l to print number of line of solution
+path[0].len + path[0].ants
 ###BEGIN OF INPUT###
 
 ##LINES RULES##
