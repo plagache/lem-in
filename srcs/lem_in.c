@@ -6,7 +6,7 @@
 /*   By: plagache <plagache@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 16:47:08 by alagache          #+#    #+#             */
-/*   Updated: 2020/04/22 16:29:29 by alagache         ###   ########.fr       */
+/*   Updated: 2020/05/01 16:08:55 by alagache         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	read_ant_parse(t_lem_in *info)
 		ft_printf("ERROR\n");
 		return (FAILURE);
 	}
-	if (get_ants(info) == FAILURE)
+	if (get_ants(info) == FAILURE || info->nbr_ants == 0)
 	{
 		ft_printf("ERROR\n");
 		free_file(info->file_split, info->file);
