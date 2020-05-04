@@ -6,7 +6,7 @@
 /*   By: plagache <plagache@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 16:45:44 by alagache          #+#    #+#             */
-/*   Updated: 2020/04/14 14:14:10 by plagache         ###   ########.fr       */
+/*   Updated: 2020/05/04 19:34:22 by plagache         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define LIST_FAIL -1
 # define PATH_FAIL -2
 # define DEBUG -9876
+# define PRINT_LN 1
 
 typedef struct	s_path
 {
@@ -62,6 +63,7 @@ typedef struct	s_lem_in
 	int			line;
 	int			line_ants;
 	int			rooms;
+	int			options;
 }				t_lem_in;
 
 typedef	struct s_room	t_room;
@@ -127,6 +129,7 @@ int				is_link(char *str);
 void			free_arr(void **arr);
 int				occurrence_of(char *str, char c);
 int				new_link(t_list **head, t_room *room_ptr);
+int				option_check(int ac, char **av, t_lem_in *info);
 
 /*
 ** Clean

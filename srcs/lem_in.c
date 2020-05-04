@@ -6,7 +6,7 @@
 /*   By: plagache <plagache@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 16:47:08 by alagache          #+#    #+#             */
-/*   Updated: 2020/05/01 16:08:55 by alagache         ###   ########.fr       */
+/*   Updated: 2020/05/04 19:33:33 by plagache         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,15 +108,21 @@ int	print(t_lem_in *info)
 		ft_printf("ERROR\n");
 		return (FAILURE);
 	}
+	if ((info->options & PRINT_LN) != 0)
+	{
+		ft_printf("Number of line : %i\n", info->best_paths.turns);
+	}
 	return (SUCCESS);
 }
 
-int	main(void)
+int	main(int ac, char **av)
 {
 	t_lem_in	info;
 	int			ret;
 
 	ft_memset(&info, 0, sizeof(t_lem_in));
+	if (option_check(ac, av, &info) == FAILURE)
+		return (EXIT_FAILURE);
 	ret = read_ant_parse(&info);
 	if (ret == FAILURE)
 		return (EXIT_FAILURE);
