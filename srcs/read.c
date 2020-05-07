@@ -6,7 +6,7 @@
 /*   By: plagache <plagache@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 16:51:59 by alagache          #+#    #+#             */
-/*   Updated: 2020/04/14 14:40:48 by plagache         ###   ########.fr       */
+/*   Updated: 2020/05/07 18:18:35 by plagache         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	empty_line(char **str)
 	ptr = ft_strstr(*str, "\n\n");
 	if (ptr == NULL)
 		return (SUCCESS);
-	new_str = ft_strsub(*str, 0, (ptr - *str));
+	new_str = ft_strsub(*str, 0, (ptr - *str + 1));
 	if (new_str == NULL)
 	{
 		free(*str);

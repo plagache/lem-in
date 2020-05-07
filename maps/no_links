@@ -1,6 +1,6 @@
 #lol
 #lol2
-11
+12
 ##start
 room 1 1
 1 1 1
@@ -16,5 +16,10 @@ end 1 1
 ###
 ####
 ####
- room-1
+room-1
+1-2
 end-2
+room-3
+ 3-2
+end-3
+

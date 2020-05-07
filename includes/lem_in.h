@@ -6,7 +6,7 @@
 /*   By: plagache <plagache@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 16:45:44 by alagache          #+#    #+#             */
-/*   Updated: 2020/05/04 19:34:22 by plagache         ###   ########.fr       */
+/*   Updated: 2020/05/07 17:33:32 by plagache         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include "libft.h"
 
 # define SUCCESS 0
-# define FAILURE 1
+# define FAILURE -42
 # define BUFF_SIZE 4096
 # define END_COMMAND 64
 # define START_COMMAND 1

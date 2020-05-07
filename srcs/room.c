@@ -6,7 +6,7 @@
 /*   By: plagache <plagache@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/14 13:03:56 by plagache          #+#    #+#             */
-/*   Updated: 2020/04/14 13:05:35 by plagache         ###   ########.fr       */
+/*   Updated: 2020/05/07 18:36:48 by plagache         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,3 +71,9 @@ int		get_rooms(t_lem_in *info)
 	}
 	return (SUCCESS);
 }
+
+/*
+** not sure
+** if (is_link(info->file_split[info->line]) == SUCCESS)
+** return (FAILURE);
+*/

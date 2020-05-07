@@ -6,7 +6,7 @@
 /*   By: plagache <plagache@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 16:47:08 by alagache          #+#    #+#             */
-/*   Updated: 2020/05/04 19:33:33 by plagache         ###   ########.fr       */
+/*   Updated: 2020/05/07 18:10:11 by plagache         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int	room_link_parse(t_lem_in *info)
 	if (get_rooms(info) == FAILURE || info->head == NULL)
 	{
 		ft_printf("ERROR\n");
+		free_graph(info->head, 2);
 		free_file(info->file_split, info->file);
 		return (FAILURE);
 	}

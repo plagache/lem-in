@@ -6,7 +6,7 @@
 /*   By: plagache <plagache@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/14 13:27:29 by plagache          #+#    #+#             */
-/*   Updated: 2020/04/14 13:27:42 by plagache         ###   ########.fr       */
+/*   Updated: 2020/05/07 18:09:49 by plagache         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,18 @@ void	free_graph(t_list *head, int code)
 {
 	t_room	*room;
 
-	if (head->next != NULL)
-		free_graph(head->next, code);
-	room = (t_room*)head->content;
-	if ((code & 1) != 0 && room->neighbours != NULL)
-		free_list(room->neighbours);
-	if ((code & 2) != 0 && room->room_name != NULL)
-		free(room->room_name);
-	free(room);
-	free(head);
+	if (head != NULL)
+	{
+		if (head->next != NULL)
+			free_graph(head->next, code);
+		room = (t_room*)head->content;
+		if ((code & 1) != 0 && room->neighbours != NULL)
+			free_list(room->neighbours);
+		if ((code & 2) != 0 && room->room_name != NULL)
+			free(room->room_name);
+		free(room);
+		free(head);
+	}
 }
 
 void	free_matrice(char **matrice, int size)

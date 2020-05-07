@@ -6,7 +6,7 @@
 /*   By: plagache <plagache@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/14 15:05:21 by plagache          #+#    #+#             */
-/*   Updated: 2020/04/14 15:05:55 by plagache         ###   ########.fr       */
+/*   Updated: 2020/05/07 18:14:15 by plagache         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int		get_links(t_lem_in *info)
 			info->line++;
 		}
 		else
-			return (FAILURE);
+			return (SUCCESS);
 	}
 	if (fail_links(info->head) == FAILURE)
 		return (FAILURE);

@@ -6,14 +6,21 @@
 /*   By: plagache <plagache@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 16:00:38 by alagache          #+#    #+#             */
-/*   Updated: 2020/03/18 08:25:17 by plagache         ###   ########.fr       */
+/*   Updated: 2020/05/07 15:36:07 by plagache         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 #include "ft_printf.h"
 
-int	display_list(t_list *list)
+/*
+** more things to prints
+**		ft_printf("ROOM NBR IS|%i|", c);
+**		ft_printf("ROOM ADDRESS IS|%p| in link|%p|\n\n", rptr, ptr);
+**		ft_printf("ROOM|%s|ID |%i|>>", rptr->room_name, rptr->id);
+*/
+
+int		display_list(t_list *list)
 {
 	t_list	*ptr;
 	t_room	*rptr;
@@ -24,10 +31,7 @@ int	display_list(t_list *list)
 	while (ptr != NULL)
 	{
 		rptr = (t_room*)(ptr->content);
-//		ft_printf("ROOM NBR IS|%i|", c);
 		ft_printf("ROOM NAME IS|%6s| ID = |%6i|\n", rptr->room_name, rptr->id);
-//		ft_printf("ROOM ADDRESS IS|%p| in link|%p|\n\n", rptr, ptr);
-//		ft_printf("ROOM|%s|ID |%i|>>", rptr->room_name, rptr->id);
 		c++;
 		ptr = ptr->next;
 	}
