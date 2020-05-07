@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: alagache <alagache@student.42.fr>          +#+  +:+       +#+         #
+#    By: plagache <plagache@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/04/21 17:56:28 by alagache          #+#    #+#              #
-#    Updated: 2020/04/23 22:51:23 by alagache         ###   ########.fr        #
+#    Updated: 2020/05/04 19:27:07 by plagache         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ SRC = lem_in.c \
 	  split_ants.c\
 	  collision.c\
 	  validate_parsing.c\
+	  option.c\
 
 SRCS = $(addprefix srcs/,$(SRCS))
 
