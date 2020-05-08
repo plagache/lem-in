@@ -11,11 +11,13 @@
 /* ************************************************************************** */
 
 #include "lem_in.h"
+#include <limits.h>
 
 int		get_ants(t_lem_in *info)
 {
-	int	line;
-	int	c;
+	int			line;
+	int			c;
+	long long	ret;
 
 	c = 0;
 	line = 0;
@@ -31,7 +33,9 @@ int		get_ants(t_lem_in *info)
 	if (info->file_split[line][c] != '\0')
 		return (FAILURE);
 	info->line_ants = line;
-	info->nbr_ants = ft_atol(info->file_split[line]);
+	if ((ret = ft_atol(info->file_split[line])) > (long long)INT_MAX)
+		return (FAILURE);
+	info->nbr_ants = (int)ret;
 	info->line = line + 1;
 	return (SUCCESS);
 }

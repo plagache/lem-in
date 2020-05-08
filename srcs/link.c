@@ -12,23 +12,6 @@
 
 #include "lem_in.h"
 
-int		fail_links(t_list *head)
-{
-	t_list	*ptr;
-	t_room	*room;
-
-	ptr = head;
-	while (ptr != NULL)
-	{
-		room = ptr->content;
-		if ((room->command == END_COMMAND || room->command == START_COMMAND)
-			&& room->neighbours == NULL)
-			return (FAILURE);
-		ptr = ptr->next;
-	}
-	return (SUCCESS);
-}
-
 t_list	*search_room(t_lem_in *info, char *room)
 {
 	t_list *ptr;
@@ -59,7 +42,7 @@ int		get_link(t_lem_in *info, char *room_name1, char *room_name2)
 	ptr1 = search_room(info, room_name1);
 	ptr2 = search_room(info, room_name2);
 	if (ptr1 == NULL || ptr2 == NULL)
-		return (FAILURE);
+		return (NO_ROOM);
 	room1 = (t_room*)(ptr1->content);
 	room2 = (t_room*)(ptr2->content);
 	if (new_link(&(room2->neighbours), room1) == FAILURE
@@ -71,6 +54,7 @@ int		get_link(t_lem_in *info, char *room_name1, char *room_name2)
 int		get_links(t_lem_in *info)
 {
 	char	**arr;
+	int		ret;
 
 	while (info->file_split[info->line] != NULL)
 	{
@@ -80,18 +64,16 @@ int		get_links(t_lem_in *info)
 		{
 			if ((arr = ft_strsplit(info->file_split[info->line], '-')) == NULL)
 				return (FAILURE);
-			if (get_link(info, arr[0], arr[1]) == FAILURE)
-			{
-				free_arr((void**)arr);
-				return (FAILURE);
-			}
+			ret = get_link(info, arr[0], arr[1]);
 			free_arr((void**)arr);
+			if (ret == FAILURE)
+				return (FAILURE);
+			else if (ret == NO_ROOM)
+				return (SUCCESS);
 			info->line++;
 		}
 		else
 			return (SUCCESS);
 	}
-	if (fail_links(info->head) == FAILURE)
-		return (FAILURE);
 	return (SUCCESS);
 }

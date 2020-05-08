@@ -13,6 +13,23 @@
 #include "lem_in.h"
 #include "ft_printf.h"
 
+int		fail_links(t_list *head)
+{
+	t_list	*ptr;
+	t_room	*room;
+
+	ptr = head;
+	while (ptr != NULL)
+	{
+		room = ptr->content;
+		if ((room->command == END_COMMAND || room->command == START_COMMAND)
+			&& room->neighbours == NULL)
+			return (FAILURE);
+		ptr = ptr->next;
+	}
+	return (SUCCESS);
+}
+
 /*
 ** duplicate link / room
 ** parse the list of room next have same name
@@ -23,11 +40,15 @@
 int	duplicate_room(t_list *head)
 {
 	t_list	*ptr;
+	char	*str1;
+	char	*str2;
 
 	ptr = head;
 	while (ptr->next != NULL)
 	{
-		if (ptr->content == ptr->next->content)
+		str1 = ((t_room*)ptr->content)->room_name;
+		str2 = ((t_room*)(ptr->next)->content)->room_name;
+		if (ft_strcmp(str1, str2) == 0)
 			return (SUCCESS);
 		ptr = ptr->next;
 	}
@@ -68,7 +89,8 @@ int	validate_data(t_lem_in *info)
 {
 	if (command(info->start_ptr, info->end_ptr) == FAILURE
 		|| ultimate_path(info->start_ptr, info->end_ptr) == FAILURE
-		|| duplicate_room(info->head) == SUCCESS)
+		|| duplicate_room(info->head) == SUCCESS
+		|| fail_links(info->head) == FAILURE)
 	{
 		ft_printf("ERROR\n");
 		free_graph(info->head, 3);

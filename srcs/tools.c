@@ -51,6 +51,7 @@ int		is_link(char *str)
 int		is_room(char *str)
 {
 	char	*ptr;
+	char	*tmp;
 
 	if (occurrence_of(str, ' ') != 2)
 		return (FAILURE);
@@ -61,9 +62,10 @@ int		is_room(char *str)
 		ptr++;
 	if (*ptr++ != ' ')
 		return (FAILURE);
+	tmp = ptr;
 	while (ft_isdigit(*ptr) == TRUE)
 		ptr++;
-	if (*ptr != '\0')
+	if (*ptr != '\0' || tmp == ptr)
 		return (FAILURE);
 	return (SUCCESS);
 }
