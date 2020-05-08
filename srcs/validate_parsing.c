@@ -13,7 +13,7 @@
 #include "lem_in.h"
 #include "ft_printf.h"
 
-int		fail_links(t_list *head)
+int	fail_links(t_list *head)
 {
 	t_list	*ptr;
 	t_room	*room;
