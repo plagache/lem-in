@@ -53,6 +53,8 @@ int		is_room(char *str)
 	char	*ptr;
 	char	*tmp;
 
+	if (start_with_char(str, 'L') == SUCCESS)
+		return (FAILURE);
 	if (occurrence_of(str, ' ') != 2)
 		return (FAILURE);
 	ptr = ft_strchr(str, ' ') + 1;
